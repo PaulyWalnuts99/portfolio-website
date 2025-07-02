@@ -1,0 +1,256 @@
+/* Reset some default styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body & base fonts */
+body {
+  font-family: 'Georgia', serif;
+  background-color: #bcbdc0; /* soft light grey, warm neutral */
+  color: #4B382A; /* Dark Brown */
+  line-height: 1.6;
+  font-size: 20px; /* bumped up paragraph font size */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container for main content */
+main {
+  flex-grow: 1;
+  max-width: 1100px;    /* increased width for narrower margins */
+  margin: 2rem auto;
+  padding: 0 0.5rem;    /* reduced side padding */
+}
+
+/* Header and Navigation */
+header {
+  background-color: #6B2737; /* Deep Burgundy */
+  padding: 1rem 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  color: #BFA06D; /* Muted Gold */
+  text-align: center;
+  font-weight: normal;
+  font-size: 2rem;
+  letter-spacing: 3px;
+  font-family: 'Copperplate', 'Georgia', serif;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin-top: 0.5rem;
+  gap: 2rem;
+}
+
+nav ul li a {
+  color: #BFA06D; /* Muted Gold */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  color: #1E3D2F; /* Dark Green */
+  outline: none;
+}
+
+/* Section Headings */
+h2, h3 {
+  color: #6B2737; /* Deep Burgundy */
+  margin-bottom: 0.75rem;
+  font-family: 'Georgia', serif;
+  font-size: 1.8rem; /* keep titles nice and big */
+}
+
+/* Paragraphs */
+p, ul {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;  /* bigger font size */
+  line-height: 1.7;
+}
+
+/* Lists */
+ul {
+  padding-left: 1.25rem;
+}
+
+/* Gallery container */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* bigger min width for larger images */
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(75,56,42,0.3);
+  transition: transform 0.3s ease;
+}
+
+.gallery img:hover,
+.gallery img:focus {
+  transform: scale(1.05);
+  outline: none;
+}
+
+/* Video container responsive */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+  margin-bottom: 2rem;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(107,39,55,0.4);
+}
+
+/* Footer */
+footer {
+  background-color: #6B2737; /* Deep Burgundy */
+  color: #BFA06D; /* Muted Gold */
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: auto;
+}
+
+/* Links */
+a {
+  color: #6B2737;
+  text-decoration: underline;
+}
+
+a:hover,
+a:focus {
+  color: #1E3D2F;
+  outline: none;
+}
+
+/* About intro with photo on top-left */
+.about-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Smaller circular photo in top-left */
+.about-photo {
+  width: 100px;   /* smaller size */
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%; /* circle shape */
+  box-shadow: 0 2px 6px rgba(75, 56, 42, 0.4);
+  flex-shrink: 0;
+  margin-top: 0; /* align with top of text */
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+  
+  nav ul {
+    gap: 1rem;
+  }
+  
+  p, ul {
+    font-size: 1rem;
+  }
+
+  /* For smaller screens, stack photo and text vertically */
+  .about-intro {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-photo {
+    margin-top: 0;
+    width: 120px;
+    height: 120px;
+  }
+
+  .about-text {
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+/* Lightbox overlay styles */
+#lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(107, 39, 55, 0.85); /* deep burgundy with opacity */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: zoom-out;
+  padding: 1rem;
+}
+
+/* Lightbox image */
+#lightbox-image {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 6px;
+  box-shadow: 0 2px 12px rgba(75, 56, 42, 0.8);
+  cursor: default;
+  user-select: none;
+}
+
+/* Caption below the image */
+#lightbox-caption {
+  margin-top: 0.75rem;
+  color: #BFA06D; /* muted gold */
+  font-family: 'Georgia', serif;
+  font-size: 1.2rem;
+  text-align: center;
+  max-width: 90vw;
+  user-select: none;
+}
+
+/* Close button styling */
+#lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 2.5rem;
+  color: #BFA06D; /* muted gold */
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+#lightbox-close:hover,
+#lightbox-close:focus {
+  color: #1E3D2F; /* dark green */
+  outline: none;
+}
