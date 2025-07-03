@@ -1,3 +1,17 @@
+/* ========== THEME VARIABLES ========== */
+:root {
+  --bg-color: #515151;       /* UCF Black */
+  --text-color: #f0f0f0;     /* Light Grey */
+  --accent-color: #d9ac17;   /* UCF Gold */
+}
+
+/* Bootlegger Bust Theme */
+.bootlegger-theme {
+  --bg-color: #515151;       /* Dark Grey */
+  --text-color: #f5e9db;     /* Soft Beige */
+  --accent-color: #b8472e;   /* Burnt Orange */
+}
+
 /* Reset some default styles */
 * {
   box-sizing: border-box;
@@ -8,32 +22,53 @@
 /* Body & base fonts */
 body {
   font-family: 'Georgia', serif;
-  background-color: #bcbdc0; /* soft light grey, warm neutral */
-  color: #4B382A; /* Dark Brown */
+  background-color: var(--bg-color);
+  color: var(--text-color);
   line-height: 1.6;
-  font-size: 20px; /* bumped up paragraph font size */
+  font-size: 20px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  /* subtle vertical gradient break to lighten middle area behind main */
+  background: linear-gradient(
+    to bottom,
+    var(--bg-color) 0%,
+    var(--bg-color) 10%,
+    #f8f5e1 10%,  /* light creamy-beige start */
+    #d9ac17 90%,  /* warm gold-ish end */
+    var(--bg-color) 90%,
+    var(--bg-color) 100%
+  );
 }
 
 /* Container for main content */
 main {
   flex-grow: 1;
-  max-width: 1100px;    /* increased width for narrower margins */
+  max-width: 1100px;
   margin: 2rem auto;
-  padding: 0 0.5rem;    /* reduced side padding */
+  padding: 2rem 1rem;
+
+  /* soft UCF gold gradient background inside bordered main */
+  background: linear-gradient(135deg, #dadad2, #dadad2);
+  color: #323232; /* Dark text for readability */
+
+  border-top: 4px solid var(--accent-color);
+  border-bottom: 4px solid var(--accent-color);
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(183, 145, 19, 0.3); /* subtle gold glow */
 }
 
 /* Header and Navigation */
 header {
-  background-color: #6B2737; /* Deep Burgundy */
+  background-color: var(--bg-color);
   padding: 1rem 0;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 header h1 {
-  color: #BFA06D; /* Muted Gold */
+  color: var(--accent-color);
   text-align: center;
   font-weight: normal;
   font-size: 2rem;
@@ -50,7 +85,7 @@ nav ul {
 }
 
 nav ul li a {
-  color: #BFA06D; /* Muted Gold */
+  color: var(--accent-color);
   text-decoration: none;
   font-weight: 600;
   font-size: 1.1rem;
@@ -59,23 +94,24 @@ nav ul li a {
 
 nav ul li a:hover,
 nav ul li a:focus {
-  color: #1E3D2F; /* Dark Green */
+  color: #ffffff;
   outline: none;
 }
 
 /* Section Headings */
 h2, h3 {
-  color: #6B2737; /* Deep Burgundy */
+  color: var(--accent-color);
   margin-bottom: 0.75rem;
   font-family: 'Georgia', serif;
-  font-size: 1.8rem; /* keep titles nice and big */
+  font-size: 1.8rem;
 }
 
 /* Paragraphs */
 p, ul {
   margin-bottom: 1.5rem;
-  font-size: 1.2rem;  /* bigger font size */
+  font-size: 1.2rem;
   line-height: 1.7;
+  color: #323232; /* Darker text inside main */
 }
 
 /* Lists */
@@ -86,7 +122,7 @@ ul {
 /* Gallery container */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* bigger min width for larger images */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1rem;
   margin-bottom: 2rem;
 }
@@ -108,7 +144,7 @@ ul {
 /* Video container responsive */
 .video-container {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
+  padding-bottom: 56.25%;
   padding-top: 25px;
   height: 0;
   margin-bottom: 2rem;
@@ -127,8 +163,8 @@ ul {
 
 /* Footer */
 footer {
-  background-color: #6B2737; /* Deep Burgundy */
-  color: #BFA06D; /* Muted Gold */
+  background-color: var(--bg-color);
+  color: var(--accent-color);
   text-align: center;
   padding: 1rem 0;
   font-size: 0.9rem;
@@ -138,13 +174,13 @@ footer {
 
 /* Links */
 a {
-  color: #6B2737;
+  color: #b68e0b; /* UCF Gold */
   text-decoration: underline;
 }
 
 a:hover,
 a:focus {
-  color: #1E3D2F;
+  color: #ffffff;
   outline: none;
 }
 
@@ -158,13 +194,13 @@ a:focus {
 
 /* Smaller circular photo in top-left */
 .about-photo {
-  width: 100px;   /* smaller size */
+  width: 100px;
   height: 100px;
   object-fit: cover;
-  border-radius: 50%; /* circle shape */
+  border-radius: 50%;
   box-shadow: 0 2px 6px rgba(75, 56, 42, 0.4);
   flex-shrink: 0;
-  margin-top: 0; /* align with top of text */
+  margin-top: 0;
 }
 
 /* Responsive tweaks */
@@ -172,16 +208,15 @@ a:focus {
   header h1 {
     font-size: 1.5rem;
   }
-  
+
   nav ul {
     gap: 1rem;
   }
-  
+
   p, ul {
     font-size: 1rem;
   }
 
-  /* For smaller screens, stack photo and text vertically */
   .about-intro {
     flex-direction: column;
     align-items: center;
@@ -206,7 +241,7 @@ a:focus {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(107, 39, 55, 0.85); /* deep burgundy with opacity */
+  background-color: rgba(240, 240, 240, 0.7);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -214,6 +249,16 @@ a:focus {
   z-index: 9999;
   cursor: zoom-out;
   padding: 1rem;
+}
+
+/* Lightbox content wrapper (new) */
+#lightbox-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90vw;
+  max-height: 80vh;
+  text-align: center;
 }
 
 /* Lightbox image */
@@ -229,7 +274,7 @@ a:focus {
 /* Caption below the image */
 #lightbox-caption {
   margin-top: 0.75rem;
-  color: #BFA06D; /* muted gold */
+  color: #000000; /* Darker text for readability */
   font-family: 'Georgia', serif;
   font-size: 1.2rem;
   text-align: center;
@@ -243,7 +288,7 @@ a:focus {
   top: 15px;
   right: 20px;
   font-size: 2.5rem;
-  color: #BFA06D; /* muted gold */
+  color: var(--accent-color);
   cursor: pointer;
   user-select: none;
   transition: color 0.3s ease;
@@ -251,6 +296,20 @@ a:focus {
 
 #lightbox-close:hover,
 #lightbox-close:focus {
-  color: #1E3D2F; /* dark green */
+  color: #1E3D2F;
   outline: none;
+}
+
+
+/* --- CUSTOM GRADIENT FOR PROJECTS PAGE --- */
+body.projects-page {
+  background: linear-gradient(
+    to bottom,
+    var(--bg-color) 0%,
+    var(--bg-color) 10%,
+    #834600 10%,   /* soft beige from bootlegger theme text color */
+    #f5e9db 90%,
+    var(--bg-color) 90%,
+    var(--bg-color) 100%
+  );
 }
