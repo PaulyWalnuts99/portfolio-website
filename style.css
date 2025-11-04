@@ -380,7 +380,7 @@ body.projects-page {
 
 .level-step {
   display: flex;
-  align-items: flex-start;
+  align-items: flex-start; /* align text top with video */
   gap: 2rem;
   flex-wrap: wrap;
 }
@@ -393,14 +393,14 @@ body.projects-page {
 .level-step-text {
   flex: 1 1 400px;
   font-size: 1.15rem;
-  margin-top: 2.5rem; /* move text down */
+  margin-top: 2.5rem; /* moves text down */
   color: #323232;
   font-family: 'Times New Roman', serif;
 }
 
 .level-step-video {
-  flex: 1 1 500px;
-  max-width: 600px;
+  flex: 1 1 500px; /* half of previous 100% width */
+  max-width: 600px; /* constrain video size */
 }
 
 .level-step-video h3 {
@@ -410,9 +410,10 @@ body.projects-page {
   font-family: 'Georgia', serif;
 }
 
-.level-step-video video {
+/* YouTube iframe styling */
+.level-step-video iframe {
   width: 100%;
-  height: auto;
+  height: 315px; /* reduced height for smaller size */
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(107, 39, 55, 0.4);
 }
@@ -426,6 +427,10 @@ body.projects-page {
   .level-step-text,
   .level-step-video {
     flex: 1 1 100%;
+  }
+
+  .level-step-video iframe {
+    height: 250px; /* smaller on mobile */
   }
 }
 
