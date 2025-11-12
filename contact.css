@@ -34,7 +34,7 @@ header h1 {
 
 header .subtitle {
   font-size: 1.5rem;
-  font-weight: normal;
+  font-weight: bold;
   margin-top: 0.25rem;
   color: #e8e8e8; /* matches about page subtitle style */
 }
