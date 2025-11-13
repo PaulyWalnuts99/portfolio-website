@@ -60,7 +60,7 @@ nav ul li:last-child {
 nav ul li a {
   text-decoration: none;
   font-weight: bold;
-  color: #e8e8e8;
+  color: #d9ac17;
   position: relative;
   transition: color 0.3s ease;
 }

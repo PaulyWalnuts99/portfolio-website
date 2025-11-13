@@ -81,6 +81,10 @@ nav ul li a:focus {
   color: #ffffff; /* steel blue hover */
   outline: none;
 }
+/* ================= BULLET POINT SPACING ================= */
+ul li {
+  margin-bottom: 0.5em; /* Adjust this value to increase or decrease spacing */
+}
 
 /* ================= MAIN CONTENT ================= */
 main {

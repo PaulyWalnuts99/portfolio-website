@@ -82,7 +82,10 @@ nav ul li a:focus {
   color: #ffffff;
   outline: none;
 }
-
+/* ================= BULLET POINT SPACING ================= */
+ul li {
+  margin-bottom: 0.5em; /* Adjust this value to increase or decrease spacing */
+}
 /* ================= MAIN CONTENT ================= */
 main {
   flex-grow: 1;
