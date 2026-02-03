@@ -1,0 +1,274 @@
+/* ========== PROJECTS PAGE STYLES ========== */
+
+/* Reset basic elements */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body & font */
+body {
+  font-family: 'Georgia', serif;
+  line-height: 1.6;
+  font-size: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #0f0f0f 0%, #6f6c6c 100%);
+  color: #e8e8e8;
+}
+
+/* Header */
+header {
+  text-align: center;
+  padding: 1.5rem 1rem 1rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  letter-spacing: 2px;
+  color: #d9ac17;
+}
+
+header .subtitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 0.25rem;
+  color: #e8e8e8;
+}
+
+/* Navigation */
+nav ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin-top: 1rem;
+  gap: 2rem;
+}
+
+nav ul li {
+  border-right: 3px solid rgba(255, 255, 255, 0.15);
+  padding-right: 1.5rem;
+}
+
+nav ul li:last-child {
+  border-right: none;
+}
+
+nav ul li a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #d9ac17;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #d9ac17;
+  left: 0;
+  bottom: -4px;
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after,
+nav ul li a:focus::after {
+  width: 100%;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  color: #ffffff;
+  outline: none;
+}
+
+/* Main content */
+main {
+  flex-grow: 1;
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: rgba(40, 40, 40, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+/* ================= PROJECT CARDS ================= */
+.project-card {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  background: rgba(30, 30, 30, 0.9);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  background: rgba(40, 40, 40, 1);
+}
+
+.project-card img {
+  width: 350px; /* larger image */
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.project-card img:hover {
+  transform: scale(1.05); /* subtle zoom on hover */
+}
+
+.project-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-info h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #d9ac17;
+}
+
+.project-info p {
+  font-size: 1.3rem;
+  color: #d4d4d4;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+/* ================= LIGHTBOX ================= */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding: 1rem;
+  background: rgba(0,0,0,0.9);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 8px;
+}
+
+.lightbox .caption {
+  margin-top: 0.5rem;
+  color: #fff;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* ================= ABOUT ME ================= */
+.about-intro {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.about-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #d9ac17;
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #d4d4d4;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  color: #ffffff;
+  margin-top: auto;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 900px) {
+  .project-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .project-card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .project-info h3 {
+    font-size: 1.6rem;
+  }
+
+  .project-info p {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .about-intro {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-photo {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 1rem;
+  }
+
+  .about-text h2 {
+    font-size: 1.6rem;
+  }
+
+  .about-text p {
+    font-size: 1.1rem;
+  }
+}

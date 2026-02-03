@@ -6,7 +6,7 @@ body.projects-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #2c2c2c 0%, #4aa8e0 100%); /* dark mech/industrial gradient */
+  background: linear-gradient(180deg, #2c2c2c 0%, #6B8E23 100%); /* dark mech/industrial gradient */
   color: #e0e0e0; /* default light gray text for contrast */
 }
 
@@ -20,7 +20,7 @@ header h1 {
   font-weight: bold;
   font-size: 2.5rem;
   letter-spacing: 2px;
-  color: #4aa8e0; /* steel blue accent for title */
+  color: #6B8E23; /* steel blue accent for title */
   margin-bottom: 0.1rem;
 }
 
@@ -37,7 +37,7 @@ nav ul {
   display: flex;
   justify-content: center;
   list-style: none;
-  gap: 2rem;
+  gap: 1rem;
   margin-top: 1rem;
   flex-wrap: wrap;
 }
@@ -54,7 +54,7 @@ nav ul li:last-child {
 nav ul li a {
   font-weight: bold;
   font-size: 1.2rem;
-  color: #4aa8e0;
+  color: #6B8E23;
   text-decoration: none;
   position: relative;
   transition: color 0.3s ease;
@@ -65,7 +65,7 @@ nav ul li a::after {
   position: absolute;
   width: 0;
   height: 2px;
-  background: #4aa8e0; /* mech red accent underline */
+  background: #6B8E23; /* mech accent underline */
   left: 0;
   bottom: -4px;
   transition: width 0.3s ease;
@@ -94,24 +94,23 @@ main {
   padding: 1.5rem 1rem;
   background: rgba(229, 229, 229, 0.95); /* keep light gray for readability */
   color: #000000;
-  border-top: 4px solid #4aa8e0; /* blue accent */
-  border-bottom: 4px solid #4aa8e0;
+  border-top: 4px solid #6B8E23; /* blue accent */
+  border-bottom: 4px solid #6B8E23;
   border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px #6B8E23;
 }
 
 /* ================= HEADINGS ================= */
 main h1,
 main h2,
-main h3,
-main h4 {
+main h3 {
   text-decoration: underline;
-  color: #4aa8e0; /* blue accent for all headings */
+  color: #6B8E23;
   margin-bottom: 0.75rem;
 }
 
 h2, h3 {
-  font-size: 1.8rem;
+  font-size: 1.75rem;
 }
 
 /* ================= TEXT & LISTS ================= */
@@ -144,20 +143,21 @@ ul {
   flex: 1 1 200px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-  color: #000000;
+  box-shadow: 0 2px 5px #6B8E23;
+  color: #6B8E23;
 }
 
 .info-card h3 {
   margin-bottom: 1px;
   font-size: 1.2rem;
-  color: #4aa8e0; /* blue accent for cards */
+  color: #6B8E23; /* blue accent for cards */
 }
 
 .info-card p {
   margin-top: 0;       /* remove any top margin */
   font-size: 1.1rem;
   font-weight: bold;
+  color: #6B8E23;
 }
 
 /* ================= GALLERIES ================= */
@@ -211,10 +211,11 @@ ul {
 }
 
 .lightbox .caption {
-  color: #ffffff;
+  color: #6B8E23;
   font-size: 1.2rem;
   text-align: center;
   max-width: 90%;
+  font-style: italic;
 }
 
 .lightbox .close {
@@ -222,9 +223,8 @@ ul {
   top: 20px;
   right: 30px;
   font-size: 2rem;
-  color: #FFFFFF;
+  color: #6B8E23;
   cursor: pointer;
-  font-weight: bold;
 }
 
 /* ================= VIDEOS ================= */
@@ -250,8 +250,9 @@ ul {
 .level-walkthrough {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 3rem;
+  gap: 0rem;
+  margin-bottom: 1rem;
+  margin-top: 0;
 }
 
 .level-step {
@@ -268,7 +269,7 @@ ul {
 .level-step-text {
   flex: 1 1 400px;
   font-size: 1.15rem;
-  margin-top: 2.5rem;
+  margin-top: 5.0rem;
   color: #000000;
 }
 
@@ -300,4 +301,177 @@ footer {
 
 @media (max-width: 600px) {
   nav ul { flex-direction: column; gap: 1rem; }
+}
+
+.problem-section {
+  padding-top: 20px;   /* smaller top padding */
+  padding-bottom: 20px; /* smaller bottom padding */
+  background-color: transparent;
+}
+
+.problem-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.problem-text {
+  flex: 1 1 45%;
+  min-width: 300px; /* Prevent text from shrinking too much */
+  margin-top: 0;        /* remove extra spacing above text */
+  padding-top: 0;       /* remove padding if any */
+}
+
+.problem-text h2 {
+  margin-top: 5px;
+  margin-bottom: 5px;  /* smaller gap under heading */
+}
+
+.problem-text ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-bottom: 1rem; /* or even 0.75rem */
+}
+
+.problem-text li {
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.problem-carousel {
+  flex: 1 1 50%;
+  min-width: 300px;
+  position: relative;
+}
+
+.problem-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: flex-start;
+}
+
+.problem-text {
+  flex: 1 1 45%;
+  min-width: 300px;
+}
+
+.problem-text ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.problem-text li {
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+/* Carousel right column */
+.problem-carousel {
+  flex: 1 1 50%;
+  min-width: 300px;
+  position: relative;
+}
+
+.carousel-images {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: auto;
+}
+
+.carousel-images img {
+  width: 100%;
+  display: none;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.carousel-images img.active {
+  display: block;
+}
+
+/* Arrows positioned on sides of the image */
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.carousel-controls button {
+  background: rgba(0,0,0,0.5);
+  color: #6B8E23;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 4px;
+}
+
+/* Caption under image */
+.carousel-caption p {
+  margin-top: 10px;
+  font-style: italic;
+  text-align: center;
+  color: #000000;
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+  .problem-container {
+    flex-direction: column;
+  }
+
+  .problem-text, .problem-carousel {
+    flex: 1 1 100%;
+  }
+}
+
+/* Gallery and lightbox hover effect */
+.gallery img:hover,
+.gallery-grid img:hover,
+.gallery-grid-4x3 img:hover,
+.lightbox-trigger img:hover {
+  transform: scale(1.08); /* slightly bigger for noticeable hover */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ensure lightbox link itself shows pointer */
+.lightbox-trigger {
+  cursor: pointer;
+}
+
+/* Bounce / bubble effect for carousel images on hover */
+.carousel-images img {
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), box-shadow 0.3s ease;
+}
+
+.carousel-images img:hover {
+  transform: translateY(-5px) scale(1.03); /* slight pop out */
+  box-shadow: 0 12px 25px rgba(0,0,0,0.35); /* bigger shadow for depth */
+  cursor: pointer;
+}
+
+h4.section-divider {
+  color: #B8860B; /* sand-colored text */
+  font-family: 'Georgia', serif; 
+  font-weight: bold;            
+  font-size: 2rem;              
+  text-decoration: underline;
+  text-align: center;
+  background-color: #cecece; /* subtle gray box */
+  padding: 1rem;
+  border-radius: 12px; /* optional for soft edges */
+  box-shadow: 0 2px 5px #B8860B;
+    background: linear-gradient(90deg, #d1d1d1, #c7c7c7); /* subtle gradient */
 }
