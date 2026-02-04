@@ -212,6 +212,7 @@ ul {
 .lightbox .caption {
   color: #B95A30; /* caption color in lightbox */
   font-size: 1.2rem;
+  font-style: italic;
   text-align: center;
   max-width: 90%;
 }
@@ -224,7 +225,6 @@ ul {
   color: #B95A30;
   cursor: pointer;
   font-weight: bold;
-  font-style: italic;
 }
 
 /* ================= VIDEOS ================= */
