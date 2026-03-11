@@ -16,8 +16,8 @@
   --gold: #e8622a;
   --olive: #4a8fb5;
   --gold-dim: rgba(232,98,42,0.08);
-  --text: #b8c4d4;
-  --text-dim: #3d4e60;
+  --text: #ffffff;
+  --text-dim: #ffffff;
   --white: #dde8f0;
   --black: #000;
 }
@@ -745,8 +745,8 @@ footer p {
       </div>
       <div class="problem-carousel">
         <div class="carousel-images">
-          <a href="sornimages/SORNLevelDesignDocumentLevel1.pdf" target="_blank" class="active" data-caption="Level 1 Design Document — click to open PDF">
-            <img src="sornimages/LDD1SS.png" alt="Level 1 Design Document">
+          <a href="sornimages/SORNLevelDesignDocumentLevel1.pdf" target="_blank" class="active" data-caption="Level 1 Design Document — Click to open PDF">
+            <img src="sornimages/LDD1SS.png" alt="Level 1 Design Document" style="display:block;">
           </a>
           <img src="sornimages/MipUIMapofDesertEnvironment.png" alt="First Map of Desert Environment" class="lightbox-trigger" data-caption="First Map of Desert Environment">
           <img src="sornimages/OfficalDesertMapPhoto.png" alt="Iterated Map of Desert Environment" class="lightbox-trigger" data-caption="Iterated Map of Desert Environment">
@@ -940,7 +940,7 @@ footer p {
 
   // Carousels — each .problem-carousel is independent
   document.querySelectorAll('.problem-carousel').forEach(carousel => {
-    const images = carousel.querySelectorAll('.carousel-images img, .carousel-images a');
+    const images = carousel.querySelectorAll('.carousel-images > img, .carousel-images > a');
     const captionEl = carousel.querySelector('.carousel-caption p');
     const captions = Array.from(images).map(el => el.dataset.caption || el.alt || (el.querySelector('img')?.alt) || '');
     let current = 0;
