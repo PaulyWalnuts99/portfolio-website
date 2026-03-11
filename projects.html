@@ -1,75 +1,479 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects | Paul Saturno</title>
-  <link rel="stylesheet" href="projects.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paul Saturno — Level Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #090b0e;
+  --surface: #10141a;
+  --surface2: #161b23;
+  --border: rgba(255,255,255,0.06);
+  --gold: #d9ac17;
+  --gold-dim: rgba(217,172,23,0.08);
+  --gold-glow: rgba(217,172,23,0.25);
+  --text: #c2c8d4;
+  --text-dim: #4a5260;
+  --white: #eef0f4;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 100;
+}
+
+.bg-glow {
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(217,172,23,0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Header ── */
+header {
+  position: relative;
+  z-index: 10;
+  padding: 3rem 5rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.header-left { flex: 1; }
+
+.site-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.6rem, 4.5vw, 4rem);
+  color: var(--white);
+  letter-spacing: 5px;
+  line-height: 1;
+}
+
+.site-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--gold);
+  margin-top: 0.5rem;
+}
+
+.site-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0.5rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 0.25rem;
+}
+
+nav ul li a {
+  display: block;
+  padding: 0.5rem 1.2rem;
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: var(--gold);
+  border-color: rgba(217,172,23,0.2);
+  background: var(--gold-dim);
+}
+
+/* ── Page intro ── */
+.page-intro {
+  position: relative;
+  z-index: 10;
+  padding: 5rem 5rem 1rem;
+}
+
+.page-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.page-label::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.page-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 8vw, 8rem);
+  color: var(--white);
+  letter-spacing: 3px;
+  line-height: 0.9;
+}
+
+.page-heading span { color: var(--gold); }
+
+/* ── Main / projects list ── */
+main {
+  position: relative;
+  z-index: 10;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 5rem 6rem;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 1rem;
+}
+
+/* ── Project card ── */
+.project-card {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--gold-dim) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.project-card:hover {
+  border-color: rgba(217,172,23,0.25);
+  box-shadow: 0 0 40px rgba(217,172,23,0.06);
+}
+
+.project-card:hover::before { opacity: 1; }
+
+.card-image-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 270px;
+}
+
+.card-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.35s ease;
+  filter: brightness(0.8) saturate(0.85);
+}
+
+.project-card:hover .card-image-wrap img {
+  transform: scale(1.05);
+  filter: brightness(1) saturate(1);
+}
+
+.card-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 50%, var(--surface) 100%);
+}
+
+.card-body {
+  padding: 2.5rem 3rem 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+}
+
+.card-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 6rem;
+  color: rgba(255,255,255,0.03);
+  line-height: 1;
+  position: absolute;
+  top: 0.5rem;
+  right: 1.5rem;
+  user-select: none;
+  pointer-events: none;
+}
+
+.card-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+
+.card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  color: var(--white);
+  letter-spacing: 2px;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.card-desc {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text);
+  max-width: 440px;
+  margin-bottom: 1.8rem;
+}
+
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  transition: gap 0.25s ease;
+}
+
+.project-card:hover .card-cta { gap: 1.2rem; }
+.card-cta::after { content: '→'; font-size: 1.1rem; }
+
+/* ── About section ── */
+.about-section {
+  position: relative;
+  z-index: 10;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 5rem 7rem;
+}
+
+.about-inner {
+  border-top: 1px solid var(--border);
+  padding-top: 4rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(217,172,23,0.25);
+  filter: grayscale(15%);
+}
+
+.about-content h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--gold);
+  letter-spacing: 4px;
+  margin-bottom: 0.8rem;
+}
+
+.about-content p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text);
+  max-width: 600px;
+}
+
+/* ── Footer ── */
+footer {
+  position: relative;
+  z-index: 10;
+  border-top: 1px solid var(--border);
+  padding: 2rem 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer p {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.footer-mark {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: 4px;
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+.d1 { animation-delay: 0.05s; }
+.d2 { animation-delay: 0.15s; }
+.d3 { animation-delay: 0.28s; }
+.d4 { animation-delay: 0.42s; }
+.d5 { animation-delay: 0.56s; }
+.d6 { animation-delay: 0.70s; }
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  header, .page-intro, main, .about-section, footer { padding-left: 2rem; padding-right: 2rem; }
+  .project-card { grid-template-columns: 1fr; }
+  .card-image-wrap { height: 220px; }
+  .card-image-overlay { background: linear-gradient(180deg, transparent 50%, var(--surface) 100%); }
+  .card-body { padding: 1.5rem; }
+  .about-inner { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
+
+<div class="bg-glow"></div>
+
 <header>
-  <h1>Paul Saturno</h1>
-  <h2 class="subtitle">Level Designer</h2>
-  <nav>
+  <div class="header-left animate d1">
+    <h1 class="site-title">Paul Saturno</h1>
+    <p class="site-subtitle">Level Designer</p>
+  </div>
+  <nav class="animate d2">
     <ul>
-      <li><a href="projects.html">Projects</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 </header>
 
-<main class="projects-landing">
-  <section class="project-thumbnails">
-    <!-- Example Project Card -->
-    <div class="project-card">
-      <a href="sorn.html">
-        <img src="sornimages/SORNTitleScreen.png" alt="S.O.R.N Thumbnail">
-      </a>
-      <div class="project-info">
-        <h3>S.O.R.N (Vertical Slice)</h3>
-        <p>S.O.R.N is a fast-paced mech shooter set in a massive desert and monlith scale mech facility. As a level designer, I was responsible for designing Directive 1, our first mission and level in this game.</p>
-      </div>
-    </div>
+<div class="page-intro animate d2">
+  <div class="page-label">Selected Work</div>
+  <h2 class="page-heading">Featured<br><span>Projects</span></h2>
+</div>
 
-    <div class="project-card">
-      <a href="bootleggerbust.html">
-        <img src="images/BossRoomPhoto1.png" alt="Bootlegger Bust Thumbnail">
-      </a>
-      <div class="project-info">
-        <h3>Bootlegger Bust</h3>
-        <p>Bootlegger Bust is an FPS level set in a Prohibition-era warehouse used as a mafia operation hub. As a level designer, I was responsible for designing the layout, enemy placement, and pacing of this level.</p>
-      </div>
-    </div>
-  </section>
+<main>
+  <div class="projects-list">
 
-      <div class="project-card">
-      <a href="carnage.html">
-        <img src="carnageimages/CarnageHomeScreen.png" alt="Carnage Thumbnail">
-      </a>
-      <div class="project-info">
-        <h3>Carnage</h3>
-        <p>Carnage is a high-octane, Burnout 3 inspired mobile game. As a level designer, I was responsible for designing the core gameplay loop and creating challenging, dynamic tracks.</p>
+    <a href="sorn.html" class="project-card animate d3">
+      <div class="card-image-wrap">
+        <img src="https://paulywalnuts99.github.io/portfolio-website/sornimages/SORNTitleScreen.png" alt="S.O.R.N">
+        <div class="card-image-overlay"></div>
       </div>
-    </div>
+      <div class="card-body">
+        <div class="card-number">01</div>
+        <div class="card-tag">Vertical Slice &nbsp;·&nbsp; Unreal Engine 5</div>
+        <h3 class="card-title">S.O.R.N</h3>
+        <p class="card-desc">A fast-paced mech shooter set across a massive desert and a monolith-scale facility. Sole level designer on Directive 1 — the game's opening mission.</p>
+        <span class="card-cta">View Case Study</span>
+      </div>
+    </a>
 
-    <section class="about-me">
-      <div class="about-text">
-        <img src="images/paul-photo.jpg" alt="Paul Saturno" class="about-photo" />
-        <h2>About Me</h2>
-        <p>
-          Hello, I am Paul Saturno, a level designer focused on creating immersive and engaging gameplay experiences. I enjoy building levels that feel intuitive, encourage exploration, and keep players invested from start to finish.
-        </p>
-        <p>
-          Currently, I am a senior at the University of Central Florida and will graduate in Spring 2026 with a bachelor’s degree in Digital Media – Video Game Design. I previously earned a bachelor’s in Business Administration from UCF in 2022. Together, these degrees allow me to approach game design from both a creative and strategic perspective.
-        </p>
-        <p>
-          Check out the project thumbnails above to see examples of my levels and the projects I’ve contributed to.
-        </p>
+    <a href="bootleggerbust.html" class="project-card animate d4">
+      <div class="card-image-wrap">
+        <img src="https://paulywalnuts99.github.io/portfolio-website/images/BossRoomPhoto1.png" alt="Bootlegger Bust">
+        <div class="card-image-overlay"></div>
       </div>
-    </section>
+      <div class="card-body">
+        <div class="card-number">02</div>
+        <div class="card-tag">FPS Level &nbsp;·&nbsp; Combat Design</div>
+        <h3 class="card-title">Bootlegger Bust</h3>
+        <p class="card-desc">An FPS level set inside a Prohibition-era warehouse doubling as a mafia hub. Designed the full layout, enemy placement, and encounter pacing.</p>
+        <span class="card-cta">View Case Study</span>
+      </div>
+    </a>
+
+    <a href="carnage.html" class="project-card animate d5">
+      <div class="card-image-wrap">
+        <img src="https://paulywalnuts99.github.io/portfolio-website/carnageimages/CarnageHomeScreen.png" alt="Carnage">
+        <div class="card-image-overlay"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-number">03</div>
+        <div class="card-tag">Mobile Game &nbsp;·&nbsp; Core Loop Design</div>
+        <h3 class="card-title">Carnage</h3>
+        <p class="card-desc">A high-octane, Burnout 3-inspired mobile racer. Designed the core gameplay loop and built challenging, dynamic tracks from the ground up.</p>
+        <span class="card-cta">View Case Study</span>
+      </div>
+    </a>
+
+  </div>
 </main>
+
+<section class="about-section animate d6">
+  <div class="about-inner">
+    <img class="about-photo" src="https://paulywalnuts99.github.io/portfolio-website/images/paul-photo.jpg" alt="Paul Saturno">
+    <div class="about-content">
+      <h2>About Me</h2>
+      <p>I'm Paul Saturno — a level designer focused on building environments that teach, challenge, and reward players. I care deeply about intentional design: every space, encounter, and prop should serve a purpose in the player's experience.</p>
+    </div>
+  </div>
+</section>
+
 <footer>
-  <p>&copy; 2026 Paul Saturno</p>
+  <p>© 2026 Paul Saturno</p>
+  <span class="footer-mark">PS</span>
 </footer>
+
 </body>
 </html>

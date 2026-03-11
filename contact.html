@@ -1,36 +1,297 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | Paul Saturno</title>
-  <link rel="stylesheet" href="contact.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Paul Saturno</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #090b0e;
+  --surface: #10141a;
+  --border: rgba(255,255,255,0.06);
+  --gold: #d9ac17;
+  --gold-dim: rgba(217,172,23,0.08);
+  --text: #c2c8d4;
+  --text-dim: #4a5260;
+  --white: #eef0f4;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 100;
+}
+
+.bg-glow {
+  position: fixed; top: -20%; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse, rgba(217,172,23,0.05) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── Header ── */
+header {
+  position: relative; z-index: 10;
+  padding: 3rem 5rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+}
+
+.site-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  color: var(--white); letter-spacing: 5px; line-height: 1;
+  text-decoration: none; display: block;
+}
+
+.site-title::after {
+  content: ''; display: block;
+  width: 36px; height: 3px;
+  background: var(--gold); margin-top: 0.4rem;
+}
+
+.site-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 6px; text-transform: uppercase;
+  color: var(--gold); margin-top: 0.4rem;
+}
+
+nav ul { display: flex; list-style: none; gap: 0.25rem; }
+
+nav ul li a {
+  display: block; padding: 0.5rem 1.2rem;
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--text-dim); border: 1px solid transparent;
+  transition: all 0.25s ease;
+}
+
+nav ul li a:hover, nav ul li a.active {
+  color: var(--gold);
+  border-color: rgba(217,172,23,0.2);
+  background: var(--gold-dim);
+}
+
+/* ── Page intro ── */
+.page-intro {
+  position: relative; z-index: 10;
+  padding: 5rem 5rem 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.page-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 6px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+
+.page-label::before {
+  content: ''; width: 28px; height: 1px;
+  background: var(--gold); flex-shrink: 0;
+}
+
+.page-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 8vw, 8rem);
+  color: var(--white); letter-spacing: 3px; line-height: 0.9;
+}
+
+.page-heading span { color: var(--gold); }
+
+/* ── Main ── */
+main {
+  position: relative; z-index: 10;
+  flex: 1;
+  max-width: 1280px; margin: 0 auto;
+  padding: 5rem 5rem 8rem;
+  width: 100%;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+/* ── Intro text ── */
+.contact-intro p {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: var(--text);
+  max-width: 480px;
+}
+
+/* ── Contact links ── */
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.8rem 2rem;
+  background: var(--surface);
+  text-decoration: none;
+  transition: background 0.25s ease, border-color 0.25s ease;
+  border-left: 3px solid transparent;
+  gap: 1rem;
+}
+
+.contact-link:hover {
+  background: var(--gold-dim);
+  border-left-color: var(--gold);
+}
+
+.contact-link:hover .link-arrow { transform: translateX(6px); }
+
+.link-body { flex: 1; }
+
+.link-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.68rem; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase;
+  color: var(--text-dim); margin-bottom: 0.3rem;
+}
+
+.link-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem; letter-spacing: 2px;
+  color: var(--white);
+}
+
+.link-arrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.4rem; color: var(--gold);
+  transition: transform 0.25s ease;
+}
+
+/* ── Footer ── */
+footer {
+  position: relative; z-index: 10;
+  border-top: 1px solid var(--border);
+  padding: 2rem 5rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+footer p {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--text-dim);
+}
+
+.footer-mark {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem; color: var(--gold); letter-spacing: 4px;
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+.d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; }
+.d3 { animation-delay: 0.28s; } .d4 { animation-delay: 0.42s; }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  header, .page-intro, main, footer { padding-left: 2rem; padding-right: 2rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+}
+</style>
 </head>
 <body>
+
+<div class="bg-glow"></div>
+
 <header>
-  <h1>Paul Saturno</h1>
-  <h2 class="subtitle">Level Designer</h2>
-  <nav>
+  <div class="animate d1">
+    <a href="projects.html" class="site-title">Paul Saturno</a>
+    <p class="site-subtitle">Level Designer</p>
+  </div>
+  <nav class="animate d2">
     <ul>
       <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
     </ul>
   </nav>
 </header>
 
-  <main class="contact">
-    <section>
-      <h2>Contact Me</h2>
-      <p>Please feel free to download my resume to learn more about my experience and skills. For any questions, collaborations, or just to say hello, you can reach me by email or connect with me on LinkedIn.</p>
-    <ul style="list-style: none; padding: 0; margin: 0;">
-    <li>Email: <a href="mailto:paulsaturno33@gmail.com">paulsaturno33@gmail.com</a></li>
-    <li><a href="https://www.linkedin.com/in/paul-saturno/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-    <li><a href="Saturno_Resume 2.pdf" download>Download My Resume</a></li>
-    </ul>
-    </section>
-  </main>
-  <footer>
-    <p>&copy; 2026 Paul Saturno</p>
-  </footer>
+<div class="page-intro animate d2">
+  <div class="page-label">Get In Touch</div>
+  <h2 class="page-heading">Say<br><span>Hello</span></h2>
+</div>
+
+<main>
+  <div class="contact-grid animate d3">
+
+    <div class="contact-intro">
+      <p>Feel free to download my resume to learn more about my experience and skills. For any questions, collaborations, or just to say hello — reach out by email or connect with me on LinkedIn. I'm always happy to chat about level design.</p>
+    </div>
+
+    <div class="contact-links">
+
+      <a href="mailto:paulsaturno33@gmail.com" class="contact-link">
+        <div class="link-body">
+          <div class="link-label">Email</div>
+          <div class="link-value">paulsaturno33@gmail.com</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://www.linkedin.com/in/paul-saturno/" target="_blank" rel="noopener noreferrer" class="contact-link">
+        <div class="link-body">
+          <div class="link-label">LinkedIn</div>
+          <div class="link-value">paul-saturno</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="Saturno_Resume 2.pdf" download class="contact-link">
+        <div class="link-body">
+          <div class="link-label">Resume</div>
+          <div class="link-value">Download PDF</div>
+        </div>
+        <span class="link-arrow">↓</span>
+      </a>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 Paul Saturno</p>
+  <span class="footer-mark">PS</span>
+</footer>
+
 </body>
 </html>

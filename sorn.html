@@ -1,16 +1,581 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects | Paul Saturno</title>
-  <link rel="stylesheet" href="sorn.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S.O.R.N — Paul Saturno</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #07090f;
+  --surface: #0d1119;
+  --surface2: #121720;
+  --border: rgba(160,200,255,0.07);
+  --gold: #e8622a;
+  --olive: #4a8fb5;
+  --gold-dim: rgba(232,98,42,0.08);
+  --text: #b8c4d4;
+  --text-dim: #3d4e60;
+  --white: #dde8f0;
+  --black: #000;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 100;
+}
+
+.bg-glow {
+  position: fixed;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse, rgba(74,143,181,0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Header ── */
+header {
+  position: relative;
+  z-index: 10;
+  padding: 3rem 5rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.site-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  color: var(--white);
+  letter-spacing: 5px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.site-title::after {
+  content: '';
+  display: block;
+  width: 36px; height: 3px;
+  background: var(--gold);
+  margin-top: 0.4rem;
+}
+
+.site-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0.4rem;
+}
+
+nav ul { display: flex; list-style: none; gap: 0.25rem; }
+
+nav ul li a {
+  display: block;
+  padding: 0.5rem 1.2rem;
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border: 1px solid transparent;
+  transition: all 0.25s ease;
+}
+
+nav ul li a:hover {
+  color: var(--gold);
+  border-color: rgba(217,172,23,0.2);
+  background: var(--gold-dim);
+}
+
+/* ── Page hero ── */
+.page-hero {
+  position: relative;
+  z-index: 10;
+  padding: 5rem 5rem 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.breadcrumb {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.breadcrumb a { color: var(--gold); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb span { color: var(--text-dim); }
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 12vw, 11rem);
+  color: var(--white);
+  letter-spacing: 4px;
+  line-height: 0.9;
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--olive);
+  margin-bottom: 3rem;
+}
+
+/* ── Info cards ── */
+.info-cards {
+  display: flex;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.info-card {
+  flex: 1;
+  background: var(--surface);
+  padding: 1.5rem 2rem;
+  text-align: center;
+}
+
+.info-card h3 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.info-card p {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  color: var(--gold);
+  margin: 0;
+}
+
+/* ── Main content ── */
+main {
+  position: relative;
+  z-index: 10;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 5rem 6rem;
+}
+
+/* ── Section divider ── */
+.section-divider {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: 4px;
+  color: var(--white);
+  padding: 4rem 0 2rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.section-divider::before {
+  content: '';
+  width: 4px;
+  height: 100%;
+  background: var(--gold);
+  position: absolute;
+  left: -2rem;
+  top: 0;
+  border-radius: 2px;
+}
+
+.section-divider span { color: var(--gold); }
+
+/* ── Video container ── */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  margin-bottom: 3rem;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
+/* ── Problem sections (carousel + text) ── */
+.problem-section {
+  padding: 3rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.problem-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.problem-container.reverse { direction: rtl; }
+.problem-container.reverse > * { direction: ltr; }
+
+.problem-text h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+
+.problem-text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 1.2rem;
+}
+
+.problem-text ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.problem-text ul li {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+  padding-left: 1.2rem;
+  border-left: 2px solid rgba(217,172,23,0.3);
+}
+
+.problem-text ul li strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+/* ── Carousel ── */
+.problem-carousel {
+  position: relative;
+}
+
+.carousel-images {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.carousel-images img,
+.carousel-images a {
+  width: 100%;
+  display: none;
+}
+
+.carousel-images img {
+  height: 280px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  cursor: pointer;
+  filter: brightness(0.9);
+}
+
+.carousel-images a img {
+  height: 280px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.carousel-images img.active,
+.carousel-images a.active { display: block; }
+
+.carousel-images img:hover { filter: brightness(1.05); }
+
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.carousel-controls button {
+  pointer-events: all;
+  background: rgba(9,11,14,0.8);
+  color: var(--gold);
+  border: 1px solid rgba(217,172,23,0.2);
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.carousel-controls button:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+
+.carousel-caption {
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+}
+
+.carousel-caption p {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  font-style: italic;
+  text-align: center;
+  margin: 0;
+}
+
+/* ── Level walkthrough ── */
+.level-walkthrough { padding: 0; }
+
+.level-step {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  padding: 3rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.level-step:nth-child(even) .level-step-text { order: 2; }
+.level-step:nth-child(even) .level-step-video { order: 1; }
+
+.level-step-text {
+  padding-top: 1rem;
+}
+
+.level-step-text ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.level-step-text ul li {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+  padding-left: 1.2rem;
+  border-left: 2px solid rgba(74,143,181,0.4);
+}
+
+.level-step-text ul li strong { color: var(--white); font-weight: 600; }
+
+.level-step-video h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+
+.level-step-video iframe {
+  width: 100%;
+  height: 240px;
+  border: 1px solid var(--border);
+}
+
+/* ── Conclusion ── */
+.conclusion-section {
+  border-top: 1px solid var(--border);
+  padding-top: 4rem;
+}
+
+.conclusion-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 2rem;
+}
+
+.conclusion-col h4 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+.conclusion-col ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.conclusion-col ul li {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text);
+  padding-left: 1.2rem;
+  border-left: 2px solid var(--border);
+}
+
+.conclusion-intro {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text);
+  max-width: 800px;
+}
+
+/* ── Footer ── */
+footer {
+  position: relative;
+  z-index: 10;
+  border-top: 1px solid var(--border);
+  padding: 2rem 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer p {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.footer-mark {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: 4px;
+}
+
+/* ── Lightbox ── */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 80vh;
+  border: 1px solid var(--border);
+}
+
+.lightbox .caption {
+  margin-top: 1rem;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  font-style: italic;
+  text-align: center;
+  max-width: 600px;
+}
+
+.lightbox .close {
+  position: absolute;
+  top: 1.5rem; right: 2rem;
+  font-size: 2rem;
+  color: var(--gold);
+  cursor: pointer;
+  font-family: 'Barlow Condensed', sans-serif;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+.lightbox .close:hover { color: var(--white); }
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+.d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; }
+.d3 { animation-delay: 0.28s; } .d4 { animation-delay: 0.42s; }
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  header, .page-hero, main, footer { padding-left: 2rem; padding-right: 2rem; }
+  .info-cards { flex-direction: column; gap: 1px; }
+  .problem-container, .problem-container.reverse { grid-template-columns: 1fr; direction: ltr; }
+  .level-step { grid-template-columns: 1fr; }
+  .level-step:nth-child(even) .level-step-text,
+  .level-step:nth-child(even) .level-step-video { order: unset; }
+  .conclusion-cols { grid-template-columns: 1fr; }
+  .section-divider::before { display: none; }
+}
+</style>
 </head>
-<body class="projects-page">
+<body>
+
+<div class="bg-glow"></div>
+
+<!-- Header -->
 <header>
-  <h1>Paul Saturno</h1>
-  <h2 class="subtitle">Level Designer</h2>
-  <nav>
+  <div class="animate d1">
+    <a href="projects.html" class="site-title" style="display:block; text-decoration:none;">Paul Saturno</a>
+    <p class="site-subtitle">Level Designer</p>
+  </div>
+  <nav class="animate d2">
     <ul>
       <li><a href="projects.html">Projects</a></li>
       <li><a href="contact.html">Contact</a></li>
@@ -18,468 +583,385 @@
   </nav>
 </header>
 
-  <main class="projects">
-    <!-- Hero Video -->
-    <section class="hero-video">
-      <h4 class="section-divider">S.O.R.N Directive 1 Hero Video (Vertical Slice)</h4>
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/f8_dOA7EJJQ" title="S.O.R.N" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </section>
-
-    <!-- Project Info Cards -->
-    <section class="project-info">
-      <div class="info-card"><h3>Engine</h3><p>Unreal Engine 5</p></div>
-      <div class="info-card"><h3>Team Size</h3><p>6 people</p></div>
-      <div class="info-card"><h3>Duration</h3><p>12 weeks</p></div>
-      <div class="info-card"><h3>Role</h3><p>Solo Level Designer</p></div>
-    </section>
-
-<section class="problem-section">
-  <div class="problem-container reverse">
-
-    <!-- Left: Carousel -->
-    <div class="problem-carousel">
-      <div class="carousel-images">
-        <img src="sornimages/Iteration3desertPOI1SS1.png" alt="Desert POI 1 Iteration" class="active lightbox-trigger" data-caption="Desert POI 1 Iteration">
-        <img src="sornimages/Sector1FR7.png" alt="Sector 1 Layout Vertical Slice" class="lightbox-trigger" data-caption="Sector 1 Layout Vertical Slice">
-        <img src="sornimages/Sector2FR7.png" alt="Sector 2 Layout Vertical Slice" class="lightbox-trigger" data-caption="Sector 2 Layout Vertical Slice">
-        <img src="sornimages/WallSector1InGameSS1.png" alt="Storage Room Vertical Slice" class="lightbox-trigger" data-caption="Storage Room Vertical Slice">
-        <img src="sornimages/Sector3FR4.png" alt="Sector 3 Vertical Slice" class="lightbox-trigger" data-caption="Sector 3 Vertical Slice">
-      </div>
-
-      <!-- Arrows -->
-      <div class="carousel-controls">
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-      </div>
-
-      <!-- Caption -->
-      <div class="carousel-caption">
-        <p id="caption_problem2">Before iteration 1</p>
-      </div>
-    </div>
-
-    <!-- Right: Text bullets -->
-    <div class="problem-text">
-      <h2>Level Goals and Overview</h2>
-      <p>S.O.R.N is a fast-paced, third-person mech shooter set across a monolith scale continent. This first level called "Directive 1" was designed to support strategic combat encounters in a semi open desert and a monlith sized facilitiy, while giving players freedom to move and engage dynamically. The level design goals for this project were to:</p>
-      <ul>
-        <li><strong>Teach</strong> and reinforce core player mechanics through level layout and encounters</li>
-        <li><strong>Guide</strong> players naturally through interesting and contextualized playspaces</li>
-        <li><strong>Design</strong> enemy encounters that feel challenging and rewarding</li>
-      </ul>
-    </div>
-
+<!-- Page Hero -->
+<div class="page-hero animate d2">
+  <div class="breadcrumb">
+    <a href="projects.html">Projects</a>
+    <span>/</span>
+    <span>S.O.R.N</span>
   </div>
-</section>
+  <h1 class="hero-title">S.O.R.N</h1>
+  <p class="hero-subtitle">Directive 1 &nbsp;·&nbsp; Vertical Slice &nbsp;·&nbsp; Solo Level Designer</p>
+  <div class="info-cards animate d3">
+    <div class="info-card"><h3>Engine</h3><p>Unreal Engine 5</p></div>
+    <div class="info-card"><h3>Team Size</h3><p>6 People</p></div>
+    <div class="info-card"><h3>Duration</h3><p>12 Weeks</p></div>
+    <div class="info-card"><h3>Role</h3><p>Solo Level Designer</p></div>
+  </div>
+</div>
 
-<section class="level-walkthrough">
-  <h4 class="section-divider">Level Walkthrough</h4>
-  <!-- Section 2: Desert Area -->
-  <div class="level-step">
-    <div class="level-step-text">
-      <ul>
-        <li><strong>Goal:</strong> Teach players navigation, pacing, and strategic movement in a large open desert while guiding them toward the main objective</li>
-        <li><strong>Design action 1:</strong> Placed three POIs with the first unmissable, using guarding turrets to naturally draw players into the encounter and reinforce core controls</li>
-        <li><strong>Design action 2:</strong> Added a giant laser turret and arranged debris fields as mandatory cover to challenge line-of-sight management and promote spatial awareness</li>
-      </ul>
-    </div>
-    <div class="level-step-video">
-      <h3>Beat 1: The Desert</h3>
-      <iframe src="https://www.youtube.com/embed/3eHvcOhfD4c" title="S.O.R.N Desert" frameborder="0" allowfullscreen loading="lazy"></iframe>
-    </div>
+<main>
+
+  <!-- Hero Video -->
+  <h2 class="section-divider">Hero <span>Video</span></h2>
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/f8_dOA7EJJQ" title="S.O.R.N" frameborder="0" allowfullscreen></iframe>
   </div>
 
-  <!-- The Wall: Sector 1 -->
-  <div class="level-step">
-    <div class="level-step-text">
-      <ul>
-        <li><strong>Goal:</strong> Transition players from open desert navigation to tight, controlled combat encounters</li>
-        <li><strong>Design action 1:</strong> Introduced the Hermit enemy in a small storage room, allowing a safe first engagement before more complex fights</li>
-        <li><strong>Design action 2:</strong> Layered enemy placements and set dressing in Sector 1 to encourage tactical movement, provide meaningful cover, and foreshadow future train-based encounters</li>
-      </ul>
-    </div>
-    <div class="level-step-video">
-      <h3>Beat 2: The Wall Sector 1</h3>
-      <iframe src="https://www.youtube.com/embed/m4nfHUDuHL0" title="The Wall: Sector 1" frameborder="0" allowfullscreen loading="lazy"></iframe>
-    </div>
-  </div>
-
-  <!-- The Wall: Sector 2 -->
-  <div class="level-step">
-    <div class="level-step-text">
-      <ul>
-        <li><strong>Goal:</strong> Introduce verticality and environmental hazards to increase challenge and teach advanced traversal</li>
-        <li><strong>Design action 1:</strong> Placed bounce pads in a safe area first, then integrated them as a core traversal tool for combat and platforming</li>
-        <li><strong>Design action 2:</strong> Combined moving train hazards, multi-level enemy placements, and vertical spaces to create a more demanding, multi-layered encounter</li>
-    </ul>
-    </div>
-    <div class="level-step-video">
-      <h3>Beat 3: The Wall Sector 2</h3>
-      <iframe src="https://www.youtube.com/embed/bpr7gXmY7Oc" title="The Wall: Sector 2" frameborder="0" allowfullscreen loading="lazy"></iframe>
-    </div>
-  </div>
-
-  <!-- The Wall: Sector 3 -->
-  <div class="level-step">
-    <div class="level-step-text">
-      <ul>
-        <li><strong>Goal:</strong> Shift pacing and tension with a tighter, more linear section</li>
-        <li><strong>Design Action:</strong> Use darker lighting, debris, and broken scaffolding to create danger while maintaining traversal paths and cover</li>
-        <li><strong>Design Action:</strong> Place enemies densely in constricted corridors to encourage precise movement and combat mastery</li>
-      </ul>
-    </div>
-    <div class="level-step-video">
-      <h3>Beat 4: The Wall Sector 3</h3>
-      <iframe src="https://www.youtube.com/embed/RW_GRHyzFZQ" title="The Wall: Sector 3" frameborder="0" allowfullscreen loading="lazy"></iframe>
-    </div>
-  </div>
-</section>
-
-    <h4 class="section-divider">The Process</h4>
-
-    <section class="problem-section">
-  <div class="problem-container reverse">
-
-    <!-- Left: Carousel -->
-    <div class="problem-carousel">
-      <div class="carousel-images">
-        <img src="sornimages/AC6Inspo.png" alt="Inspiration: Armored Core VI: Fires of Rubicon" class="active lightbox-trigger" data-caption="Inspiration: Armored Core VI: Fires of Rubicon">
-        <img src="sornimages/SornTeamArtboardFrame2.jpg" alt="Miro board snippet. Referenced Armored Core gameplay, desert landscapes, and military outposts" class="active lightbox-trigger" data-caption="Miro board snippet. Referenced Armored Core Gameplay, desert landscapes, and military outposts">
-        <img src="sornimages/MilitaryOutpostImage1.png" alt="Military outpost reference image" class="active lightbox-trigger" data-caption="Military outpost reference image">
-        <img src="sornimages/ScablandsImage1.png" alt="Destiny: Scablands reference image" class="lightbox-trigger" data-caption="Destiny: Scablands reference image">
+  <!-- Level Goals -->
+  <h2 class="section-divider">Level Goals <span>&amp; Overview</span></h2>
+  <section class="problem-section" style="border-top:none; padding-top:0;">
+    <div class="problem-container reverse">
+      <div class="problem-carousel">
+        <div class="carousel-images">
+          <img src="sornimages/Iteration3desertPOI1SS1.png" alt="Desert POI 1 Iteration" class="active lightbox-trigger" data-caption="Desert POI 1 Iteration">
+          <img src="sornimages/Sector1FR7.png" alt="Sector 1 Layout Vertical Slice" class="lightbox-trigger" data-caption="Sector 1 Layout Vertical Slice">
+          <img src="sornimages/Sector2FR7.png" alt="Sector 2 Layout Vertical Slice" class="lightbox-trigger" data-caption="Sector 2 Layout Vertical Slice">
+          <img src="sornimages/WallSector1InGameSS1.png" alt="Storage Room Vertical Slice" class="lightbox-trigger" data-caption="Storage Room Vertical Slice">
+          <img src="sornimages/Sector3FR4.png" alt="Sector 3 Vertical Slice" class="lightbox-trigger" data-caption="Sector 3 Vertical Slice">
+        </div>
+        <div class="carousel-controls">
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+        </div>
+        <div class="carousel-caption"><p>Desert POI 1 Iteration</p></div>
       </div>
-
-      <!-- Arrows -->
-      <div class="carousel-controls">
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-      </div>
-
-      <!-- Caption -->
-      <div class="carousel-caption">
-        <p id="caption_problem2">Before iteration 1</p>
-      </div>
-    </div>
-
-    <!-- Right: Text bullets -->
-    <div class="problem-text">
-      <h2>Research and References</h2>
-      <p>The process for designing this level involved creating an environment that supported fast-paced mech combat while teaching players core systems. Key steps included:</p>
-      <ul>
-        <li><strong>Research & Ideation:</strong> Studied mech-focused games (e.g., Armored Core) to analyze combat pacing, encounter design, and level flow</li>
-        <li><strong>Reference Gathering:</strong> Collected visual references, concept art, and gameplay screenshots to inspire environmental design and thematic consistency</li>
-        <li><strong>Miro Board Organization:</strong> Compiled references and ideas on a Miro board to map layouts, level goals, and design solutions visually</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-<section class="problem-section">
-  <div class="problem-container">
-
-    <!-- Right: Text bullets -->
-    <div class="problem-text">
-      <h2>Maps, Layouts, and Documentation</h2>
-      <p>This section highlights the level planning process through maps, layouts, and detailed design documentation. Each entry demonstrates how I structured encounters, guided player movement, and iterated on level flow before building in-engine.</p>
-      <ul>
+      <div class="problem-text">
+        <h2>Overview</h2>
+        <p>S.O.R.N is a fast-paced, third-person mech shooter set across a monolith-scale continent. "Directive 1" was designed to support strategic combat encounters in a semi-open desert and a monolith-sized facility, while giving players freedom to move and engage dynamically.</p>
         <ul>
-          <li><strong>Created Level Design Documentation:</strong> Detailed each encounter and level design decisions to communicate design intent clearly</li>
-          <li><strong>Produced Comprehensive Maps:</strong> Developed top-down and blockout layouts highlighting key areas, paths, and strategic points</li>
-          <li><strong>Multiple Map Iterations:</strong> Refined and improved existing maps over time, showing design evolution and enhancements through visual examples</li>
+          <li><strong>Teach</strong> and reinforce core player mechanics through level layout and encounters</li>
+          <li><strong>Guide</strong> players naturally through interesting and contextualized playspaces</li>
+          <li><strong>Design</strong> enemy encounters that feel challenging and rewarding</li>
         </ul>
-      </ul>
+      </div>
     </div>
+  </section>
 
-    <!-- Right: Carousel -->
-    <div class="problem-carousel">
-      <div class="carousel-images">
-        <a href="sornimages/SORNLevelDesignDocumentLevel1.pdf" target="_blank"
-          class="active"
-          data-caption="Level 1 Design Document PDF">
-          <img src="sornimages/LDD1SS.png" alt="Click this thumbnail to view Level 1 design document">
-        </a>
-        <img src="sornimages/MipUIMapofDesertEnvironment.png" alt="First Map of Desert Environment" class="active lightbox-trigger" data-caption="First Map of Desert Environment">
-        <img src="sornimages/OfficalDesertMapPhoto.png" alt="Iterated Map of Desert Environment" class="lightbox-trigger" data-caption="Iterated Map of Desert Environment">
-        <img src="sornimages/Wall_Level_Map_PNG.png" alt="First Map of The Wall"  class="lightbox-trigger" data-caption="First Map of The Wall">
-        <img src="sornimages/FinalizedWallMapPhoto.png" alt="Iterated Map of The Wall"  class="lightbox-trigger" data-caption="Iterated Map of The Wall">
+  <!-- Level Walkthrough -->
+  <h2 class="section-divider">Level <span>Walkthrough</span></h2>
+  <section class="level-walkthrough">
+
+    <div class="level-step">
+      <div class="level-step-text">
+        <ul>
+          <li><strong>Goal:</strong> Teach players navigation, pacing, and strategic movement in a large open desert while guiding them toward the main objective</li>
+          <li><strong>Design action 1:</strong> Placed three POIs with the first unmissable, using guarding turrets to naturally draw players into the encounter and reinforce core controls</li>
+          <li><strong>Design action 2:</strong> Added a giant laser turret and arranged debris fields as mandatory cover to challenge line-of-sight management and promote spatial awareness</li>
+        </ul>
       </div>
-
-      <!-- Arrows -->
-      <div class="carousel-controls">
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-      </div>
-
-      <!-- Caption -->
-      <div class="carousel-caption">
-        <p id="caption">Before iteration 1</p>
+      <div class="level-step-video">
+        <h3>Beat 1: The Desert</h3>
+        <iframe src="https://www.youtube.com/embed/3eHvcOhfD4c" title="S.O.R.N Desert" frameborder="0" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
 
-  </div>
-</section>
-
-<section class="problem-section">
-  <div class="problem-container reverse">
-
-    <!-- Left: Carousel -->
-    <div class="problem-carousel">
-      <div class="carousel-images">
-        <img src="sornimages/PoCBeautyShot2.png" alt="Proof of concept and First blockout of Level 1" class="active lightbox-trigger" data-caption="Proof of concept and fFirst blockout of Level 1">
-        <img src="sornimages/SornWallPhoto1.png" alt="Sector 1 blockout. Focus was introducing verticality via jump pads" class="active lightbox-trigger" data-caption="Sector 1 blockout. Focus was introducing verticality via jump pads">
-        <img src="sornimages/SornWallPhoto2.png" alt="Sector 2 blockout. Focus was on increasing difficulty by designing a tougher playspace" class="active lightbox-trigger" data-caption="Sector 2 blockout. Focus was on increasing difficulty by designing a tougher playspace">
-        <img src="sornimages/SornWallPhoto3.png" alt="Sector 3 blockout. Focus was on combining the skills and layouts learned in previous sectors into an ascent with platforming and combat" class="lightbox-trigger" data-caption="Sector 3 blockout. Focus was on combining the skills and layouts learned in previous sectors into an ascent with platforming and combat">
+    <div class="level-step">
+      <div class="level-step-text">
+        <ul>
+          <li><strong>Goal:</strong> Transition players from open desert navigation to tight, controlled combat encounters</li>
+          <li><strong>Design action 1:</strong> Introduced the Hermit enemy in a small storage room, allowing a safe first engagement before more complex fights</li>
+          <li><strong>Design action 2:</strong> Layered enemy placements and set dressing in Sector 1 to encourage tactical movement, provide meaningful cover, and foreshadow future train-based encounters</li>
+        </ul>
       </div>
-
-      <!-- Arrows -->
-      <div class="carousel-controls">
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-      </div>
-
-      <!-- Caption -->
-      <div class="carousel-caption">
-        <p id="caption_problem2">Before iteration 1</p>
+      <div class="level-step-video">
+        <h3>Beat 2: The Wall — Sector 1</h3>
+        <iframe src="https://www.youtube.com/embed/m4nfHUDuHL0" title="The Wall: Sector 1" frameborder="0" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
 
-    <!-- Right: Text bullets -->
-    <div class="problem-text">
-      <h2>Initial Blockout</h2>
-      <p>The initial blockout was designed to support the core mechanics of S.O.R.N, giving players spaces to engage with combat, traversal, and exploration in a way that reinforced gameplay learning. This blockout focused on:</p>
-      <ul>
-        <li><strong>Supported Player Mechanics:</strong> Created blockouts and encounter areas that allowed players to engage with core mech abilities and understand combat pacing.</li>
-        <li><strong>Provided Visual and Tactical Clarity:</strong> Arranged key environmental features to communicate paths, cover, and combat flow clearly while staying visually consistent with reference material.</li>
-        <li><strong>Contextualized Playspaces:</strong> Designed level areas that reflected maps, concept art, and research references, ensuring each space felt intentional and meaningful.</li>
-      </ul>
-    </div>
-
-  </div>
-</section>
-
-    <h4 class="section-divider">Design Challenges and Solutions</h4>
-
-<section class="problem-section">
-  <div class="problem-container">
-
-    <!-- Left: Text bullets -->
-    <div class="problem-text">
-      <h2>Problem 1: Unclear Desert Exploration</h2>
-      <ul>
-        <li><strong>Goal:</strong> Create a desert landscape that is vast and intriguing, but still guides the player toward the main objective</li>
-        <li><strong>Problem:</strong> After the tutorial and desert opening, players faced three unexplained paths with unclear purposes for each POI</li>
-        <li><strong>Solution:</strong> Increased landscape size immensely. POIs were spread out further, but still visible. Player starting location was adjusted to naturally guide them toward the main path</li>
-      </ul>
-    </div>
-
-    <!-- Right: Carousel -->
-    <div class="problem-carousel">
-      <div class="carousel-images">
-        <img src="sornimages/GeneralDesertIterationPhoto2.png" alt="Players felt overwhelmed by options, with no clear critical path or explanation about side content." class="active lightbox-trigger" data-caption="After the tutorial and desert opening, players faced three unexplained paths with unclear purposes for each POI.">
-        <img src="sornimages/GeneralDesertIterationImage1.png" alt="POIs were too close, forcing side content meant for later onto the player." data-caption="POIs were too close, forcing side content meant for later onto the player" class="lightbox-trigger">
-        <img src="sornimages/PlayerstartPOI1.png" alt="Moved player start and tutorial to guide them along the critical path, away from side content" data-caption="Moved player start and tutorial to guide them along the critical path, away from side content" class="lightbox-trigger">
-        <img src="sornimages/DistanceBetweenPOI1and2.png" alt="Expanded the landscape and spaced out POIs to discourage early exploration of side content" data-caption="Expanded the landscape and spaced out POIs to discourage early exploration of side content" class="lightbox-trigger">
+    <div class="level-step">
+      <div class="level-step-text">
+        <ul>
+          <li><strong>Goal:</strong> Introduce verticality and environmental hazards to increase challenge and teach advanced traversal</li>
+          <li><strong>Design action 1:</strong> Placed bounce pads in a safe area first, then integrated them as a core traversal tool for combat and platforming</li>
+          <li><strong>Design action 2:</strong> Combined moving train hazards, multi-level enemy placements, and vertical spaces to create a more demanding, multi-layered encounter</li>
+        </ul>
       </div>
-
-      <!-- Arrows -->
-      <div class="carousel-controls">
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-      </div>
-
-      <!-- Caption -->
-      <div class="carousel-caption">
-        <p id="caption">Before iteration 1</p>
+      <div class="level-step-video">
+        <h3>Beat 3: The Wall — Sector 2</h3>
+        <iframe src="https://www.youtube.com/embed/bpr7gXmY7Oc" title="The Wall: Sector 2" frameborder="0" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
 
-  </div>
-</section>
-
-<section class="problem-section">
-  <div class="problem-container reverse">
-
-    <!-- Left: Carousel -->
-    <div class="problem-carousel">
-      <div class="carousel-images">
-        <img src="sornimages/SornWallPhoto4.png" alt="Spacing between walls, floors, and platforms was difficult to balance with jump pads and the player’s jetpack" class="active lightbox-trigger" data-caption="Spacing between walls, floors, and platforms was difficult to balance with jump pads and the player’s jetpack">
-        <img src="sornimages/SornWallPhoto6.png" alt="The ascent to the next room was overly long and unenjoyable" class="lightbox-trigger" data-caption="The ascent to the next room was overly long and unenjoyable">
-        <img src="sornimages/SornWallPhoto8.png" alt="This image illustrates the progress lost if the player falls, highlighting the scale of the ascent" class="lightbox-trigger" data-caption="This image illustrates the progress lost if the player falls, highlighting the scale of the ascent">
-        <img src="sornimages/Sector1FR7.png" alt="Redesigned sectors for a more linear flow and removed mandatory verticality" class="lightbox-trigger" data-caption="Redesigned sectors for a more linear flow and removed mandatory verticality">
-        <img src="sornimages/Sector2FR7.png" alt="Sector two retains some jump pads and taller ledges but is now more manageable and separate from combat." class="lightbox-trigger" data-caption="Sector two retains some jump pads and taller ledges but is now more manageable and separate from combat.">
+    <div class="level-step">
+      <div class="level-step-text">
+        <ul>
+          <li><strong>Goal:</strong> Shift pacing and tension with a tighter, more linear section</li>
+          <li><strong>Design action 1:</strong> Use darker lighting, debris, and broken scaffolding to create danger while maintaining traversal paths and cover</li>
+          <li><strong>Design action 2:</strong> Place enemies densely in constricted corridors to encourage precise movement and combat mastery</li>
+        </ul>
       </div>
-
-      <!-- Arrows -->
-      <div class="carousel-controls">
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-      </div>
-
-      <!-- Caption -->
-      <div class="carousel-caption">
-        <p id="caption_problem2">Before iteration 1</p>
+      <div class="level-step-video">
+        <h3>Beat 4: The Wall — Sector 3</h3>
+        <iframe src="https://www.youtube.com/embed/RW_GRHyzFZQ" title="The Wall: Sector 3" frameborder="0" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
 
-    <!-- Right: Text bullets -->
-    <div class="problem-text">
-      <h2>Problem 2: Platforming Did Not Support Gameplay Flow</h2>
-      <ul>
-        <li><strong>Goal:</strong> Goal was to combine platforming and combat, blending traversal with fast-paced gameplay.</li>
-        <li><strong>Problem:</strong> Platforming while in combat disrupted player flow and made scaling monlith sized levels with jump pads extremly difficult</li>
-        <li><strong>Solution:</strong> Removed platforming to support design goals and pacing, pivoting to a more linear experience.</li>
-      </ul>
-    </div>
+  </section>
 
-  </div>
-</section>
+  <!-- The Process -->
+  <h2 class="section-divider">The <span>Process</span></h2>
 
-<section class="problem-section">
-  <div class="problem-container">
-
-    <!-- Left: Text bullets -->
-    <div class="problem-text">
-      <h2>Problem 3: Playspaces Were Poorly Contextualized</h2>
-      <ul>
-        <li><strong>Goal:</strong> Show that the player must traverse a desert landscape to infiltrate a monolith-scale facility that used bullet trains to transport valuable cargo</li>
-        <li><strong>Problem:</strong> POIs and sectors lacked identity, leaving their purpose and functionality unclear</li>
-        <li><strong>Solution:</strong> Redesigned POIs and facility sectors with clear intent, guided by updated reference images and a Miro board</li>
-      </ul>
-    </div>
-
-    <!-- Right: Carousel -->
-    <div class="problem-carousel">
-      <div class="carousel-images">
-        <img src="sornimages/PoC Beauty Shot 1.png" alt="Desert POI 1 blockout had no context. What is this supposed to be?" class="active lightbox-trigger" data-caption="Desert POI 1 blockout had no context. What is this supposed to be?">
-        <img src="sornimages/POI2Photo.png" alt="Initial blockout of Desert POI 2. What was this supposed to be?" class="lightbox-trigger" data-caption="Initial blockout of Desert POI 2. What was this supposed to be">
-        <img src="sornimages/DesertPOI1IterationImage.png" alt="Iteration of Desert POI 1. Still unclear as to what this was supposed to be" class="lightbox-trigger" data-caption="Iteration of Desert POI 1. Still unclear as to what this was supposed to be">
-        <img src="sornimages/DesertPOI3IterationImage.png" alt="Desert POI 3 iteration. Looks a bit better than other POI's, but still has no clear purpose" class="lightbox-trigger" data-caption="Desert POI 3 iteration. Looks a bit better than other POI's, but still has no clear purpose">
-        <img src="sornimages/Iteration3desertPOI1SS2.png" alt="Redesigned Desert POI 1. Clearly has intent to be some sort of military outpost or checkpoint" class="lightbox-trigger" data-caption="Redesigned desert POI 1. Clearly has intent to be some sort of military outpost or checkpoint">
-        <img src="sornimages/OilDigSite.png" alt="Desert POI 2 reinvented as an oil and mining site, which supports our games narrative and has context" class="lightbox-trigger" data-caption="Desert POI 2 reinvented as an oil and mining site, which supports our games narrative and has context">
-        <img src="sornimages/Iteration3desertPOI1SS3.png" alt="Another view of Desert POI 1. Showing how much more detailed and contextualized the space is" class="lightbox-trigger" data-caption="Another view of Desert POI 1. Showing how much more detailed and contextualized the space is">
+  <!-- Research & References -->
+  <section class="problem-section" style="border-top:none; padding-top:0;">
+    <div class="problem-container reverse">
+      <div class="problem-carousel">
+        <div class="carousel-images">
+          <img src="sornimages/AC6Inspo.png" alt="Inspiration: Armored Core VI" class="active lightbox-trigger" data-caption="Inspiration: Armored Core VI: Fires of Rubicon">
+          <img src="sornimages/SornTeamArtboardFrame2.jpg" alt="Miro board snippet" class="lightbox-trigger" data-caption="Miro board: referenced Armored Core gameplay, desert landscapes, and military outposts">
+          <img src="sornimages/MilitaryOutpostImage1.png" alt="Military outpost reference" class="lightbox-trigger" data-caption="Military outpost reference image">
+          <img src="sornimages/ScablandsImage1.png" alt="Destiny: Scablands reference" class="lightbox-trigger" data-caption="Destiny: Scablands reference image">
+        </div>
+        <div class="carousel-controls">
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+        </div>
+        <div class="carousel-caption"><p>Armored Core VI reference</p></div>
       </div>
-
-      <!-- Arrows -->
-      <div class="carousel-controls">
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-      </div>
-
-      <!-- Caption -->
-      <div class="carousel-caption">
-        <p id="caption">Before iteration 1</p>
+      <div class="problem-text">
+        <h2>Research &amp; References</h2>
+        <p>The process involved creating an environment that supported fast-paced mech combat while teaching players core systems.</p>
+        <ul>
+          <li><strong>Research &amp; Ideation:</strong> Studied mech-focused games (e.g., Armored Core) to analyze combat pacing, encounter design, and level flow</li>
+          <li><strong>Reference Gathering:</strong> Collected visual references, concept art, and gameplay screenshots to inspire environmental design and thematic consistency</li>
+          <li><strong>Miro Board Organization:</strong> Compiled references and ideas on a Miro board to map layouts, level goals, and design solutions visually</li>
+        </ul>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
+  <!-- Maps, Layouts, and Documentation -->
+  <section class="problem-section">
+    <div class="problem-container">
+      <div class="problem-text">
+        <h2>Maps, Layouts &amp; Documentation</h2>
+        <p>This section highlights the level planning process through maps, layouts, and detailed design documentation.</p>
+        <ul>
+          <li><strong>Level Design Documentation:</strong> Detailed each encounter and level design decision to communicate design intent clearly</li>
+          <li><strong>Comprehensive Maps:</strong> Developed top-down and blockout layouts highlighting key areas, paths, and strategic points</li>
+          <li><strong>Multiple Iterations:</strong> Refined and improved existing maps over time, showing design evolution through visual examples</li>
+        </ul>
+      </div>
+      <div class="problem-carousel">
+        <div class="carousel-images">
+          <a href="sornimages/SORNLevelDesignDocumentLevel1.pdf" target="_blank" class="active" data-caption="Level 1 Design Document — click to open PDF">
+            <img src="sornimages/LDD1SS.png" alt="Level 1 Design Document">
+          </a>
+          <img src="sornimages/MipUIMapofDesertEnvironment.png" alt="First Map of Desert Environment" class="lightbox-trigger" data-caption="First Map of Desert Environment">
+          <img src="sornimages/OfficalDesertMapPhoto.png" alt="Iterated Map of Desert Environment" class="lightbox-trigger" data-caption="Iterated Map of Desert Environment">
+          <img src="sornimages/Wall_Level_Map_PNG.png" alt="First Map of The Wall" class="lightbox-trigger" data-caption="First Map of The Wall">
+          <img src="sornimages/FinalizedWallMapPhoto.png" alt="Iterated Map of The Wall" class="lightbox-trigger" data-caption="Iterated Map of The Wall">
+        </div>
+        <div class="carousel-controls">
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+        </div>
+        <div class="carousel-caption"><p>Level 1 Design Document</p></div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Conclusion -->
-    <section>
-      <h4 class="section-divider">Conclusion & Learnings</h4>
-      <p>Developing S.O.R.N’s first level provided a hands-on opportunity to create large-scale 3D environments that balance exploration, combat, and player guidance. Iteration and refinement were key to ensuring pacing, flow, and engagement remained compelling throughout each encounter. Key takeaways include:</p>
+  <!-- Initial Blockout -->
+  <section class="problem-section">
+    <div class="problem-container reverse">
+      <div class="problem-carousel">
+        <div class="carousel-images">
+          <img src="sornimages/PoCBeautyShot2.png" alt="Proof of concept and first blockout" class="active lightbox-trigger" data-caption="Proof of concept and first blockout of Level 1">
+          <img src="sornimages/SornWallPhoto1.png" alt="Sector 1 blockout" class="lightbox-trigger" data-caption="Sector 1 blockout — focus was introducing verticality via jump pads">
+          <img src="sornimages/SornWallPhoto2.png" alt="Sector 2 blockout" class="lightbox-trigger" data-caption="Sector 2 blockout — focus was increasing difficulty">
+          <img src="sornimages/SornWallPhoto3.png" alt="Sector 3 blockout" class="lightbox-trigger" data-caption="Sector 3 blockout — combining skills and layouts from previous sectors">
+        </div>
+        <div class="carousel-controls">
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+        </div>
+        <div class="carousel-caption"><p>Proof of concept — Level 1</p></div>
+      </div>
+      <div class="problem-text">
+        <h2>Initial Blockout</h2>
+        <p>The initial blockout was designed to support the core mechanics of S.O.R.N, giving players spaces to engage with combat, traversal, and exploration.</p>
+        <ul>
+          <li><strong>Supported Player Mechanics:</strong> Created blockouts and encounter areas that allowed players to engage with core mech abilities and understand combat pacing</li>
+          <li><strong>Visual and Tactical Clarity:</strong> Arranged key environmental features to communicate paths, cover, and combat flow clearly</li>
+          <li><strong>Contextualized Playspaces:</strong> Designed level areas that reflected maps, concept art, and research references</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-      <p><strong>Knowledge Gained:</strong></p>
-      <ul>
-        <li>Gained experience in effectively blocking out levels and using Unreal Engine tools like CubeGrid, landscaping, and foliage</li>
-        <li>Designing with purpose, ensuring every prop, encounter, and space reinforces gameplay or narrative</li>
-        <li>Communicating level design concepts clearly through maps, diagrams, and reference visuals</li>
-      </ul>
+  <!-- Design Challenges -->
+  <h2 class="section-divider">Design <span>Challenges</span></h2>
 
-      <p><strong>Areas for Growth:</strong></p>
-      <ul>
-        <li>Exploring more creative layouts and prop placement to enhance player experience</li>
-        <li>Applying feedback effectively while maintaining a cohesive level design</li>
-        <li>Balancing challenge and guidance to better teach player systems through level design</li>
-      </ul>
-    </section>
-  </main>
+  <!-- Problem 1 -->
+  <section class="problem-section" style="border-top:none; padding-top:0;">
+    <div class="problem-container">
+      <div class="problem-text">
+        <h2>Problem 1: Unclear Desert Exploration</h2>
+        <ul>
+          <li><strong>Goal:</strong> Create a desert landscape that is vast and intriguing, but still guides the player toward the main objective</li>
+          <li><strong>Problem:</strong> After the tutorial, players faced three unexplained paths with unclear purposes for each POI</li>
+          <li><strong>Solution:</strong> Increased landscape size, spread out POIs further but kept them visible, and adjusted player start to naturally guide toward the main path</li>
+        </ul>
+      </div>
+      <div class="problem-carousel">
+        <div class="carousel-images">
+          <img src="sornimages/GeneralDesertIterationPhoto2.png" alt="No clear critical path" class="active lightbox-trigger" data-caption="Players felt overwhelmed with no clear critical path">
+          <img src="sornimages/GeneralDesertIterationImage1.png" alt="POIs too close together" class="lightbox-trigger" data-caption="POIs were too close, forcing side content on the player early">
+          <img src="sornimages/PlayerstartPOI1.png" alt="Moved player start" class="lightbox-trigger" data-caption="Moved player start and tutorial to guide along the critical path">
+          <img src="sornimages/DistanceBetweenPOI1and2.png" alt="Expanded landscape" class="lightbox-trigger" data-caption="Expanded landscape and spaced out POIs to discourage early side exploration">
+        </div>
+        <div class="carousel-controls">
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+        </div>
+        <div class="carousel-caption"><p>Players felt overwhelmed with no clear critical path</p></div>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    <p>&copy; 2026 Paul Saturno</p>
-  </footer>
+  <!-- Problem 2 -->
+  <section class="problem-section">
+    <div class="problem-container reverse">
+      <div class="problem-carousel">
+        <div class="carousel-images">
+          <img src="sornimages/SornWallPhoto4.png" alt="Platforming balance issues" class="active lightbox-trigger" data-caption="Spacing between walls, floors, and platforms was difficult to balance with jump pads">
+          <img src="sornimages/SornWallPhoto6.png" alt="Overly long ascent" class="lightbox-trigger" data-caption="The ascent to the next room was overly long and unenjoyable">
+          <img src="sornimages/SornWallPhoto8.png" alt="Progress loss on fall" class="lightbox-trigger" data-caption="This illustrates the progress lost if the player falls, showing the scale of the ascent">
+          <img src="sornimages/Sector1FR7.png" alt="Redesigned sectors" class="lightbox-trigger" data-caption="Redesigned sectors for a more linear flow — removed mandatory verticality">
+          <img src="sornimages/Sector2FR7.png" alt="Sector 2 revised" class="lightbox-trigger" data-caption="Sector 2 retains some jump pads but is now more manageable and separate from combat">
+        </div>
+        <div class="carousel-controls">
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+        </div>
+        <div class="carousel-caption"><p>Platforming balance issues</p></div>
+      </div>
+      <div class="problem-text">
+        <h2>Problem 2: Platforming Disrupted Flow</h2>
+        <ul>
+          <li><strong>Goal:</strong> Combine platforming and combat, blending traversal with fast-paced gameplay</li>
+          <li><strong>Problem:</strong> Platforming while in combat disrupted player flow and made scaling monolith-sized levels with jump pads extremely difficult</li>
+          <li><strong>Solution:</strong> Removed platforming to support design goals and pacing, pivoting to a more linear experience</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-   <!-- ================= LIGHTBOX ================= -->
+  <!-- Problem 3 -->
+  <section class="problem-section">
+    <div class="problem-container">
+      <div class="problem-text">
+        <h2>Problem 3: Poorly Contextualized Playspaces</h2>
+        <ul>
+          <li><strong>Goal:</strong> Show the player traversing a desert to infiltrate a monolith-scale facility used for bullet train cargo transport</li>
+          <li><strong>Problem:</strong> POIs and sectors lacked identity, leaving their purpose and functionality unclear</li>
+          <li><strong>Solution:</strong> Redesigned POIs and facility sectors with clear intent, guided by updated reference images and a Miro board</li>
+        </ul>
+      </div>
+      <div class="problem-carousel">
+        <div class="carousel-images">
+          <img src="sornimages/PoC Beauty Shot 1.png" alt="Desert POI 1 — no context" class="active lightbox-trigger" data-caption="Desert POI 1 blockout had no context — what is this supposed to be?">
+          <img src="sornimages/POI2Photo.png" alt="Desert POI 2 initial" class="lightbox-trigger" data-caption="Initial blockout of Desert POI 2 — also unclear">
+          <img src="sornimages/DesertPOI1IterationImage.png" alt="Desert POI 1 iteration" class="lightbox-trigger" data-caption="Iteration of Desert POI 1 — still unclear">
+          <img src="sornimages/DesertPOI3IterationImage.png" alt="Desert POI 3 iteration" class="lightbox-trigger" data-caption="Desert POI 3 iteration — slightly better but no clear purpose">
+          <img src="sornimages/Iteration3desertPOI1SS2.png" alt="Redesigned Desert POI 1" class="lightbox-trigger" data-caption="Redesigned Desert POI 1 — clearly a military outpost or checkpoint">
+          <img src="sornimages/OilDigSite.png" alt="Desert POI 2 as oil site" class="lightbox-trigger" data-caption="Desert POI 2 reinvented as an oil and mining site — supports the game's narrative">
+          <img src="sornimages/Iteration3desertPOI1SS3.png" alt="Another view of Desert POI 1" class="lightbox-trigger" data-caption="Another view of Desert POI 1 — more detailed and contextualized">
+        </div>
+        <div class="carousel-controls">
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+        </div>
+        <div class="carousel-caption"><p>Desert POI 1 — no context in early blockout</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Conclusion -->
+  <h2 class="section-divider">Conclusion <span>&amp; Learnings</span></h2>
+  <section class="conclusion-section" style="border-top:none; padding-top:0;">
+    <p class="conclusion-intro">Developing S.O.R.N's first level provided a hands-on opportunity to create large-scale 3D environments that balance exploration, combat, and player guidance. Iteration and refinement were key to ensuring pacing, flow, and engagement remained compelling throughout each encounter.</p>
+    <div class="conclusion-cols">
+      <div class="conclusion-col">
+        <h4>Knowledge Gained</h4>
+        <ul>
+          <li>Gained experience blocking out levels and using Unreal Engine tools like CubeGrid, landscaping, and foliage</li>
+          <li>Designing with purpose — every prop, encounter, and space reinforces gameplay or narrative</li>
+          <li>Communicating level design concepts clearly through maps, diagrams, and reference visuals</li>
+        </ul>
+      </div>
+      <div class="conclusion-col">
+        <h4>Areas for Growth</h4>
+        <ul>
+          <li>Exploring more creative layouts and prop placement to enhance player experience</li>
+          <li>Applying feedback effectively while maintaining a cohesive level design</li>
+          <li>Balancing challenge and guidance to better teach player systems through level design</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Paul Saturno</p>
+  <span class="footer-mark">PS</span>
+</footer>
+
+<!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <span class="close" id="lightbox-close">&times;</span>
   <img class="lightbox-img" id="lightbox-img" src="" alt="">
   <div class="caption" id="lightbox-caption"></div>
 </div>
 
-<!-- ================= LIGHTBOX SCRIPT ================= -->
 <script>
+  // Lightbox
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxCaption = document.getElementById('lightbox-caption');
   const lightboxClose = document.getElementById('lightbox-close');
 
-  // Works for <a> or <img> triggers
   document.querySelectorAll('.lightbox-trigger').forEach(trigger => {
     trigger.addEventListener('click', e => {
       e.preventDefault();
       lightbox.style.display = 'flex';
-
-      // Determine image src
-      let src = trigger.href || trigger.src; 
+      let src = trigger.href || trigger.src;
       lightboxImg.src = src;
-
-      // Determine alt text
-      let alt = '';
-      if (trigger.tagName === 'A') {
-        alt = trigger.querySelector('img')?.alt || '';
-      } else if (trigger.tagName === 'IMG') {
-        alt = trigger.alt || '';
-      }
+      let alt = trigger.tagName === 'A' ? (trigger.querySelector('img')?.alt || '') : (trigger.alt || '');
       lightboxImg.alt = alt;
-
-      // Caption (from data-caption attribute)
       lightboxCaption.textContent = trigger.dataset.caption || '';
     });
   });
 
-  // Close button
-  lightboxClose.addEventListener('click', () => {
-    lightbox.style.display = 'none';
-  });
+  lightboxClose.addEventListener('click', () => lightbox.style.display = 'none');
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.style.display = 'none'; });
 
-  // Close if clicking outside the image
-  lightbox.addEventListener('click', e => {
-    if (e.target === lightbox) {
-      lightbox.style.display = 'none';
+  // Carousels — each .problem-carousel is independent
+  document.querySelectorAll('.problem-carousel').forEach(carousel => {
+    const images = carousel.querySelectorAll('.carousel-images img, .carousel-images a');
+    const captionEl = carousel.querySelector('.carousel-caption p');
+    const captions = Array.from(images).map(el => el.dataset.caption || el.alt || (el.querySelector('img')?.alt) || '');
+    let current = 0;
+
+    function show(index) {
+      images.forEach(el => el.classList.remove('active'));
+      images[index].classList.add('active');
+      if (captionEl) captionEl.textContent = captions[index];
     }
+
+    carousel.querySelector('.prev').addEventListener('click', () => {
+      current = (current - 1 + images.length) % images.length;
+      show(current);
+    });
+    carousel.querySelector('.next').addEventListener('click', () => {
+      current = (current + 1) % images.length;
+      show(current);
+    });
+
+    show(0);
   });
-</script>
-
-<script>
-document.querySelectorAll('.problem-section').forEach(section => {
-  const carousel = section.querySelector('.problem-carousel');
-  const images = carousel.querySelectorAll('.carousel-images img');
-  const caption = carousel.querySelector('.carousel-caption p'); // select the <p> inside caption
-  const captionsText = Array.from(images).map(img => img.alt);   // use alt text for captions
-  let current = 0;
-
-  function showImage(index) {
-    images.forEach((img, i) => img.classList.remove('active'));
-    images[index].classList.add('active');
-    caption.textContent = captionsText[index];
-  }
-
-  carousel.querySelector('.prev').addEventListener('click', () => {
-    current = (current - 1 + images.length) % images.length;
-    showImage(current);
-  });
-
-  carousel.querySelector('.next').addEventListener('click', () => {
-    current = (current + 1) % images.length;
-    showImage(current);
-  });
-
-  // Initialize first image
-  showImage(current);
-});
 </script>
 </body>
 </html>
