@@ -12,9 +12,10 @@
   --bg: #07090f;
   --surface: #0d1119;
   --surface2: #121720;
-  --border: rgba(160,200,255,0.07);
+  --border: rgba(160,200,255,0.25);
   --gold: #e8622a;
-  --olive: #4a8fb5;
+  --olive: #00c2e0;
+  --cyan: #00c2e0;
   --gold-dim: rgba(232,98,42,0.08);
   --text: #ffffff;
   --text-dim: #ffffff;
@@ -53,7 +54,6 @@ body::after {
   z-index: 0;
 }
 
-/* ── Header ── */
 header {
   position: relative;
   z-index: 10;
@@ -84,7 +84,7 @@ header {
 
 .site-subtitle {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.75rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 6px;
   text-transform: uppercase;
@@ -103,18 +103,17 @@ nav ul li a {
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: var(--cyan);
   border: 1px solid transparent;
   transition: all 0.25s ease;
 }
 
 nav ul li a:hover {
-  color: var(--gold);
-  border-color: rgba(217,172,23,0.2);
+  color: var(--white);
+  border-color: rgba(0,194,224,0.2);
   background: var(--gold-dim);
 }
 
-/* ── Page hero ── */
 .page-hero {
   position: relative;
   z-index: 10;
@@ -124,11 +123,11 @@ nav ul li a:hover {
 
 .breadcrumb {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 5px;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: var(--cyan);
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
@@ -137,7 +136,7 @@ nav ul li a:hover {
 
 .breadcrumb a { color: var(--gold); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
-.breadcrumb span { color: var(--text-dim); }
+.breadcrumb span { color: var(--cyan); }
 
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
@@ -150,15 +149,14 @@ nav ul li a:hover {
 
 .hero-subtitle {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 1.2rem;
+  font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--olive);
   margin-bottom: 3rem;
 }
 
-/* ── Info cards ── */
 .info-cards {
   display: flex;
   gap: 1px;
@@ -176,11 +174,11 @@ nav ul li a:hover {
 
 .info-card h3 {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 5px;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: var(--cyan);
   margin-bottom: 0.5rem;
 }
 
@@ -192,7 +190,6 @@ nav ul li a:hover {
   margin: 0;
 }
 
-/* ── Main content ── */
 main {
   position: relative;
   z-index: 10;
@@ -201,7 +198,6 @@ main {
   padding: 0 5rem 6rem;
 }
 
-/* ── Section divider ── */
 .section-divider {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(2rem, 4vw, 3.5rem);
@@ -227,7 +223,6 @@ main {
 
 .section-divider span { color: var(--gold); }
 
-/* ── Video container ── */
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -243,7 +238,6 @@ main {
   width: 100%; height: 100%;
 }
 
-/* ── Problem sections (carousel + text) ── */
 .problem-section {
   padding: 3rem 0;
   border-top: 1px solid var(--border);
@@ -263,13 +257,12 @@ main {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(1.8rem, 3vw, 2.5rem);
   letter-spacing: 3px;
-  color: var(--gold);
+  color: var(--cyan);
   margin-bottom: 1rem;
-  text-decoration: none;
 }
 
 .problem-text p {
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.8;
   color: var(--text);
   margin-bottom: 1.2rem;
@@ -284,22 +277,16 @@ main {
 }
 
 .problem-text ul li {
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   color: var(--text);
   padding-left: 1.2rem;
   border-left: 2px solid rgba(217,172,23,0.3);
 }
 
-.problem-text ul li strong {
-  color: var(--white);
-  font-weight: 600;
-}
+.problem-text ul li strong { color: var(--gold); font-weight: 600; }
 
-/* ── Carousel ── */
-.problem-carousel {
-  position: relative;
-}
+.problem-carousel { position: relative; }
 
 .carousel-images {
   width: 100%;
@@ -326,6 +313,7 @@ main {
   height: 280px;
   object-fit: cover;
   width: 100%;
+  display: block;
 }
 
 .carousel-images img.active,
@@ -348,7 +336,7 @@ main {
   pointer-events: all;
   background: rgba(9,11,14,0.8);
   color: var(--gold);
-  border: 1px solid rgba(217,172,23,0.2);
+  border: 1px solid rgba(232,98,42,0.3);
   padding: 0.6rem 1rem;
   cursor: pointer;
   font-size: 1.1rem;
@@ -369,22 +357,20 @@ main {
 
 .carousel-caption p {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.85rem;
   letter-spacing: 2px;
-  color: var(--text-dim);
-  font-style: italic;
+  color: var(--gold);
   text-align: center;
   margin: 0;
 }
 
-/* ── Level walkthrough ── */
 .level-walkthrough { padding: 0; }
 
 .level-step {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4rem;
-  align-items: start;
+  align-items: center;
   padding: 3rem 0;
   border-top: 1px solid var(--border);
 }
@@ -392,9 +378,7 @@ main {
 .level-step:nth-child(even) .level-step-text { order: 2; }
 .level-step:nth-child(even) .level-step-video { order: 1; }
 
-.level-step-text {
-  padding-top: 1rem;
-}
+.level-step-text { padding-top: 1rem; }
 
 .level-step-text ul {
   list-style: none;
@@ -405,31 +389,37 @@ main {
 }
 
 .level-step-text ul li {
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   color: var(--text);
   padding-left: 1.2rem;
   border-left: 2px solid rgba(74,143,181,0.4);
 }
 
-.level-step-text ul li strong { color: var(--white); font-weight: 600; }
+.level-step-text ul li strong { color: var(--gold); font-weight: 600; }
 
 .level-step-video h3 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.5rem;
   letter-spacing: 3px;
-  color: var(--gold);
+  color: var(--cyan);
   margin-bottom: 1rem;
-  text-decoration: none;
 }
 
-.level-step-video iframe {
-  width: 100%;
-  height: 240px;
+.video-wrap {
+  position: relative;
+  padding-bottom: 65%;
+  height: 0;
+  overflow: hidden;
   border: 1px solid var(--border);
 }
 
-/* ── Conclusion ── */
+.video-wrap iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+}
+
 .conclusion-section {
   border-top: 1px solid var(--border);
   padding-top: 4rem;
@@ -443,12 +433,12 @@ main {
 }
 
 .conclusion-col h4 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
   font-weight: 700;
   letter-spacing: 5px;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--cyan);
   margin-bottom: 1.5rem;
 }
 
@@ -461,7 +451,7 @@ main {
 }
 
 .conclusion-col ul li {
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.7;
   color: var(--text);
   padding-left: 1.2rem;
@@ -469,13 +459,12 @@ main {
 }
 
 .conclusion-intro {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   line-height: 1.8;
   color: var(--text);
   max-width: 800px;
 }
 
-/* ── Footer ── */
 footer {
   position: relative;
   z-index: 10;
@@ -501,7 +490,6 @@ footer p {
   letter-spacing: 4px;
 }
 
-/* ── Lightbox ── */
 .lightbox {
   display: none;
   position: fixed;
@@ -515,7 +503,7 @@ footer p {
 }
 
 .lightbox-img {
-  max-width: 90%;
+  max-width: 85%;
   max-height: 80vh;
   border: 1px solid var(--border);
 }
@@ -525,8 +513,7 @@ footer p {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 0.85rem;
   letter-spacing: 2px;
-  color: var(--text-dim);
-  font-style: italic;
+  color: var(--gold);
   text-align: center;
   max-width: 600px;
 }
@@ -543,7 +530,31 @@ footer p {
 }
 .lightbox .close:hover { color: var(--white); }
 
-/* ── Animations ── */
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(9,11,14,0.85);
+  color: var(--gold);
+  border: 1px solid rgba(232,98,42,0.3);
+  font-size: 1.5rem;
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  z-index: 10000;
+  line-height: 1;
+}
+
+.lightbox-prev { left: 1.5rem; }
+.lightbox-next { right: 1.5rem; }
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: var(--gold);
+  color: var(--bg);
+}
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -552,7 +563,6 @@ footer p {
 .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; }
 .d3 { animation-delay: 0.28s; } .d4 { animation-delay: 0.42s; }
 
-/* ── Responsive ── */
 @media (max-width: 960px) {
   header, .page-hero, main, footer { padding-left: 2rem; padding-right: 2rem; }
   .info-cards { flex-direction: column; gap: 1px; }
@@ -562,6 +572,8 @@ footer p {
   .level-step:nth-child(even) .level-step-video { order: unset; }
   .conclusion-cols { grid-template-columns: 1fr; }
   .section-divider::before { display: none; }
+  .lightbox-prev { left: 0.5rem; }
+  .lightbox-next { right: 0.5rem; }
 }
 </style>
 </head>
@@ -569,7 +581,6 @@ footer p {
 
 <div class="bg-glow"></div>
 
-<!-- Header -->
 <header>
   <div class="animate d1">
     <a href="projects.html" class="site-title" style="display:block; text-decoration:none;">Paul Saturno</a>
@@ -583,7 +594,6 @@ footer p {
   </nav>
 </header>
 
-<!-- Page Hero -->
 <div class="page-hero animate d2">
   <div class="breadcrumb">
     <a href="projects.html">Projects</a>
@@ -602,33 +612,32 @@ footer p {
 
 <main>
 
-  <!-- Hero Video -->
   <h2 class="section-divider">Hero <span>Video</span></h2>
   <div class="video-container">
     <iframe src="https://www.youtube.com/embed/f8_dOA7EJJQ" title="S.O.R.N" frameborder="0" allowfullscreen></iframe>
   </div>
 
-  <!-- Level Goals -->
   <h2 class="section-divider">Level Goals <span>&amp; Overview</span></h2>
   <section class="problem-section" style="border-top:none; padding-top:0;">
     <div class="problem-container reverse">
       <div class="problem-carousel">
         <div class="carousel-images">
-          <img src="sornimages/Iteration3desertPOI1SS1.png" alt="Desert POI 1 Iteration" class="active lightbox-trigger" data-caption="Desert POI 1 Iteration">
-          <img src="sornimages/Sector1FR7.png" alt="Sector 1 Layout Vertical Slice" class="lightbox-trigger" data-caption="Sector 1 Layout Vertical Slice">
-          <img src="sornimages/Sector2FR7.png" alt="Sector 2 Layout Vertical Slice" class="lightbox-trigger" data-caption="Sector 2 Layout Vertical Slice">
-          <img src="sornimages/WallSector1InGameSS1.png" alt="Storage Room Vertical Slice" class="lightbox-trigger" data-caption="Storage Room Vertical Slice">
-          <img src="sornimages/Sector3FR4.png" alt="Sector 3 Vertical Slice" class="lightbox-trigger" data-caption="Sector 3 Vertical Slice">
+          <img src="sornimages/CelShadedDesertSS1.png" alt="Enemy Stronghold" class="active lightbox-trigger" data-caption="Enemy Stronghold">
+          <img src="sornimages/Sector1FR7.png" alt="Sector 1" class="lightbox-trigger" data-caption="Sector 1">
+          <img src="sornimages/Sector2FR7.png" alt="Sector 2" class="lightbox-trigger" data-caption="Sector 2">
+          <img src="sornimages/WallSector1InGameSS1.png" alt="Storage Room" class="lightbox-trigger" data-caption="Storage Room">
+          <img src="sornimages/Sector3FR4.png" alt="Sector 3" class="lightbox-trigger" data-caption="Sector 3">
         </div>
         <div class="carousel-controls">
           <button class="prev">&#10094;</button>
           <button class="next">&#10095;</button>
         </div>
-        <div class="carousel-caption"><p>Desert POI 1 Iteration</p></div>
+        <div class="carousel-caption"><p>Enemy Stronghold</p></div>
       </div>
       <div class="problem-text">
         <h2>Overview</h2>
         <p>S.O.R.N is a fast-paced, third-person mech shooter set across a monolith-scale continent. "Directive 1" was designed to support strategic combat encounters in a semi-open desert and a monolith-sized facility, while giving players freedom to move and engage dynamically.</p>
+        <p><strong style="color:var(--cyan); font-size:clamp(1.8rem, 3vw, 2.5rem); letter-spacing:3px; font-family:'Bebas Neue',sans-serif; text-transform:uppercase; font-weight:700;">Level Goals</strong></p>
         <ul>
           <li><strong>Teach</strong> and reinforce core player mechanics through level layout and encounters</li>
           <li><strong>Guide</strong> players naturally through interesting and contextualized playspaces</li>
@@ -638,7 +647,6 @@ footer p {
     </div>
   </section>
 
-  <!-- Level Walkthrough -->
   <h2 class="section-divider">Level <span>Walkthrough</span></h2>
   <section class="level-walkthrough">
 
@@ -651,8 +659,10 @@ footer p {
         </ul>
       </div>
       <div class="level-step-video">
-        <h3>Beat 1: The Desert</h3>
-        <iframe src="https://www.youtube.com/embed/3eHvcOhfD4c" title="S.O.R.N Desert" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        <h3><span style="color:var(--white);">Beat 1: The Desert</span></h3>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/3eHvcOhfD4c" title="S.O.R.N Desert" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
       </div>
     </div>
 
@@ -665,8 +675,10 @@ footer p {
         </ul>
       </div>
       <div class="level-step-video">
-        <h3>Beat 2: The Wall — Sector 1</h3>
-        <iframe src="https://www.youtube.com/embed/m4nfHUDuHL0" title="The Wall: Sector 1" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        <h3><span style="color:var(--white);">Beat 2: The Wall — Sector 1</span></h3>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/m4nfHUDuHL0" title="The Wall: Sector 1" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
       </div>
     </div>
 
@@ -679,8 +691,10 @@ footer p {
         </ul>
       </div>
       <div class="level-step-video">
-        <h3>Beat 3: The Wall — Sector 2</h3>
-        <iframe src="https://www.youtube.com/embed/bpr7gXmY7Oc" title="The Wall: Sector 2" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        <h3><span style="color:var(--white);">Beat 3: The Wall — Sector 2</span></h3>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/bpr7gXmY7Oc" title="The Wall: Sector 2" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
       </div>
     </div>
 
@@ -693,17 +707,17 @@ footer p {
         </ul>
       </div>
       <div class="level-step-video">
-        <h3>Beat 4: The Wall — Sector 3</h3>
-        <iframe src="https://www.youtube.com/embed/RW_GRHyzFZQ" title="The Wall: Sector 3" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        <h3><span style="color:var(--white);">Beat 4: The Wall — Sector 3</span></h3>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/RW_GRHyzFZQ" title="The Wall: Sector 3" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
       </div>
     </div>
 
   </section>
 
-  <!-- The Process -->
   <h2 class="section-divider">The <span>Process</span></h2>
 
-  <!-- Research & References -->
   <section class="problem-section" style="border-top:none; padding-top:0;">
     <div class="problem-container reverse">
       <div class="problem-carousel">
@@ -731,7 +745,6 @@ footer p {
     </div>
   </section>
 
-  <!-- Maps, Layouts, and Documentation -->
   <section class="problem-section">
     <div class="problem-container">
       <div class="problem-text">
@@ -762,7 +775,6 @@ footer p {
     </div>
   </section>
 
-  <!-- Initial Blockout -->
   <section class="problem-section">
     <div class="problem-container reverse">
       <div class="problem-carousel">
@@ -790,14 +802,12 @@ footer p {
     </div>
   </section>
 
-  <!-- Design Challenges -->
   <h2 class="section-divider">Design <span>Challenges</span></h2>
 
-  <!-- Problem 1 -->
   <section class="problem-section" style="border-top:none; padding-top:0;">
     <div class="problem-container">
       <div class="problem-text">
-        <h2>Problem 1: Unclear Desert Exploration</h2>
+        <h2><span style="color:var(--white);">Problem 1: Unclear Desert Exploration</span></h2>
         <ul>
           <li><strong>Goal:</strong> Create a desert landscape that is vast and intriguing, but still guides the player toward the main objective</li>
           <li><strong>Problem:</strong> After the tutorial, players faced three unexplained paths with unclear purposes for each POI</li>
@@ -820,7 +830,6 @@ footer p {
     </div>
   </section>
 
-  <!-- Problem 2 -->
   <section class="problem-section">
     <div class="problem-container reverse">
       <div class="problem-carousel">
@@ -838,7 +847,7 @@ footer p {
         <div class="carousel-caption"><p>Platforming balance issues</p></div>
       </div>
       <div class="problem-text">
-        <h2>Problem 2: Platforming Disrupted Flow</h2>
+        <h2><span style="color:var(--white);">Problem 2: Platforming Disrupted Flow</span></h2>
         <ul>
           <li><strong>Goal:</strong> Combine platforming and combat, blending traversal with fast-paced gameplay</li>
           <li><strong>Problem:</strong> Platforming while in combat disrupted player flow and made scaling monolith-sized levels with jump pads extremely difficult</li>
@@ -848,11 +857,10 @@ footer p {
     </div>
   </section>
 
-  <!-- Problem 3 -->
   <section class="problem-section">
     <div class="problem-container">
       <div class="problem-text">
-        <h2>Problem 3: Poorly Contextualized Playspaces</h2>
+        <h2><span style="color:var(--white);">Problem 3: Poorly Contextualized Playspaces</span></h2>
         <ul>
           <li><strong>Goal:</strong> Show the player traversing a desert to infiltrate a monolith-scale facility used for bullet train cargo transport</li>
           <li><strong>Problem:</strong> POIs and sectors lacked identity, leaving their purpose and functionality unclear</li>
@@ -878,7 +886,6 @@ footer p {
     </div>
   </section>
 
-  <!-- Conclusion -->
   <h2 class="section-divider">Conclusion <span>&amp; Learnings</span></h2>
   <section class="conclusion-section" style="border-top:none; padding-top:0;">
     <p class="conclusion-intro">Developing S.O.R.N's first level provided a hands-on opportunity to create large-scale 3D environments that balance exploration, combat, and player guidance. Iteration and refinement were key to ensuring pacing, flow, and engagement remained compelling throughout each encounter.</p>
@@ -909,36 +916,62 @@ footer p {
   <span class="footer-mark">PS</span>
 </footer>
 
-<!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <span class="close" id="lightbox-close">&times;</span>
+  <button class="lightbox-prev" id="lightbox-prev">&#10094;</button>
   <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <button class="lightbox-next" id="lightbox-next">&#10095;</button>
   <div class="caption" id="lightbox-caption"></div>
 </div>
 
 <script>
-  // Lightbox
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxCaption = document.getElementById('lightbox-caption');
   const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
 
-  document.querySelectorAll('.lightbox-trigger').forEach(trigger => {
+  let allTriggers = [];
+  let currentLightboxIndex = 0;
+
+  function openLightbox(index) {
+    const trigger = allTriggers[index];
+    currentLightboxIndex = index;
+    lightboxImg.src = trigger.src || trigger.href || '';
+    lightboxImg.alt = trigger.alt || '';
+    lightboxCaption.textContent = trigger.dataset.caption || '';
+    lightbox.style.display = 'flex';
+  }
+
+  document.querySelectorAll('.lightbox-trigger').forEach((trigger, i) => {
+    allTriggers.push(trigger);
     trigger.addEventListener('click', e => {
       e.preventDefault();
-      lightbox.style.display = 'flex';
-      let src = trigger.href || trigger.src;
-      lightboxImg.src = src;
-      let alt = trigger.tagName === 'A' ? (trigger.querySelector('img')?.alt || '') : (trigger.alt || '');
-      lightboxImg.alt = alt;
-      lightboxCaption.textContent = trigger.dataset.caption || '';
+      openLightbox(i);
     });
+  });
+
+  lightboxPrev.addEventListener('click', () => {
+    currentLightboxIndex = (currentLightboxIndex - 1 + allTriggers.length) % allTriggers.length;
+    openLightbox(currentLightboxIndex);
+  });
+
+  lightboxNext.addEventListener('click', () => {
+    currentLightboxIndex = (currentLightboxIndex + 1) % allTriggers.length;
+    openLightbox(currentLightboxIndex);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (lightbox.style.display !== 'flex') return;
+    if (e.key === 'ArrowRight') lightboxNext.click();
+    if (e.key === 'ArrowLeft') lightboxPrev.click();
+    if (e.key === 'Escape') lightbox.style.display = 'none';
   });
 
   lightboxClose.addEventListener('click', () => lightbox.style.display = 'none');
   lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.style.display = 'none'; });
 
-  // Carousels — each .problem-carousel is independent
   document.querySelectorAll('.problem-carousel').forEach(carousel => {
     const images = carousel.querySelectorAll('.carousel-images > img, .carousel-images > a');
     const captionEl = carousel.querySelector('.carousel-caption p');

@@ -14,6 +14,7 @@
   --border: rgba(0,255,200,0.07);
   --accent: #00e5b0;
   --accent2: #b0ff3e;
+  --pink: #ff3d9a;
   --accent-dim: rgba(0,229,176,0.07);
   --text: #ffffff;
   --text-dim: #2e4a44;
@@ -69,7 +70,7 @@ header {
 
 .site-subtitle {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.75rem; font-weight: 600;
+  font-size: 1rem; font-weight: 600;
   letter-spacing: 6px; text-transform: uppercase;
   color: var(--accent); margin-top: 0.4rem;
 }
@@ -101,7 +102,7 @@ nav ul li a:hover {
 
 .breadcrumb {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem; font-weight: 700;
+  font-size: 1rem; font-weight: 700;
   letter-spacing: 5px; text-transform: uppercase;
   color: var(--text-dim); margin-bottom: 1.5rem;
   display: flex; align-items: center; gap: 0.75rem;
@@ -119,9 +120,9 @@ nav ul li a:hover {
 
 .hero-subtitle {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1rem; font-weight: 400;
+  font-size: 1.2rem; font-weight: 700;
   letter-spacing: 4px; text-transform: uppercase;
-  color: var(--accent2); margin-bottom: 3rem;
+  color: var(--pink); margin-bottom: 3rem;
 }
 
 /* ── Info cards ── */
@@ -138,9 +139,9 @@ nav ul li a:hover {
 
 .info-card h3 {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.65rem; font-weight: 700;
+  font-size: 0.85rem; font-weight: 700;
   letter-spacing: 5px; text-transform: uppercase;
-  color: var(--text-dim); margin-bottom: 0.5rem;
+  color: var(--pink); margin-bottom: 0.5rem;
 }
 
 .info-card p {
@@ -193,12 +194,12 @@ main {
 .content-section h2, .content-section h3 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(1.8rem, 3vw, 2.4rem);
-  letter-spacing: 3px; color: var(--accent);
+  letter-spacing: 3px; color: var(--pink);
   margin-bottom: 1.2rem;
 }
 
 .content-section p {
-  font-size: 1rem; line-height: 1.8;
+  font-size: 1.1rem; line-height: 1.8;
   color: var(--text); margin-bottom: 1.2rem;
   max-width: 860px;
 }
@@ -210,12 +211,12 @@ main {
 }
 
 .content-section ul li {
-  font-size: 1rem; line-height: 1.7; color: var(--text);
+  font-size: 1.1rem; line-height: 1.7; color: var(--text);
   padding-left: 1.2rem;
   border-left: 2px solid rgba(0,229,176,0.3);
 }
 
-.content-section ul li strong { color: var(--white); font-weight: 600; }
+.content-section ul li strong { color: var(--accent); font-weight: 600; }
 
 /* ── Two-col goals ── */
 .goals-grid {
@@ -225,9 +226,9 @@ main {
 
 .goals-col h4 {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem; font-weight: 700;
+  font-size: 0.85rem; font-weight: 700;
   letter-spacing: 5px; text-transform: uppercase;
-  color: var(--accent2); margin-bottom: 1rem;
+  color: var(--pink); margin-bottom: 1rem;
 }
 
 .goals-col ul {
@@ -236,9 +237,9 @@ main {
 }
 
 .goals-col ul li {
-  font-size: 1rem; line-height: 1.7; color: var(--text);
+  font-size: 1.1rem; line-height: 1.7; color: var(--text);
   padding-left: 1.2rem;
-  border-left: 2px solid rgba(176,255,62,0.25);
+  border-left: 2px solid rgba(255,61,154,0.25);
 }
 
 /* ── Gallery grid ── */
@@ -286,12 +287,12 @@ main {
   border-top: 1px solid var(--border);
 }
 
-/* ── Level steps (video + text) ── */
+/* ── Level steps ── */
 .level-walkthrough { padding: 0; }
 
 .level-step {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 4rem; align-items: start;
+  gap: 4rem; align-items: center;
   padding: 3rem 0; border-top: 1px solid var(--border);
 }
 
@@ -299,19 +300,28 @@ main {
 .level-step:nth-child(even) .level-step-video { order: 1; }
 
 .level-step-text p {
-  font-size: 1rem; line-height: 1.8;
+  font-size: 1.1rem; line-height: 1.8;
   color: var(--text); padding-top: 0.5rem;
 }
 
 .level-step-video h3 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.5rem; letter-spacing: 3px;
-  color: var(--accent2); margin-bottom: 1rem;
+  color: var(--white); margin-bottom: 1rem;
 }
 
-.level-step-video iframe {
-  width: 100%; height: 240px;
+/* Bigger responsive video */
+.video-wrap {
+  position: relative;
+  padding-bottom: 65%;
+  height: 0;
+  overflow: hidden;
   border: 1px solid var(--border);
+}
+
+.video-wrap iframe {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
 }
 
 /* ── Conclusion ── */
@@ -321,10 +331,10 @@ main {
 }
 
 .conclusion-col h4 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem; font-weight: 700;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem; font-weight: 700;
   letter-spacing: 5px; text-transform: uppercase;
-  color: var(--accent); margin-bottom: 1.2rem;
+  color: var(--pink); margin-bottom: 1.2rem;
 }
 
 .conclusion-col ul {
@@ -333,7 +343,7 @@ main {
 }
 
 .conclusion-col ul li {
-  font-size: 1rem; line-height: 1.7; color: var(--text);
+  font-size: 1.1rem; line-height: 1.7; color: var(--text);
   padding-left: 1.2rem; border-left: 2px solid var(--border);
 }
 
@@ -364,7 +374,7 @@ footer p {
   flex-direction: column; padding: 2rem;
 }
 
-.lightbox-img { max-width: 90%; max-height: 80vh; border: 1px solid var(--border); }
+.lightbox-img { max-width: 85%; max-height: 80vh; border: 1px solid var(--border); }
 
 .lightbox .caption {
   margin-top: 1rem;
@@ -381,6 +391,25 @@ footer p {
   transition: color 0.2s ease;
 }
 .lightbox .close:hover { color: var(--white); }
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute; top: 50%;
+  transform: translateY(-50%);
+  background: rgba(8,12,15,0.85);
+  color: var(--accent);
+  border: 1px solid rgba(0,229,176,0.3);
+  font-size: 1.5rem; padding: 1rem 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  z-index: 10000; line-height: 1;
+}
+
+.lightbox-prev { left: 1.5rem; }
+.lightbox-next { right: 1.5rem; }
+
+.lightbox-prev:hover,
+.lightbox-next:hover { background: var(--accent); color: var(--bg); }
 
 /* ── Animations ── */
 @keyframes fadeUp {
@@ -400,6 +429,8 @@ footer p {
   .level-step:nth-child(even) .level-step-text,
   .level-step:nth-child(even) .level-step-video { order: unset; }
   .section-divider::before { display: none; }
+  .lightbox-prev { left: 0.5rem; }
+  .lightbox-next { right: 0.5rem; }
 }
 </style>
 </head>
@@ -456,7 +487,7 @@ footer p {
 
   <!-- Goals & Constraints -->
   <section class="content-section">
-    <h2>Goals <span style="color:var(--accent2)">&amp;</span> Constraints</h2>
+    <h2>Goals &amp; Constraints</h2>
     <div class="goals-grid">
       <div class="goals-col">
         <h4>Project Goals</h4>
@@ -479,7 +510,7 @@ footer p {
 
   <!-- Concept & Inspiration -->
   <section class="content-section">
-    <h2>Concept <span style="color:var(--accent2)">&amp;</span> Inspiration</h2>
+    <h2>Concept &amp; Inspiration</h2>
     <p>The concept originated from my pitch to the team, inspired by my long-time love for Burnout 3: Takedown. While many student projects focus on platformers or small-scope ideas, I wanted something different — a high-energy driving game that brought large-scale chaos to mobile. A cel-shaded art style gave the project a distinctive modern look while maintaining performance efficiency for mobile hardware.</p>
     <div class="gallery-grid-4x3">
       <a href="carnageimages/Burnout3ConceptArt.jpg" class="lightbox-trigger" data-caption="Burnout 3: Takedown Reference Image">
@@ -507,7 +538,9 @@ footer p {
       </div>
       <div class="level-step-video">
         <h3>Prototyping: Car Mechanics</h3>
-        <iframe src="https://www.youtube.com/embed/KN0qFm3jjoU" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/KN0qFm3jjoU" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
       </div>
     </div>
 
@@ -517,7 +550,9 @@ footer p {
       </div>
       <div class="level-step-video">
         <h3>Prototyping: Procedural Generation</h3>
-        <iframe src="https://www.youtube.com/embed/FVdGgSURMVY" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/FVdGgSURMVY" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
       </div>
     </div>
 
@@ -527,7 +562,9 @@ footer p {
       </div>
       <div class="level-step-video">
         <h3>Procedural Generation Implementation</h3>
-        <iframe src="https://www.youtube.com/embed/HM4LeNLPb04" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/HM4LeNLPb04" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
       </div>
     </div>
 
@@ -535,7 +572,7 @@ footer p {
 
   <!-- Blockouts -->
   <section class="content-section">
-    <h2>Blockouts <span style="color:var(--accent2)">&amp;</span> Grayboxing</h2>
+    <h2>Blockouts &amp; Grayboxing</h2>
     <p>In the grayboxing phase, I created the initial blockout for our first level, San Francisco. Once the base layout was established, the other level designers iterated on it — rearranging buildings, modifying layouts, and creating new prefabs. This produced over 10 unique variants of San Francisco, with virtually infinite possibilities thanks to our procedural generation system. I personally created the original blockout plus five additional variants.</p>
     <div class="gallery-grid-4x3">
       <a href="carnageimages/SanFranCityGrayBox1.png" class="lightbox-trigger" data-caption="Initial San Francisco Blockout Image 1"><img src="carnageimages/SanFranCityGrayBox1.png" alt="Graybox 1"></a>
@@ -549,7 +586,7 @@ footer p {
 
   <!-- Iteration -->
   <section class="content-section">
-    <h2>Iteration <span style="color:var(--accent2)">Phase</span></h2>
+    <h2>Iteration Phase</h2>
     <p>During iteration, the team focused on bringing graybox levels to life with art assets and set dressing. Key systems were added — UI components, audio, fully modeled city parts, the player's car, all powerups, and procedural generation integration. This phase was crucial for testing how all systems worked together in a visually complete environment.</p>
     <div class="gallery-grid-4x3">
       <a href="carnageimages/SanFranIteration1.png" class="lightbox-trigger" data-caption="San Francisco Iteration Image 1"><img src="carnageimages/SanFranIteration1.png" alt="Iteration 1"></a>
@@ -560,7 +597,7 @@ footer p {
 
   <!-- Final Renderings -->
   <section class="content-section">
-    <h2>Final <span style="color:var(--accent2)">Renderings</span></h2>
+    <h2>Final Renderings</h2>
     <p>All core systems and features are fully implemented. The game now includes two fully playable tracks — San Francisco and Las Vegas — each featuring iconic landmarks: the Transamerica Pyramid and the Sphere. Added unique collision sounds, VFX for powerup pickups, and a car shop where players can purchase custom paint jobs with Crash Dollars.</p>
     <div class="gallery-grid-4x3">
       <a href="carnageimages/CarnageBeautyShot1.png" class="lightbox-trigger" data-caption="San Francisco Sidewalk Final Rendering"><img src="carnageimages/CarnageBeautyShot1.png" alt="Final Rendering 1"></a>
@@ -582,7 +619,9 @@ footer p {
       </div>
       <div class="level-step-video">
         <h3>Marketing Trailer</h3>
-        <iframe src="https://www.youtube.com/embed/--7AaGjoGQ4" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/--7AaGjoGQ4" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
       </div>
     </div>
 
@@ -592,7 +631,9 @@ footer p {
       </div>
       <div class="level-step-video">
         <h3>Gameplay Trailer</h3>
-        <iframe src="https://www.youtube.com/embed/HQYbVYaK618" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/HQYbVYaK618" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
       </div>
     </div>
 
@@ -633,7 +674,9 @@ footer p {
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <span class="close" id="lightbox-close">&times;</span>
+  <button class="lightbox-prev" id="lightbox-prev">&#10094;</button>
   <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <button class="lightbox-next" id="lightbox-next">&#10095;</button>
   <div class="caption" id="lightbox-caption"></div>
 </div>
 
@@ -642,15 +685,44 @@ footer p {
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxCaption = document.getElementById('lightbox-caption');
   const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
 
-  document.querySelectorAll('.lightbox-trigger').forEach(link => {
-    link.addEventListener('click', e => {
+  let allTriggers = [];
+  let currentLightboxIndex = 0;
+
+  function openLightbox(index) {
+    const trigger = allTriggers[index];
+    currentLightboxIndex = index;
+    lightboxImg.src = trigger.href || trigger.src || '';
+    lightboxImg.alt = trigger.querySelector('img')?.alt || '';
+    lightboxCaption.textContent = trigger.dataset.caption || '';
+    lightbox.style.display = 'flex';
+  }
+
+  document.querySelectorAll('.lightbox-trigger').forEach((trigger, i) => {
+    allTriggers.push(trigger);
+    trigger.addEventListener('click', e => {
       e.preventDefault();
-      lightbox.style.display = 'flex';
-      lightboxImg.src = link.href;
-      lightboxImg.alt = link.querySelector('img')?.alt || '';
-      lightboxCaption.textContent = link.dataset.caption || '';
+      openLightbox(i);
     });
+  });
+
+  lightboxPrev.addEventListener('click', () => {
+    currentLightboxIndex = (currentLightboxIndex - 1 + allTriggers.length) % allTriggers.length;
+    openLightbox(currentLightboxIndex);
+  });
+
+  lightboxNext.addEventListener('click', () => {
+    currentLightboxIndex = (currentLightboxIndex + 1) % allTriggers.length;
+    openLightbox(currentLightboxIndex);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (lightbox.style.display !== 'flex') return;
+    if (e.key === 'ArrowRight') lightboxNext.click();
+    if (e.key === 'ArrowLeft') lightboxPrev.click();
+    if (e.key === 'Escape') lightbox.style.display = 'none';
   });
 
   lightboxClose.addEventListener('click', () => lightbox.style.display = 'none');
