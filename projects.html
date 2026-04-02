@@ -10,14 +10,12 @@
 
 :root {
   --bg: #090b0e;
-  --surface: #10141a;
-  --surface2: #161b23;
-  --border: rgba(255,255,255,0.06);
+  --surface: #1a2030;
+  --border: rgba(255,255,255,0.12);
   --gold: #d9ac17;
   --gold-dim: rgba(217,172,23,0.08);
-  --gold-glow: rgba(217,172,23,0.25);
   --text: #ffffff;
-  --text-dim: #4a5260;
+  --text-dim: #8a95a8;
   --white: #eef0f4;
 }
 
@@ -43,29 +41,21 @@ body::after {
 
 .bg-glow {
   position: fixed;
-  top: -20%;
-  left: 50%;
+  top: -20%; left: 50%;
   transform: translateX(-50%);
-  width: 900px;
-  height: 500px;
+  width: 900px; height: 500px;
   background: radial-gradient(ellipse, rgba(217,172,23,0.05) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+  pointer-events: none; z-index: 0;
 }
 
-/* ── Header ── */
+/* ── HEADER ── */
 header {
-  position: relative;
-  z-index: 10;
+  position: relative; z-index: 10;
   padding: 3rem 5rem 2.5rem;
   border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 2rem;
 }
-
-.header-left { flex: 1; }
 
 .site-title {
   font-family: 'Bebas Neue', sans-serif;
@@ -78,107 +68,118 @@ header {
 .site-title::after {
   content: '';
   display: block;
-  width: 40px;
-  height: 3px;
+  width: 40px; height: 3px;
   background: var(--gold);
   margin-top: 0.5rem;
 }
 
 .site-subtitle {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.8rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  letter-spacing: 6px;
+  letter-spacing: 7px;
   text-transform: uppercase;
   color: var(--gold);
   margin-top: 0.5rem;
 }
 
-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 0.25rem;
-}
+nav ul { display: flex; list-style: none; gap: 0.25rem; }
 
 nav ul li a {
   display: block;
-  padding: 0.5rem 1.2rem;
+  padding: 0.6rem 1.4rem;
   text-decoration: none;
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--text-dim);
-  border: 1px solid transparent;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.12);
   transition: all 0.25s ease;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
   color: var(--gold);
-  border-color: rgba(217,172,23,0.2);
+  border-color: rgba(217,172,23,0.35);
   background: var(--gold-dim);
 }
 
-/* ── Page intro ── */
-.page-intro {
-  position: relative;
-  z-index: 10;
-  padding: 5rem 5rem 1rem;
+/* ── BIO ── */
+.bio {
+  position: relative; z-index: 10;
+  padding: 3rem 5rem;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.page-label {
+/* override max-width for border */
+.bio-outer {
+  border-bottom: 1px solid var(--border);
+  position: relative; z-index: 10;
+}
+
+.bio-photo {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(217,172,23,0.25);
+  filter: grayscale(15%);
+  flex-shrink: 0;
+}
+
+.bio-text p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.7);
+  max-width: 700px;
+}
+
+/* ── MAIN ── */
+main {
+  position: relative; z-index: 10;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 3rem 5rem 6rem;
+}
+
+.projects-label {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem;
+  font-size: 1.3rem;
   font-weight: 700;
   letter-spacing: 6px;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.page-label::before {
+.projects-label::before {
   content: '';
-  width: 28px;
-  height: 1px;
+  width: 28px; height: 1px;
   background: var(--gold);
   flex-shrink: 0;
-}
-
-.page-heading {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(4rem, 8vw, 8rem);
-  color: var(--white);
-  letter-spacing: 3px;
-  line-height: 0.9;
-}
-
-.page-heading span { color: var(--gold); }
-
-/* ── Main / projects list ── */
-main {
-  position: relative;
-  z-index: 10;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 3rem 5rem 6rem;
 }
 
 .projects-list {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  margin-top: 1rem;
 }
 
-/* ── Project card ── */
+/* ── PROJECT CARD ── */
 .project-card {
   display: grid;
-  grid-template-columns: 400px 1fr;
+  grid-template-columns: 420px 1fr;
   background: var(--surface);
   border: 1px solid var(--border);
   overflow: hidden;
@@ -207,32 +208,51 @@ main {
 
 .project-card:hover::before { opacity: 1; }
 
-.card-image-wrap {
+/* Card media */
+.card-media {
   position: relative;
   overflow: hidden;
-  height: 270px;
+  height: 100%;
+  min-height: 280px;
 }
 
-.card-image-wrap img {
-  width: 100%;
-  height: 100%;
+.card-thumb {
+  width: 100%; height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.35s ease;
   filter: brightness(0.8) saturate(0.85);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
-.project-card:hover .card-image-wrap img {
-  transform: scale(1.05);
-  filter: brightness(1) saturate(1);
+.card-video {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-.card-image-overlay {
+.project-card:hover .card-thumb {
+  transform: scale(1.03);
+  filter: brightness(0.6) saturate(0.7);
+}
+
+.project-card:hover .card-video { opacity: 1; }
+
+.card-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg, transparent 50%, var(--surface) 100%);
+  z-index: 3;
 }
 
+/* Card body */
 .card-body {
   padding: 2.5rem 3rem 2.5rem 2rem;
   display: flex;
@@ -248,15 +268,14 @@ main {
   color: rgba(255,255,255,0.03);
   line-height: 1;
   position: absolute;
-  top: 0.5rem;
-  right: 1.5rem;
+  top: 0.5rem; right: 1.5rem;
   user-select: none;
   pointer-events: none;
 }
 
 .card-tag {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -274,9 +293,9 @@ main {
 }
 
 .card-desc {
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.75;
-  color: var(--text);
+  color: rgba(255,255,255,0.85);
   max-width: 440px;
   margin-bottom: 1.8rem;
 }
@@ -286,7 +305,7 @@ main {
   align-items: center;
   gap: 0.7rem;
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -297,56 +316,12 @@ main {
 .project-card:hover .card-cta { gap: 1.2rem; }
 .card-cta::after { content: '→'; font-size: 1.1rem; }
 
-/* ── About section ── */
-.about-section {
-  position: relative;
-  z-index: 10;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5rem 7rem;
-}
-
-.about-inner {
-  border-top: 1px solid var(--border);
-  padding-top: 4rem;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 3rem;
-  align-items: start;
-}
-
-.about-photo {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid rgba(217,172,23,0.25);
-  filter: grayscale(15%);
-}
-
-.about-content h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.8rem;
-  color: var(--gold);
-  letter-spacing: 4px;
-  margin-bottom: 0.8rem;
-}
-
-.about-content p {
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: var(--text);
-  max-width: 600px;
-}
-
-/* ── Footer ── */
+/* ── FOOTER ── */
 footer {
-  position: relative;
-  z-index: 10;
+  position: relative; z-index: 10;
   border-top: 1px solid var(--border);
   padding: 2rem 5rem;
-  display: flex;
-  align-items: center;
+  display: flex; align-items: center;
   justify-content: space-between;
 }
 
@@ -365,28 +340,26 @@ footer p {
   letter-spacing: 4px;
 }
 
-/* ── Animations ── */
+/* ── ANIMATIONS ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
 .animate { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
-.d1 { animation-delay: 0.05s; }
-.d2 { animation-delay: 0.15s; }
-.d3 { animation-delay: 0.28s; }
-.d4 { animation-delay: 0.42s; }
-.d5 { animation-delay: 0.56s; }
-.d6 { animation-delay: 0.70s; }
+.d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; }
+.d3 { animation-delay: 0.28s; } .d4 { animation-delay: 0.42s; }
+.d5 { animation-delay: 0.56s; } .d6 { animation-delay: 0.70s; }
 
-/* ── Responsive ── */
+/* ── RESPONSIVE ── */
 @media (max-width: 960px) {
-  header, .page-intro, main, .about-section, footer { padding-left: 2rem; padding-right: 2rem; }
+  header, main, footer { padding-left: 2rem; padding-right: 2rem; }
+  .bio { padding-left: 2rem; padding-right: 2rem; grid-template-columns: 1fr; }
+  .bio-photo { display: none; }
   .project-card { grid-template-columns: 1fr; }
-  .card-image-wrap { height: 220px; }
-  .card-image-overlay { background: linear-gradient(180deg, transparent 50%, var(--surface) 100%); }
+  .card-media { height: 220px; }
+  .card-overlay { background: linear-gradient(180deg, transparent 50%, var(--surface) 100%); }
   .card-body { padding: 1.5rem; }
-  .about-inner { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -394,8 +367,9 @@ footer p {
 
 <div class="bg-glow"></div>
 
+<!-- HEADER -->
 <header>
-  <div class="header-left animate d1">
+  <div class="animate d1">
     <h1 class="site-title">Paul Saturno</h1>
     <p class="site-subtitle">Level Designer</p>
   </div>
@@ -407,75 +381,88 @@ footer p {
   </nav>
 </header>
 
-<div class="page-intro animate d2">
-  <div class="page-label">Selected Work</div>
-  <h2 class="page-heading">Featured<br><span>Projects</span></h2>
+<!-- BIO -->
+<div class="bio-outer animate d2">
+  <div class="bio" style="max-width:1280px; margin:0 auto; padding: 3rem 5rem; display:grid; grid-template-columns: auto 1fr; gap:2.5rem; align-items:center;">
+    <img class="bio-photo" src="https://paulywalnuts99.github.io/portfolio-website/images/paul-photo.jpg" alt="Paul Saturno">
+    <div class="bio-text">
+      <p>I'm Paul Saturno, a senior at the University of Central Florida studying Digital Media: Video Game Design, graduating May 2026. I also hold a Bachelor's in Business from UCF (2022). I'm passionate about designing game spaces that feel intentional — environments where every encounter, layout, and prop serves the player experience.</p>
+    </div>
+  </div>
 </div>
 
+<!-- PROJECTS -->
 <main>
+  <div class="projects-label animate d3">Level Design Projects</div>
   <div class="projects-list">
 
     <a href="sorn.html" class="project-card animate d3">
-      <div class="card-image-wrap">
-        <img src="https://paulywalnuts99.github.io/portfolio-website/sornimages/SORNTitleScreen.png" alt="S.O.R.N">
-        <div class="card-image-overlay"></div>
+      <div class="card-media">
+        <img class="card-thumb" src="sornimages/DesertAlphaSS2.png" alt="S.O.R.N">
+        <video class="card-video" src="videos/sorn-preview.mp4" muted loop playsinline></video>
+        <div class="card-overlay"></div>
       </div>
       <div class="card-body">
         <div class="card-number">01</div>
-        <div class="card-tag">Vertical Slice &nbsp;·&nbsp; Unreal Engine 5</div>
+        <div class="card-tag">Alpha &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; Solo Level Designer</div>
         <h3 class="card-title">S.O.R.N</h3>
-        <p class="card-desc">A fast-paced mech shooter set across a massive desert and a monolith-scale facility. Sole level designer on Directive 1 — the game's opening mission.</p>
-        <span class="card-cta">View Case Study</span>
+        <p class="card-desc">A fast-paced mech shooter set across a massive desert and a monolith-scale facility. Sole level designer on Mission 1 — the game's opening level.</p>
+        <span class="card-cta">Explore the Level</span>
       </div>
     </a>
 
     <a href="bootleggerbust.html" class="project-card animate d4">
-      <div class="card-image-wrap">
-        <img src="https://paulywalnuts99.github.io/portfolio-website/images/BossRoomPhoto1.png" alt="Bootlegger Bust">
-        <div class="card-image-overlay"></div>
+      <div class="card-media">
+        <img class="card-thumb" src="images/BossRoomPhoto1.png" alt="Bootlegger Bust">
+        <video class="card-video" src="videos/bootleggerbust-preview.mp4" muted loop playsinline></video>
+        <div class="card-overlay"></div>
       </div>
       <div class="card-body">
         <div class="card-number">02</div>
-        <div class="card-tag">FPS Level &nbsp;·&nbsp; Combat Design</div>
+        <div class="card-tag">FPS Level &nbsp;·&nbsp; Unreal Engine 5</div>
         <h3 class="card-title">Bootlegger Bust</h3>
         <p class="card-desc">An FPS level set inside a Prohibition-era warehouse doubling as a mafia hub. Designed the full layout, enemy placement, and encounter pacing.</p>
-        <span class="card-cta">View Case Study</span>
+        <span class="card-cta">Explore the Level</span>
       </div>
     </a>
 
     <a href="carnage.html" class="project-card animate d5">
-      <div class="card-image-wrap">
-        <img src="https://paulywalnuts99.github.io/portfolio-website/carnageimages/CarnageHomeScreen.png" alt="Carnage">
-        <div class="card-image-overlay"></div>
+      <div class="card-media">
+        <img class="card-thumb" src="carnageimages/CarnageHomeScreen.png" alt="Carnage">
+        <video class="card-video" src="videos/carnage-preview.mp4" muted loop playsinline></video>
+        <div class="card-overlay"></div>
       </div>
       <div class="card-body">
         <div class="card-number">03</div>
         <div class="card-tag">Mobile Game &nbsp;·&nbsp; Core Loop Design</div>
         <h3 class="card-title">Carnage</h3>
         <p class="card-desc">A high-octane, Burnout 3-inspired mobile racer. Designed the core gameplay loop and built challenging, dynamic tracks from the ground up.</p>
-        <span class="card-cta">View Case Study</span>
+        <span class="card-cta">Explore the Level</span>
       </div>
     </a>
 
   </div>
 </main>
 
-<section class="about-section animate d6">
-  <div class="about-inner">
-    <img class="about-photo" src="https://paulywalnuts99.github.io/portfolio-website/images/paul-photo.jpg" alt="Paul Saturno">
-    <div class="about-content">
-      <h2>About Me</h2>
-        <p>I'm Paul Saturno, a senior at the University of Central Florida studying Digital Media: Video Game Design, graduating May 2026. I also hold a Bachelor's in Business from UCF (2022), giving me a unique blend of creative and strategic thinking I bring to every project.</p>
-
-        <p style="margin-top: 1.5rem;">I'm passionate about designing game spaces that feel intentional — environments where every encounter, layout, and prop serves the player experience. My focus is on building levels that teach, challenge, and reward players through thoughtful design rather than hand-holding.</p>
-    </div>
-  </div>
-</section>
-
 <footer>
   <p>© 2026 Paul Saturno</p>
   <span class="footer-mark">PS</span>
 </footer>
+
+<script>
+  document.querySelectorAll('.project-card').forEach(card => {
+    const video = card.querySelector('.card-video');
+    if (!video) return;
+    card.addEventListener('mouseenter', () => {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    });
+    card.addEventListener('mouseleave', () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+  });
+</script>
 
 </body>
 </html>

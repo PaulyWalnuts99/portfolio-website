@@ -10,12 +10,12 @@
 
 :root {
   --bg: #090b0e;
-  --surface: #10141a;
-  --border: rgba(255,255,255,0.06);
+  --surface: #1a2030;
+  --border: rgba(255,255,255,0.12);
   --gold: #d9ac17;
   --gold-dim: rgba(217,172,23,0.08);
   --text: #ffffff;
-  --text-dim: #4a5260;
+  --text-dim: #8a95a8;
   --white: #eef0f4;
 }
 
@@ -28,8 +28,6 @@ body {
   font-weight: 300;
   min-height: 100vh;
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
 body::after {
@@ -47,185 +45,174 @@ body::after {
   pointer-events: none; z-index: 0;
 }
 
-/* ── Header ── */
+/* HEADER */
 header {
   position: relative; z-index: 10;
   padding: 3rem 5rem 2.5rem;
   border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 2rem;
 }
 
 .site-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  font-size: clamp(2.6rem, 4.5vw, 4rem);
   color: var(--white); letter-spacing: 5px; line-height: 1;
   text-decoration: none; display: block;
 }
-
 .site-title::after {
   content: ''; display: block;
-  width: 36px; height: 3px;
-  background: var(--gold); margin-top: 0.4rem;
+  width: 40px; height: 3px;
+  background: var(--gold); margin-top: 0.5rem;
 }
-
 .site-subtitle {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.75rem; font-weight: 600;
-  letter-spacing: 6px; text-transform: uppercase;
-  color: var(--gold); margin-top: 0.4rem;
+  font-size: 1.4rem; font-weight: 600; letter-spacing: 7px;
+  text-transform: uppercase; color: var(--gold); margin-top: 0.5rem;
 }
 
 nav ul { display: flex; list-style: none; gap: 0.25rem; }
-
 nav ul li a {
-  display: block; padding: 0.5rem 1.2rem;
-  text-decoration: none;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.75rem; font-weight: 700;
-  letter-spacing: 4px; text-transform: uppercase;
-  color: var(--text-dim); border: 1px solid transparent;
+  display: block; padding: 0.6rem 1.4rem; text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
+  font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--white); border: 1px solid rgba(255,255,255,0.12);
   transition: all 0.25s ease;
 }
-
 nav ul li a:hover, nav ul li a.active {
-  color: var(--gold);
-  border-color: rgba(217,172,23,0.2);
-  background: var(--gold-dim);
+  color: var(--gold); border-color: rgba(217,172,23,0.35); background: var(--gold-dim);
 }
 
-/* ── Page intro ── */
-.page-intro {
-  position: relative; z-index: 10;
-  padding: 5rem 5rem 3rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.page-label {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem; font-weight: 700;
-  letter-spacing: 6px; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 1rem;
-  display: flex; align-items: center; gap: 1rem;
-}
-
-.page-label::before {
-  content: ''; width: 28px; height: 1px;
-  background: var(--gold); flex-shrink: 0;
-}
-
-.page-heading {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(4rem, 8vw, 8rem);
-  color: var(--white); letter-spacing: 3px; line-height: 0.9;
-}
-
-.page-heading span { color: var(--gold); }
-
-/* ── Main ── */
+/* MAIN */
 main {
   position: relative; z-index: 10;
-  flex: 1;
   max-width: 1280px; margin: 0 auto;
-  padding: 5rem 5rem 8rem;
-  width: 100%;
-}
-
-.contact-grid {
+  padding: 5rem 5rem 6rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
   align-items: start;
 }
 
-/* ── Intro text ── */
-.contact-intro p {
-  font-size: 1.1rem;
-  line-height: 1.9;
-  color: var(--text);
-  max-width: 480px;
+/* LEFT — About blurb */
+.about-col {}
+
+.col-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.3rem; font-weight: 700; letter-spacing: 6px;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.col-label::before {
+  content: ''; width: 28px; height: 1px;
+  background: var(--gold); flex-shrink: 0;
 }
 
-/* ── Contact links ── */
+.about-bio {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 2rem;
+}
+
+.about-bullets {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.about-bullets li {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--white);
+  padding-left: 1.2rem;
+  border-left: 2px solid rgba(217,172,23,0.4);
+}
+
+.about-bullets li strong {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* RIGHT — Contact links */
+.contact-col {}
+
 .contact-links {
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
+  gap: 3px;
 }
 
 .contact-link {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.8rem 2rem;
+  padding: 2rem 2rem;
   background: var(--surface);
+  border: 1px solid var(--border);
   text-decoration: none;
-  transition: background 0.25s ease, border-color 0.25s ease;
-  border-left: 3px solid transparent;
-  gap: 1rem;
+  color: inherit;
+  transition: border-color 0.25s ease, background 0.25s ease;
 }
 
 .contact-link:hover {
-  background: var(--gold-dim);
-  border-left-color: var(--gold);
+  border-color: rgba(217,172,23,0.35);
+  background: rgba(217,172,23,0.04);
 }
 
-.contact-link:hover .link-arrow { transform: translateX(6px); }
-
-.link-body { flex: 1; }
-
-.link-label {
+.contact-link-type {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.68rem; font-weight: 700;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--text-dim); margin-bottom: 0.3rem;
+  font-size: 1.2rem; font-weight: 700; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 0.5rem;
 }
 
-.link-value {
+.contact-link-value {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.6rem; letter-spacing: 2px;
-  color: var(--gold);
+  font-size: 2rem; letter-spacing: 2px; color: var(--white);
 }
 
-.link-arrow {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.4rem; color: var(--gold);
+.contact-link-arrow {
+  font-size: 1.8rem; color: var(--gold);
   transition: transform 0.25s ease;
+  flex-shrink: 0;
 }
 
-/* ── Footer ── */
+.contact-link:hover .contact-link-arrow { transform: translateX(6px); }
+.contact-link.download .contact-link-arrow { content: '↓'; }
+
+/* FOOTER */
 footer {
   position: relative; z-index: 10;
   border-top: 1px solid var(--border);
   padding: 2rem 5rem;
   display: flex; align-items: center; justify-content: space-between;
 }
-
 footer p {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--text-dim);
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim);
 }
-
 .footer-mark {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem; color: var(--gold); letter-spacing: 4px;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem;
+  color: var(--gold); letter-spacing: 4px;
 }
 
-/* ── Animations ── */
+/* ANIMATIONS */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 .animate { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
 .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; }
 .d3 { animation-delay: 0.28s; } .d4 { animation-delay: 0.42s; }
 
-/* ── Responsive ── */
-@media (max-width: 900px) {
-  header, .page-intro, main, footer { padding-left: 2rem; padding-right: 2rem; }
-  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  header, main, footer { padding-left: 2rem; padding-right: 2rem; }
+  main { grid-template-columns: 1fr; gap: 4rem; }
 }
 </style>
 </head>
@@ -246,46 +233,51 @@ footer p {
   </nav>
 </header>
 
-<div class="page-intro animate d2">
-  <div class="page-label">Get In Touch</div>
-  <h2 class="page-heading">Say<br><span>Hello</span></h2>
-</div>
-
 <main>
-  <div class="contact-grid animate d3">
 
-    <div class="contact-intro">
-      <p>Feel free to download my resume to learn more about my experience and skills. For any questions, collaborations, or just to say hello — reach out by email or connect with me on LinkedIn. I'm always happy to chat about level design.</p>
-    </div>
+  <!-- LEFT: About + bullets -->
+  <div class="about-col animate d3">
+    <div class="col-label">About Me</div>
+    <p class="about-bio">I'm a level designer with a focus on building spaces that feel purposeful — where layout, encounters, and player guidance work together naturally. Here's a quick look at what I bring:</p>
+    <ul class="about-bullets">
+      <li><strong>Level Design Skills —</strong> Blockouts &amp; Grayboxing, Encounter Design, Spatial Composition, Pacing &amp; Flow, Set Dressing, Kitbashing</li>
+      <li><strong>Tools —</strong> Unreal Engine 5, Unity 6, CubeGrid, Unreal Landscape &amp; Foliage Tools, GitHub, Miro, Procedural Generation</li>
+      <li><strong>Education —</strong> B.A. Digital Media: Video Game Design &amp; B.S. Business Administration — University of Central Florida</li>
+    </ul>
+  </div>
 
+  <!-- RIGHT: Contact links -->
+  <div class="contact-col animate d4">
+    <div class="col-label">Get In Touch</div>
     <div class="contact-links">
 
+      <a href="https://paulywalnuts99.github.io/portfolio-website/Saturno_Resume.pdf" target="_blank" class="contact-link download">
+        <div>
+          <div class="contact-link-type">Resume</div>
+          <div class="contact-link-value">Download PDF</div>
+        </div>
+        <span class="contact-link-arrow">↓</span>
+      </a>
+
+      <a href="https://www.linkedin.com/in/paul-saturno/" target="_blank" class="contact-link">
+        <div>
+          <div class="contact-link-type">LinkedIn</div>
+          <div class="contact-link-value">paul-saturno</div>
+        </div>
+        <span class="contact-link-arrow">→</span>
+      </a>
+
       <a href="mailto:paulsaturno33@gmail.com" class="contact-link">
-        <div class="link-body">
-          <div class="link-label">Email</div>
-          <div class="link-value">paulsaturno33@gmail.com</div>
+        <div>
+          <div class="contact-link-type">Email</div>
+          <div class="contact-link-value">paulsaturno33@gmail.com</div>
         </div>
-        <span class="link-arrow">→</span>
-      </a>
-
-      <a href="https://www.linkedin.com/in/paul-saturno/" target="_blank" rel="noopener noreferrer" class="contact-link">
-        <div class="link-body">
-          <div class="link-label">LinkedIn</div>
-          <div class="link-value">paul-saturno</div>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-
-      <a href="Saturno_Resume.pdf" download class="contact-link">
-        <div class="link-body">
-          <div class="link-label">Resume</div>
-          <div class="link-value">Download PDF</div>
-        </div>
-        <span class="link-arrow">↓</span>
+        <span class="contact-link-arrow">→</span>
       </a>
 
     </div>
   </div>
+
 </main>
 
 <footer>

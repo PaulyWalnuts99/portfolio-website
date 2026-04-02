@@ -11,7 +11,6 @@
 :root {
   --bg: #07090f;
   --surface: #0d1119;
-  --surface2: #121720;
   --border: rgba(160,200,255,0.25);
   --gold: #e8622a;
   --olive: #00c2e0;
@@ -20,7 +19,6 @@
   --text: #ffffff;
   --text-dim: #ffffff;
   --white: #dde8f0;
-  --black: #000;
 }
 
 html { scroll-behavior: smooth; }
@@ -44,516 +42,248 @@ body::after {
 }
 
 .bg-glow {
-  position: fixed;
-  top: -20%;
-  left: 50%;
+  position: fixed; top: -20%; left: 50%;
   transform: translateX(-50%);
   width: 900px; height: 500px;
   background: radial-gradient(ellipse, rgba(74,143,181,0.07) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
+  pointer-events: none; z-index: 0;
 }
 
 header {
-  position: relative;
-  z-index: 10;
+  position: relative; z-index: 10;
   padding: 3rem 5rem 2.5rem;
   border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 2rem;
 }
 
 .site-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(2.2rem, 4vw, 3.5rem);
-  color: var(--white);
-  letter-spacing: 5px;
-  line-height: 1;
-  text-decoration: none;
+  color: var(--white); letter-spacing: 5px; line-height: 1; text-decoration: none;
 }
-
 .site-title::after {
-  content: '';
-  display: block;
-  width: 36px; height: 3px;
-  background: var(--gold);
-  margin-top: 0.4rem;
+  content: ''; display: block; width: 36px; height: 3px;
+  background: var(--gold); margin-top: 0.4rem;
 }
-
 .site-subtitle {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-top: 0.4rem;
+  font-size: 1rem; font-weight: 600; letter-spacing: 6px;
+  text-transform: uppercase; color: var(--gold); margin-top: 0.4rem;
 }
 
 nav ul { display: flex; list-style: none; gap: 0.25rem; }
-
 nav ul li a {
-  display: block;
-  padding: 0.5rem 1.2rem;
-  text-decoration: none;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--cyan);
-  border: 1px solid transparent;
-  transition: all 0.25s ease;
+  display: block; padding: 0.5rem 1.2rem; text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
+  font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--cyan); border: 1px solid transparent; transition: all 0.25s ease;
 }
-
-nav ul li a:hover {
-  color: var(--white);
-  border-color: rgba(0,194,224,0.2);
-  background: var(--gold-dim);
-}
+nav ul li a:hover { color: var(--white); border-color: rgba(0,194,224,0.2); background: var(--gold-dim); }
 
 .page-hero {
-  position: relative;
-  z-index: 10;
-  padding: 5rem 5rem 3rem;
-  border-bottom: 1px solid var(--border);
+  position: relative; z-index: 10;
+  padding: 5rem 5rem 3rem; border-bottom: 1px solid var(--border);
 }
-
 .breadcrumb {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase; color: var(--cyan);
+  margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;
 }
-
 .breadcrumb a { color: var(--gold); text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
-.breadcrumb span { color: var(--cyan); }
-
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(5rem, 12vw, 11rem);
-  color: var(--white);
-  letter-spacing: 4px;
-  line-height: 0.9;
-  margin-bottom: 0.5rem;
+  color: var(--white); letter-spacing: 4px; line-height: 0.9; margin-bottom: 0.5rem;
 }
-
 .hero-subtitle {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--olive);
-  margin-bottom: 3rem;
-}
-
-.info-cards {
-  display: flex;
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  overflow: hidden;
-}
-
-.info-card {
-  flex: 1;
-  background: var(--surface);
-  padding: 1.5rem 2rem;
-  text-align: center;
-}
-
-.info-card h3 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 0.5rem;
-}
-
-.info-card p {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
-  letter-spacing: 2px;
-  color: var(--gold);
-  margin: 0;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase; color: var(--olive); margin-bottom: 3rem;
 }
 
 main {
-  position: relative;
-  z-index: 10;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 5rem 6rem;
+  position: relative; z-index: 10;
+  max-width: 1280px; margin: 0 auto; padding: 0 5rem 6rem;
 }
 
 .section-divider {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  letter-spacing: 4px;
-  color: var(--white);
-  padding: 4rem 0 2rem;
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: 4px; color: var(--white);
+  padding: 4rem 0 2rem; position: relative; display: flex; align-items: center; gap: 1.5rem;
 }
-
 .section-divider::before {
-  content: '';
-  width: 4px;
-  height: 100%;
-  background: var(--gold);
-  position: absolute;
-  left: -2rem;
-  top: 0;
-  border-radius: 2px;
+  content: ''; width: 4px; height: 100%; background: var(--gold);
+  position: absolute; left: -2rem; top: 0; border-radius: 2px;
 }
-
 .section-divider span { color: var(--gold); }
 
 .video-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  margin-bottom: 3rem;
-  border: 1px solid var(--border);
-  overflow: hidden;
+  position: relative; padding-bottom: 56.25%; height: 0;
+  margin-bottom: 3rem; border: 1px solid var(--border); overflow: hidden;
+}
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* OVERVIEW */
+.overview-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: start; padding-bottom: 2rem;
+}
+.overview-text h2 {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: 3px; color: var(--cyan); margin-bottom: 1rem;
+}
+.overview-text p { font-size: 1.1rem; line-height: 1.8; color: var(--text); margin-bottom: 1.5rem; }
+.overview-text ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.overview-text ul li {
+  font-size: 1.1rem; line-height: 1.7; color: var(--text);
+  padding-left: 1.2rem; border-left: 2px solid rgba(217,172,23,0.3);
+}
+.overview-text ul li strong { color: var(--gold); font-weight: 600; }
+
+.overview-maps .image-item img {
+  width: 100%; display: block;
+  height: auto !important; aspect-ratio: unset !important; object-fit: unset !important;
+  border: 1px solid var(--border); cursor: pointer;
 }
 
-.video-container iframe {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+/* BEAT SECTIONS */
+.beat-section { border-top: 1px solid var(--border); padding: 4rem 0; }
+.beat-header { margin-bottom: 3rem; }
+.beat-number {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+}
+.beat-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: 3px; color: var(--white); margin-bottom: 1rem;
+}
+.beat-subsection { margin-top: 3rem; }
+.beat-subsection-label {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 6px; text-transform: uppercase; color: var(--cyan);
+  margin-bottom: 1.2rem; padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(0,194,224,0.15);
 }
 
-.problem-section {
-  padding: 3rem 0;
-  border-top: 1px solid var(--border);
+/* Image grid */
+.image-grid { display: grid; gap: 1.5rem; }
+.image-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.image-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.image-item img {
+  width: 100%; display: block;
+  aspect-ratio: 16/9; object-fit: cover; cursor: pointer;
+}
+.image-caption {
+  margin-top: 0.6rem; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem; letter-spacing: 2px; color: var(--gold); line-height: 1.5;
 }
 
-.problem-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
+/* Design Intent — text left, video right */
+.beat-two-col {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 4rem; align-items: start;
 }
 
-.problem-container.reverse { direction: rtl; }
-.problem-container.reverse > * { direction: ltr; }
-
-.problem-text h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  letter-spacing: 3px;
-  color: var(--cyan);
-  margin-bottom: 1rem;
+/* Blockout / Iteration subsections — bullets left, images right */
+.beat-sub-col {
+  display: grid; grid-template-columns: 1fr 2.3fr;
+  gap: 4rem; align-items: start;
 }
 
-.problem-text p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--text);
-  margin-bottom: 1.2rem;
+/* Shared bullet list styles */
+.beat-text ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.beat-text ul li {
+  font-size: 1.05rem; line-height: 1.75; color: var(--text);
+  padding-left: 1.2rem; border-left: 2px solid rgba(160,200,255,0.2);
+}
+.beat-text ul li strong { color: var(--gold); font-weight: 600; }
+
+/* Goal bullet */
+.beat-text ul li.beat-goal-item { border-left: 2px solid rgba(0,194,224,0.5); }
+.beat-text ul li.beat-goal-item strong { color: var(--cyan); }
+
+/* Context bullet — what the space is */
+.beat-text ul li.context-item { border-left: 2px solid rgba(160,200,255,0.35); }
+.beat-text ul li.context-item strong { color: var(--white); }
+
+/* Flaw bullets */
+.beat-text ul li.flaw-item { border-left: 2px solid rgba(232,98,42,0.5); }
+.beat-text ul li.flaw-item strong { color: var(--gold); }
+
+/* Solution bullets */
+.beat-text ul li.solution-item { border-left: 2px solid rgba(0,194,224,0.5); }
+.beat-text ul li.solution-item strong { color: var(--cyan); }
+
+/* Summary paragraph at bottom of iteration section */
+.beat-text p.summary {
+  font-size: 1.0rem; line-height: 1.8; color: rgba(255,255,255,0.7);
+  margin-top: 1.2rem; padding-left: 1.2rem;
+  border-left: 2px solid rgba(160,200,255,0.1);
+  font-style: italic;
 }
 
-.problem-text ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.problem-text ul li {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: var(--text);
-  padding-left: 1.2rem;
-  border-left: 2px solid rgba(217,172,23,0.3);
-}
-
-.problem-text ul li strong { color: var(--gold); font-weight: 600; }
-
-.problem-carousel { position: relative; }
-
-.carousel-images {
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  border: 1px solid var(--border);
-}
-
-.carousel-images img,
-.carousel-images a {
-  width: 100%;
-  display: none;
-}
-
-.carousel-images img {
-  height: 280px;
-  object-fit: cover;
-  transition: transform 0.4s ease;
-  cursor: pointer;
-  filter: brightness(0.9);
-}
-
-.carousel-images a img {
-  height: 280px;
-  object-fit: cover;
-  width: 100%;
-  display: block;
-}
-
-.carousel-images img.active,
-.carousel-images a.active { display: block; }
-
-.carousel-images img:hover { filter: brightness(1.05); }
-
-.carousel-controls {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
-.carousel-controls button {
-  pointer-events: all;
-  background: rgba(9,11,14,0.8);
-  color: var(--gold);
-  border: 1px solid rgba(232,98,42,0.3);
-  padding: 0.6rem 1rem;
-  cursor: pointer;
-  font-size: 1.1rem;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.carousel-controls button:hover {
-  background: var(--gold);
-  color: var(--bg);
-}
-
-.carousel-caption {
-  padding: 0.75rem 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-top: none;
-}
-
-.carousel-caption p {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-  color: var(--gold);
-  text-align: center;
-  margin: 0;
-}
-
-.level-walkthrough { padding: 0; }
-
-.level-step {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  padding: 3rem 0;
-  border-top: 1px solid var(--border);
-}
-
-.level-step:nth-child(even) .level-step-text { order: 2; }
-.level-step:nth-child(even) .level-step-video { order: 1; }
-
-.level-step-text { padding-top: 1rem; }
-
-.level-step-text ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.level-step-text ul li {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: var(--text);
-  padding-left: 1.2rem;
-  border-left: 2px solid rgba(74,143,181,0.4);
-}
-
-.level-step-text ul li strong { color: var(--gold); font-weight: 600; }
-
-.level-step-video h3 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem;
-  letter-spacing: 3px;
-  color: var(--cyan);
-  margin-bottom: 1rem;
-}
+.beat-text p { font-size: 1.05rem; line-height: 1.8; color: var(--text); margin-bottom: 1rem; }
 
 .video-wrap {
-  position: relative;
-  padding-bottom: 65%;
-  height: 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
+  position: relative; padding-bottom: 75%; height: 0;
+  overflow: hidden; border: 1px solid var(--border); margin-bottom: 0.6rem;
+}
+.video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.video-label {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
+  letter-spacing: 2px; color: var(--gold);
 }
 
-.video-wrap iframe {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-}
-
-.conclusion-section {
-  border-top: 1px solid var(--border);
-  padding-top: 4rem;
-}
-
-.conclusion-cols {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  margin-top: 2rem;
-}
-
+/* CONCLUSION */
+.conclusion-section { border-top: 1px solid var(--border); padding-top: 4rem; }
+.conclusion-intro { font-size: 1.1rem; line-height: 1.8; color: var(--text); max-width: 800px; margin-bottom: 2rem; }
+.conclusion-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2rem; }
 .conclusion-col h4 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  color: var(--cyan);
-  margin-bottom: 1.5rem;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase; color: var(--cyan); margin-bottom: 1.5rem;
 }
-
-.conclusion-col ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
+.conclusion-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
 .conclusion-col ul li {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: var(--text);
-  padding-left: 1.2rem;
-  border-left: 2px solid var(--border);
-}
-
-.conclusion-intro {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: var(--text);
-  max-width: 800px;
+  font-size: 1.1rem; line-height: 1.7; color: var(--text);
+  padding-left: 1.2rem; border-left: 2px solid var(--border);
 }
 
 footer {
-  position: relative;
-  z-index: 10;
-  border-top: 1px solid var(--border);
-  padding: 2rem 5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: relative; z-index: 10; border-top: 1px solid var(--border);
+  padding: 2rem 5rem; display: flex; align-items: center; justify-content: space-between;
 }
+footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); }
+.footer-mark { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 4px; }
 
-footer p {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--text-dim);
-}
-
-.footer-mark {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem;
-  color: var(--gold);
-  letter-spacing: 4px;
-}
-
+/* LIGHTBOX */
 .lightbox {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  inset: 0;
-  background: rgba(0,0,0,0.92);
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 2rem;
+  display: none; position: fixed; z-index: 9999; inset: 0;
+  background: rgba(0,0,0,0.92); justify-content: center;
+  align-items: center; flex-direction: column; padding: 2rem;
 }
-
-.lightbox-img {
-  max-width: 85%;
-  max-height: 80vh;
-  border: 1px solid var(--border);
-}
-
+.lightbox-img { max-width: 85%; max-height: 80vh; border: 1px solid var(--border); }
 .lightbox .caption {
-  margin-top: 1rem;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-  color: var(--gold);
-  text-align: center;
-  max-width: 600px;
+  margin-top: 1rem; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem; letter-spacing: 2px; color: var(--gold);
+  text-align: center; max-width: 600px;
 }
-
 .lightbox .close {
-  position: absolute;
-  top: 1.5rem; right: 2rem;
-  font-size: 2rem;
-  color: var(--gold);
-  cursor: pointer;
-  font-family: 'Barlow Condensed', sans-serif;
-  line-height: 1;
-  transition: color 0.2s ease;
+  position: absolute; top: 1.5rem; right: 2rem; font-size: 2rem;
+  color: var(--gold); cursor: pointer; font-family: 'Barlow Condensed', sans-serif;
+  line-height: 1; transition: color 0.2s ease;
 }
 .lightbox .close:hover { color: var(--white); }
-
-.lightbox-prev,
-.lightbox-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(9,11,14,0.85);
-  color: var(--gold);
-  border: 1px solid rgba(232,98,42,0.3);
-  font-size: 1.5rem;
-  padding: 1rem 1.2rem;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-  z-index: 10000;
-  line-height: 1;
+.lightbox-prev, .lightbox-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(9,11,14,0.85); color: var(--gold);
+  border: 1px solid rgba(232,98,42,0.3); font-size: 1.5rem;
+  padding: 1rem 1.2rem; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease; z-index: 10000; line-height: 1;
 }
-
 .lightbox-prev { left: 1.5rem; }
 .lightbox-next { right: 1.5rem; }
-
-.lightbox-prev:hover,
-.lightbox-next:hover {
-  background: var(--gold);
-  color: var(--bg);
-}
+.lightbox-prev:hover, .lightbox-next:hover { background: var(--gold); color: var(--bg); }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -565,11 +295,8 @@ footer p {
 
 @media (max-width: 960px) {
   header, .page-hero, main, footer { padding-left: 2rem; padding-right: 2rem; }
-  .info-cards { flex-direction: column; gap: 1px; }
-  .problem-container, .problem-container.reverse { grid-template-columns: 1fr; direction: ltr; }
-  .level-step { grid-template-columns: 1fr; }
-  .level-step:nth-child(even) .level-step-text,
-  .level-step:nth-child(even) .level-step-video { order: unset; }
+  .overview-grid, .beat-two-col, .beat-sub-col { grid-template-columns: 1fr; }
+  .image-grid.cols-2, .image-grid.cols-3 { grid-template-columns: 1fr; }
   .conclusion-cols { grid-template-columns: 1fr; }
   .section-divider::before { display: none; }
   .lightbox-prev { left: 0.5rem; }
@@ -578,7 +305,6 @@ footer p {
 </style>
 </head>
 <body>
-
 <div class="bg-glow"></div>
 
 <header>
@@ -601,291 +327,551 @@ footer p {
     <span>S.O.R.N</span>
   </div>
   <h1 class="hero-title">S.O.R.N</h1>
-  <p class="hero-subtitle">Directive 1 &nbsp;·&nbsp; Vertical Slice &nbsp;·&nbsp; Solo Level Designer</p>
-  <div class="info-cards animate d3">
-    <div class="info-card"><h3>Engine</h3><p>Unreal Engine 5</p></div>
-    <div class="info-card"><h3>Team Size</h3><p>6 People</p></div>
-    <div class="info-card"><h3>Duration</h3><p>12 Weeks</p></div>
-    <div class="info-card"><h3>Role</h3><p>Solo Level Designer</p></div>
-  </div>
+  <p class="hero-subtitle">Mission 1 &nbsp;·&nbsp; Alpha &nbsp;·&nbsp; Solo Level Designer &nbsp;·&nbsp; Unreal Engine 5</p>
 </div>
 
 <main>
 
-  <h2 class="section-divider">Hero <span>Video</span></h2>
+  <h2 class="section-divider">Alpha <span>Playthrough</span></h2>
   <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/f8_dOA7EJJQ" title="S.O.R.N" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/f8_dOA7EJJQ" title="S.O.R.N Full Playthrough" frameborder="0" allowfullscreen></iframe>
   </div>
 
-  <h2 class="section-divider">Level Goals <span>&amp; Overview</span></h2>
-  <section class="problem-section" style="border-top:none; padding-top:0;">
-    <div class="problem-container reverse">
-      <div class="problem-carousel">
-        <div class="carousel-images">
-          <img src="sornimages/CelShadedDesertSS1.png" alt="Enemy Stronghold" class="active lightbox-trigger" data-caption="Enemy Stronghold">
-          <img src="sornimages/Sector1FR7.png" alt="Sector 1" class="lightbox-trigger" data-caption="Sector 1">
-          <img src="sornimages/Sector2FR7.png" alt="Sector 2" class="lightbox-trigger" data-caption="Sector 2">
-          <img src="sornimages/WallSector1InGameSS1.png" alt="Storage Room" class="lightbox-trigger" data-caption="Storage Room">
-          <img src="sornimages/Sector3FR4.png" alt="Sector 3" class="lightbox-trigger" data-caption="Sector 3">
-        </div>
-        <div class="carousel-controls">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
-        </div>
-        <div class="carousel-caption"><p>Enemy Stronghold</p></div>
-      </div>
-      <div class="problem-text">
+  <h2 class="section-divider">Level <span>Overview</span></h2>
+  <section style="padding-bottom: 2rem;">
+    <div class="overview-grid">
+      <div class="overview-text">
         <h2>Overview</h2>
-        <p>S.O.R.N is a fast-paced, third-person mech shooter set across a monolith-scale continent. "Directive 1" was designed to support strategic combat encounters in a semi-open desert and a monolith-sized facility, while giving players freedom to move and engage dynamically.</p>
-        <p><strong style="color:var(--cyan); font-size:clamp(1.8rem, 3vw, 2.5rem); letter-spacing:3px; font-family:'Bebas Neue',sans-serif; text-transform:uppercase; font-weight:700;">Level Goals</strong></p>
+        <p>S.O.R.N is a fast-paced, third-person mech shooter built around large-scale combat and dynamic traversal. In Mission 1, the player is deployed into a vast desert to neutralize an enemy compound guarding a monolith-scale transportation facility known as The Wall — operated by a hostile PMC. After clearing the desert, the player infiltrates the facility sector by sector, plants a bomb in the control room, and extracts before time runs out. The desert serves as a proving ground for core mechanics, while The Wall escalates the challenge through tighter spaces, environmental hazards, and increasingly complex encounters.</p>
+        <p><strong style="color:var(--cyan); font-size:clamp(1.4rem, 2.5vw, 2rem); letter-spacing:3px; font-family:'Bebas Neue',sans-serif;">Level Goals</strong></p>
         <ul>
-          <li><strong>Teach</strong> and reinforce core player mechanics through level layout and encounters</li>
-          <li><strong>Guide</strong> players naturally through interesting and contextualized playspaces</li>
-          <li><strong>Design</strong> enemy encounters that feel challenging and rewarding</li>
+          <li><strong>Teach</strong> core mech combat and traversal mechanics through escalating encounter design across the desert and facility</li>
+          <li><strong>Guide</strong> the player naturally from the open desert into the tight, high-stakes interior of The Wall without hand-holding</li>
+          <li><strong>Build</strong> tension and pacing across 5 distinct beats — from exploration and learning to infiltration and extraction</li>
         </ul>
+      </div>
+      <div class="overview-maps" style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-item">
+          <img src="sornimages/FinalizedPOI1MapDesertSORNPNG.png" alt="Desert Map" class="lightbox-trigger">
+          <p class="image-caption">Top-down map of Mission 1 — The Desert</p>
+        </div>
+        <div class="image-item">
+          <img src="sornimages/Semester2Level1MapPNG.png" alt="Wall Map" class="lightbox-trigger">
+          <p class="image-caption">Top-down map of Mission 1 — The Wall facility</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <h2 class="section-divider">Level <span>Walkthrough</span></h2>
-  <section class="level-walkthrough">
+  <h2 class="section-divider">Beat <span>Breakdown</span></h2>
 
-    <div class="level-step">
-      <div class="level-step-text">
+  <!-- ═══ BEAT 1: THE DESERT ═══ -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 01</p>
+      <h2 class="beat-title">The Desert</h2>
+    </div>
+
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
         <ul>
-          <li><strong>Goal:</strong> Teach players navigation, pacing, and strategic movement in a large open desert while guiding them toward the main objective</li>
-          <li><strong>Design action 1:</strong> Placed three POIs with the first unmissable, using guarding turrets to naturally draw players into the encounter and reinforce core controls</li>
-          <li><strong>Design action 2:</strong> Added a giant laser turret and arranged debris fields as mandatory cover to challenge line-of-sight management and promote spatial awareness</li>
+          <li class="beat-goal-item"><strong>Goal:</strong> Introduce players to core combat mechanics through a focused enemy compound encounter, using the environment to naturally direct movement and reinforce spatial awareness</li>
+          <li><strong>Design Action 1:</strong> Positioned the enemy compound directly at the base of The Wall, using flanking rock formations to funnel the player in and eliminate navigation ambiguity</li>
+          <li><strong>Design Action 2:</strong> Mounted a high-visibility laser turret above the compound entrance to serve as a threat landmark, drawing the player's eye to the objective and forcing a deliberate cover-based approach</li>
         </ul>
       </div>
-      <div class="level-step-video">
-        <h3><span style="color:var(--white);">Beat 1: The Desert</span></h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/3eHvcOhfD4c" title="S.O.R.N Desert" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="https://www.youtube.com/embed/IOShgBh4duY?enablejsapi=1" title="Beat 1 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
         </div>
+        <p class="video-label">Playthrough — The Desert</p>
       </div>
     </div>
 
-    <div class="level-step">
-      <div class="level-step-text">
-        <ul>
-          <li><strong>Goal:</strong> Transition players from open desert navigation to tight, controlled combat encounters</li>
-          <li><strong>Design action 1:</strong> Introduced the Hermit enemy in a small storage room, allowing a safe first engagement before more complex fights</li>
-          <li><strong>Design action 2:</strong> Layered enemy placements and set dressing in Sector 1 to encourage tactical movement, provide meaningful cover, and foreshadow future train-based encounters</li>
-        </ul>
-      </div>
-      <div class="level-step-video">
-        <h3><span style="color:var(--white);">Beat 2: The Wall — Sector 1</span></h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/m4nfHUDuHL0" title="The Wall: Sector 1" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Initial Blockout &amp; Flaws</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="context-item"><strong>The Space:</strong> An enemy compound at the base of The Wall guarding the facility entrance — the player must clear it and locate the maintenance entry point to infiltrate</li>
+            <li class="flaw-item"><strong>Flaw 1:</strong> The player had no line of sight on any objective — without a visible landmark or threat to react to, there was no logical decision point to drive movement or establish a sense of direction</li>
+            <li class="flaw-item"><strong>Flaw 2:</strong> The compound had no defined encounter structure — enemy positions, cover opportunities, and player routing were unestablished, leaving the space with no readable combat flow</li>
+          </ul>
         </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/DesertPOI1Iteration1Problem_NoObviousCriticalPath.png" alt="Desert blockout 1" class="lightbox-trigger">
+            <p class="image-caption">Blockout 1 — Undefined critical path</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/DesertProblem1Solved-ObviousCriticalPath.png" alt="Desert blockout 2" class="lightbox-trigger">
+            <p class="image-caption">Blockout 2 — Road introduced but compound still lacks identity</p>
+          </div>
+      </div>
+    </div>
+  </div>
       </div>
     </div>
 
-    <div class="level-step">
-      <div class="level-step-text">
-        <ul>
-          <li><strong>Goal:</strong> Introduce verticality and environmental hazards to increase challenge and teach advanced traversal</li>
-          <li><strong>Design action 1:</strong> Placed bounce pads in a safe area first, then integrated them as a core traversal tool for combat and platforming</li>
-          <li><strong>Design action 2:</strong> Combined moving train hazards, multi-level enemy placements, and vertical spaces to create a more demanding, multi-layered encounter</li>
-        </ul>
-      </div>
-      <div class="level-step-video">
-        <h3><span style="color:var(--white);">Beat 3: The Wall — Sector 2</span></h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/bpr7gXmY7Oc" title="The Wall: Sector 2" frameborder="0" allowfullscreen loading="lazy"></iframe>
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Iteration &amp; Solutions</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="solution-item"><strong>Solution 1:</strong> Introduced a central road leading from The Wall into the desert with geometry flanking both sides, establishing an unmistakable critical path while preserving cover opportunities</li>
+            <li class="solution-item"><strong>Solution 2:</strong>  Designed the road to fork naturally at the compound — with dialogue confirming the front entrance is locked and a waypoint directing the player, the fork becomes a meaningful decision point rather than a source of confusion</li>
+          </ul>
+          <p class="summary">These changes worked with the game's existing systems rather than against them. The road geometry creates a clear decision point, dialogue provides narrative justification, and the waypoint handles explicit direction — the level design supports all three without redundancy</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/DesertRoadFix2.png" alt="Desert iteration" class="lightbox-trigger">
+            <p class="image-caption">Forked road and locked front entrance directing players to seek another way in</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/DesertIteration3SS2.png" alt="Desert solution" class="lightbox-trigger">
+            <p class="image-caption">Perimeter geometry — controlled movement and spatial boundaries</p>
+          </div>
+        </div>
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/DesertAlphaSS3.png" alt="Desert iteration 3" class="lightbox-trigger">
+            <p class="image-caption">Critical path and cover layout</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/DesertAlphaSS4.png" alt="Desert iteration 4" class="lightbox-trigger">
+            <p class="image-caption">Maintenance entrance framed by the compound layout — the player's objective is visible and reachable through a defined combat space</p>
         </div>
       </div>
     </div>
-
-    <div class="level-step">
-      <div class="level-step-text">
-        <ul>
-          <li><strong>Goal:</strong> Shift pacing and tension with a tighter, more linear section</li>
-          <li><strong>Design action 1:</strong> Use darker lighting, debris, and broken scaffolding to create danger while maintaining traversal paths and cover</li>
-          <li><strong>Design action 2:</strong> Place enemies densely in constricted corridors to encourage precise movement and combat mastery</li>
-        </ul>
-      </div>
-      <div class="level-step-video">
-        <h3><span style="color:var(--white);">Beat 4: The Wall — Sector 3</span></h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/RW_GRHyzFZQ" title="The Wall: Sector 3" frameborder="0" allowfullscreen loading="lazy"></iframe>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <h2 class="section-divider">The <span>Process</span></h2>
-
-  <section class="problem-section" style="border-top:none; padding-top:0;">
-    <div class="problem-container reverse">
-      <div class="problem-carousel">
-        <div class="carousel-images">
-          <img src="sornimages/AC6Inspo.png" alt="Inspiration: Armored Core VI" class="active lightbox-trigger" data-caption="Inspiration: Armored Core VI: Fires of Rubicon">
-          <img src="sornimages/SornTeamArtboardFrame2.jpg" alt="Miro board snippet" class="lightbox-trigger" data-caption="Miro board: referenced Armored Core gameplay, desert landscapes, and military outposts">
-          <img src="sornimages/MilitaryOutpostImage1.png" alt="Military outpost reference" class="lightbox-trigger" data-caption="Military outpost reference image">
-          <img src="sornimages/ScablandsImage1.png" alt="Destiny: Scablands reference" class="lightbox-trigger" data-caption="Destiny: Scablands reference image">
-        </div>
-        <div class="carousel-controls">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
-        </div>
-        <div class="carousel-caption"><p>Armored Core VI reference</p></div>
-      </div>
-      <div class="problem-text">
-        <h2>Research &amp; References</h2>
-        <p>The process involved creating an environment that supported fast-paced mech combat while teaching players core systems.</p>
-        <ul>
-          <li><strong>Research &amp; Ideation:</strong> Studied mech-focused games (e.g., Armored Core) to analyze combat pacing, encounter design, and level flow</li>
-          <li><strong>Reference Gathering:</strong> Collected visual references, concept art, and gameplay screenshots to inspire environmental design and thematic consistency</li>
-          <li><strong>Miro Board Organization:</strong> Compiled references and ideas on a Miro board to map layouts, level goals, and design solutions visually</li>
-        </ul>
+  </div>
       </div>
     </div>
   </section>
 
-  <section class="problem-section">
-    <div class="problem-container">
-      <div class="problem-text">
-        <h2>Maps, Layouts &amp; Documentation</h2>
-        <p>This section highlights the level planning process through maps, layouts, and detailed design documentation.</p>
+  <!-- ═══ BEAT 2: SECTOR 1 ═══ -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 02</p>
+      <h2 class="beat-title">The Wall — Sector 1</h2>
+    </div>
+
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
         <ul>
-          <li><strong>Level Design Documentation:</strong> Detailed each encounter and level design decision to communicate design intent clearly</li>
-          <li><strong>Comprehensive Maps:</strong> Developed top-down and blockout layouts highlighting key areas, paths, and strategic points</li>
-          <li><strong>Multiple Iterations:</strong> Refined and improved existing maps over time, showing design evolution through visual examples</li>
+          <li class="beat-goal-item"><strong>Goal:</strong> Introduce players to interior combat for the first time, establishing the scale of The Wall facility and presenting new enemy types in a controlled, readable encounter space</li>
+          <li><strong>Design Action 1:</strong> Kept enemy density low and maneuvering space generous in the first interior encounter — the exit door opens only after enemies are defeated, giving the player a clear objective and a natural reason to engage rather than avoid</li>
+          <li><strong>Design Action 2:</strong> Designed Sector 1 as a functioning crystal loading bay — cargo containers and structural columns create natural cover positions while the space communicates The Wall's purpose as an industrial facility, grounding the encounter in the world's narrative</li>
         </ul>
       </div>
-      <div class="problem-carousel">
-        <div class="carousel-images">
-          <a href="sornimages/SORNLevelDesignDocumentLevel1.pdf" target="_blank" class="active" data-caption="Level 1 Design Document — Click to open PDF">
-            <img src="sornimages/LDD1SS.png" alt="Level 1 Design Document" style="display:block;">
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="https://www.youtube.com/embed/aY6a0qGT9Go?enablejsapi=1" title="Beat 2 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — Sector 1</p>
+      </div>
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Initial Blockout &amp; Flaws</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="context-item"><strong>The Space:</strong> The player's first interior encounter — a crystal loading bay inside The Wall where cargo is staged and loaded onto trains. The space is designed to introduce interior combat at a manageable difficulty while establishing the facility's industrial scale and purpose</li>
+            <li class="flaw-item"><strong>Flaw 1:</strong> Traversal paths and encounter flow were unclear — playtesters struggled to identify the forward route and frequently backtracked through the space</li>
+            <li class="flaw-item"><strong>Flaw 2:</strong> The exit was positioned on the opposite wall from the entry point with trains obstructing the sightline — players had no readable forward direction and couldn't identify where to progress after clearing the encounter</li>
+          </ul>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/SornWallPhoto1.png" alt="S1 blockout 1" class="lightbox-trigger">
+            <p class="image-caption">Blockout 1 — vertical concept scrapped after playtesting feedback</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/Room1IterationImage4.png" alt="S1 blockout 2" class="lightbox-trigger">
+            <p class="image-caption">Blockout 2 —  sightlines blocked by train geometry</p>
+          </div>
+        </div>
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/Room1IterationImage3.png" alt="S1 blockout 3" class="lightbox-trigger">
+            <p class="image-caption">Blockout 3 — central trains and rooms entrance point obscured the exit and enemies</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/Room1IterationImage5.png" alt="S1 blockout 4" class="lightbox-trigger">
+            <p class="image-caption">Blockout 4 —  overhead view of blind sections</p>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div>
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Iteration &amp; Solutions</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="solution-item"><strong>Solution 1:</strong> Removed mandatory verticality and platforming from active combat zones — redesigned the sector for linear flow with a clear forward route that guides the player naturally through each encounter</li>
+            <li class="solution-item"><strong>Solution 2:</strong> Relocated the room entrance to give players an immediate sightline into the encounter space — players now enter with enemies and the exit visible from the threshold, eliminating the blind entry problem</li>
+          </ul>
+          <p class="summary">Removing verticality and relocating the entrance resolved both core issues in one pass. The space became immediately readable on entry — players could see enemies, cover, and the exit without the encounter fighting against the environment</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/Sector1Iteration2SS3.png" alt="S1 iteration" class="lightbox-trigger">
+            <p class="image-caption">Platforming disrupting combat flow — removed in favor of linear, grounded traversal</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/Sector1Iteration2SS1.png" alt="S1 solution" class="lightbox-trigger">
+            <p class="image-caption">Relocated room entrance establishing a clear sightline to enemies and exit on entry</p>
+          </div>
+        </div>
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/Sector1AlphaSS1.png" alt="S1 iteration 3" class="lightbox-trigger">
+            <p class="image-caption">Player POV entering Sector 1</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/Sector1AlphaSS3.png" alt="S1 iteration 4" class="lightbox-trigger">
+            <p class="image-caption">Player POV of crystal dump, showcasing the final design</p>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BEAT 3: SECTOR 2 ═══ -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 03</p>
+      <h2 class="beat-title">The Wall — Sector 2</h2>
+    </div>
+
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
+        <ul>
+          <li class="beat-goal-item"><strong>Goal:</strong> Design a multi-zone sector built around an active subway network — alternating between combat rooms and train tunnels to create rhythm, disparity, and escalating tension across the space</li>
+          <li><strong>Design Action 1:</strong> Structured the sector as three combat rooms separated by three train tunnels — players must navigate moving trains between each encounter, creating a distinct pacing shift between combat and traversal</li>
+          <li><strong>Design Action 2:</strong> Used the train tunnels as active hazards rather than passive transitions — timing the player's movement through the tunnels adds mechanical pressure and reinforces spatial awareness before each new encounter</li>
+        </ul>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="https://www.youtube.com/embed/31VirLa_f_Y?enablejsapi=1" title="Beat 3 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — Sector 2</p>
+      </div>
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Initial Blockout &amp; Flaws</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="context-item"><strong>The Space:</strong> An underground subway network inside The Wall — three combat rooms alternating with three active train tunnels, designed to create rhythmic disparity between intense encounters and high-pressure traversal</li>
+            <li class="flaw-item"><strong>Flaw 1:</strong> All rooms and tunnels read as identical spaces — without visual differentiation between zones the sector lost its sense of progression and players struggled to gauge where they were in the sequence</li>
+            <li class="flaw-item"><strong>Flaw 2:</strong> Lighting failed to compensate for the lack of spatial variation — with no geometry or visual landmarks to anchor the player, there was no readable way to communicate direction or progression through the sector</li>
+          </ul>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/Sector2FR2.png" alt="S2 blockout 1" class="lightbox-trigger">
+            <p class="image-caption">Blockout 1 — vertical concept scrapped to to bland design and oversized space</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/Sector2Iteration2SS4.png" alt="S2 blockout 2" class="lightbox-trigger">
+            <p class="image-caption">Blockout 2 — no spatial differentiation between zones</p>
+          </div>
+        </div>
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/Sector2Iteration2SS8.png" alt="S2 blockout 3" class="lightbox-trigger">
+            <p class="image-caption">Blockout 3 — unlit, undifferentiated corridor</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/Sector2Iteration2SS6.png" alt="S2 blockout 4" class="lightbox-trigger">
+            <p class="image-caption">Blockout 4 —  identical branching paths with no visual hierarchy</p>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div>
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Iteration &amp; Solutions</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="solution-item"><strong>Solution 1:</strong> Rebuilt the sector from scratch — new geometry gave each room, hallway, and train tunnel a distinct visual identity, eliminating the repetition that made the space feel directionless</li>
+            <li class="solution-item"><strong>Solution 2:</strong> Relit the space with intentional contrast — rooms and hallways were well lit while train tunnels remained darker, creating a pull effect that naturally guided players toward the next zone without explicit direction</li>
+          </ul>
+          <p class="summary">Starting over on the geometry solved both problems simultaneously. The spatial variation gave players a readable sense of progression, and the lighting contrast did the wayfinding work that the original blockout couldn't achieve</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/Sector2Iteration1Overhead1.png" alt="S2 iter2 problem" class="lightbox-trigger">
+            <p class="image-caption">Overhead view of iteration for Sector 2</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/Sector2Iteration3SS3.png" alt="S2 iter2 solution" class="lightbox-trigger">
+            <p class="image-caption">Lighting contrast — dark tunnel, lit path forward</p>
+          </div>
+        </div>
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/Sector2Iteration3SS1.png" alt="S2 iter2 extra 1" class="lightbox-trigger">
+            <p class="image-caption">Distinct room vs. tunnel geometry</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/Sector2Iteration3SS7.png" alt="S2 iter2 extra 2" class="lightbox-trigger">
+            <p class="image-caption">Well-lit combat room — clear forward direction</p>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BEAT 4: SECTOR 3 ═══ -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 04</p>
+      <h2 class="beat-title">The Wall — Sector 3</h2>
+    </div>
+
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
+        <ul>
+          <li class="beat-goal-item"><strong>Goal:</strong> Shift pacing with a tighter, more linear section that demands mastery of all mechanics learned in previous beats</li>
+          <li><strong>Design Action 1:</strong> Used darker lighting, broken scaffolding, and environmental debris to build atmosphere and create a sense of danger while keeping traversal paths readable</li>
+          <li><strong>Design Action 2:</strong> Placed enemies densely in constricted corridors to demand precise movement and punish passive play, marking the escalation toward the final encounter</li>
+        </ul>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="https://www.youtube.com/embed/a2oXMTuLHqg?enablejsapi=1" title="Beat 4 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — Sector 3</p>
+      </div>
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Initial Blockout &amp; Flaws</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="context-item"><strong>The Space:</strong> A tight, linear corridor section deep inside The Wall — the player must fight through dense enemy placement and navigate a moving train hazard to reach the control room</li>
+            <li class="flaw-item"><strong>Flaw 1:</strong> After defeating the turret guarding the path forward, the drop-down route was not visible — players stalled at a dead end with no clear indication of where to go next</li>
+            <li class="flaw-item"><strong>Flaw 2:</strong> The oncoming train hazard was not telegraphed — players had no readable warning before being hit, making the hazard feel arbitrary rather than skill-based</li>
+          </ul>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/WallRoom3Problem1-AfterDeafeatingTurretPathNotVisible.png" alt="S3 blockout 1" class="lightbox-trigger">
+            <p class="image-caption">Blockout 1 — unlit drop-down hole, path forward invisible to players</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/ProblemVent3-OncomingTrainIssue.png" alt="S3 blockout 2" class="lightbox-trigger">
+            <p class="image-caption">Blockout 2 — train avoidance space present but visually unreadable, causing confusion</p>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Iteration &amp; Solutions</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="solution-item"><strong>Solution 1:</strong> Made the drop-down path clearly visible post-turret using environmental framing — the player's eye is now naturally drawn to the exit without interrupting flow</li>
+            <li class="solution-item"><strong>Solution 2:</strong> Added two visible safe havens on either side of the train tunnel — players can now confidently time their traversal with clearly readable spaces to retreat to</li>
+          </ul>
+          <p class="summary">Both solutions addressed the same root problem — players couldn't read the space. Lighting made the path forward obvious and the safe havens gave players the confidence to progress through the train hazard without hesitation</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/Sector3VisibleDropDown.png" alt="S3 problem" class="lightbox-trigger">
+            <p class="image-caption">Targeted lighting guiding the player toward the drop-down critical path</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/Sector3AlphaSS1.png" alt="S3 solution" class="lightbox-trigger">
+            <p class="image-caption">Visible safe havens on both sides enabling confident traversal through the train tunnel</p>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </section>
+
+  <!-- ═══ BEAT 5: FINAL BOSS ROOM ═══ -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 05</p>
+      <h2 class="beat-title">The Final Boss Room</h2>
+    </div>
+
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
+        <ul>
+          <li class="beat-goal-item"><strong>Goal:</strong> Deliver a climactic boss encounter followed by an escape sequence that reinforces the spatial connectivity of The Wall — bringing the player back through spaces they recognize to exit through the door that was locked at the start</li>
+          <li><strong>Design Action 1:</strong> Designed the boss arena to give the player enough space to maneuver freely while keeping the encounter readable and the objective clear</li>
+          <li><strong>Design Action 2:</strong> Routed the escape through a chute back into Sector 1 and out the original locked front entrance — rewarding the player with spatial recognition and a sense of closure that ties the level together</li>
+        </ul>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="https://www.youtube.com/embed/RK71YZPFIEs?enablejsapi=1" title="Beat 5 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — Final Boss Room</p>
+      </div>
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Initial Blockout &amp; Flaws</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="context-item"><strong>The Space:</strong> The control room at the heart of The Wall — where the facility's commander operates. The player must eliminate him here before escaping through a chute back through the facility and out the front entrance</li>
+            <li class="flaw-item"><strong>Flaw 1:</strong> The initial blockout was a plain square room with no spatial interest — it failed to communicate the importance of the space or feel like a climactic endpoint to the level</li>
+            <li class="flaw-item"><strong>Flaw 2:</strong> Server equipment placed in the center of the arena disrupted the boss encounter — both the player and the boss would collide with the geometry, breaking the flow of the fight</li>
+          </ul>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/Sector4FR1.png" alt="Boss blockout 1" class="lightbox-trigger">
+            <p class="image-caption">Blockout 1 — arena shape and initial phase zone planning</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/Sector4FR2.png" alt="Boss blockout 2" class="lightbox-trigger">
+            <p class="image-caption">Blockout 2 — featureless square room with centrally placed cover risking accidental collision during the encounter</p>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Iteration &amp; Solutions</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="solution-item"><strong>Solution 1:</strong> [Placeholder — describe how you resolved the arena scale and player movement issue]</li>
+            <li class="solution-item"><strong>Solution 2:</strong> [Placeholder — describe how you fixed cover distribution relative to boss attack patterns]</li>
+          </ul>
+          <p class="summary">[Placeholder — 2-3 sentences on how these changes improved the boss encounter feel and player experience]</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="sornimages/BossRoomAlphaSS1.png" alt="Boss solution 1" class="lightbox-trigger">
+            <p class="image-caption">Control station and server racks establish the room as a command center — the space now reads as a climactic final encounter</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/BossRoomAlphaSS2.png" alt="Boss solution 2" class="lightbox-trigger">
+            <p class="image-caption">All equipment pushed to the perimeter — center of the arena kept clear for unobstructed combat</p>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+  </section>
+
+  <!-- PROCESS & DOCUMENTATION -->
+  <h2 class="section-divider">Process <span>&amp; Documentation</span></h2>
+  <section style="padding-bottom: 2rem;">
+
+    <div style="border-top: 1px solid var(--border); padding: 3rem 0;">
+      <div class="beat-subsection-label">Level Design Document</div>
+      <div class="beat-two-col" style="align-items:center;">
+        <div class="beat-text">
+          <p>Before touching the engine, every design decision was documented in a Level Design Document — outlining encounter goals, spatial intent, enemy placement logic, and pacing targets for each section of the level. This served as a living reference throughout the development cycle.</p>
+        </div>
+        <div>
+          <a href="sornimages/SORNLevelDesignDocumentLevel1.pdf" target="_blank" style="display:block; text-decoration:none; cursor:pointer;">
+            <img src="sornimages/LDD1SS.png" alt="Level Design Document" style="width:100%; display:block; border:1px solid var(--border);">
           </a>
-          <img src="sornimages/MipUIMapofDesertEnvironment.png" alt="First Map of Desert Environment" class="lightbox-trigger" data-caption="First Map of Desert Environment">
-          <img src="sornimages/OfficalDesertMapPhoto.png" alt="Iterated Map of Desert Environment" class="lightbox-trigger" data-caption="Iterated Map of Desert Environment">
-          <img src="sornimages/Wall_Level_Map_PNG.png" alt="First Map of The Wall" class="lightbox-trigger" data-caption="First Map of The Wall">
-          <img src="sornimages/FinalizedWallMapPhoto.png" alt="Iterated Map of The Wall" class="lightbox-trigger" data-caption="Iterated Map of The Wall">
+          <p class="image-caption">Mission 1 Level Design Document — click to open PDF</p>
         </div>
-        <div class="carousel-controls">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
-        </div>
-        <div class="carousel-caption"><p>Level 1 Design Document</p></div>
       </div>
     </div>
-  </section>
 
-  <section class="problem-section">
-    <div class="problem-container reverse">
-      <div class="problem-carousel">
-        <div class="carousel-images">
-          <img src="sornimages/PoCBeautyShot2.png" alt="Proof of concept and first blockout" class="active lightbox-trigger" data-caption="Proof of concept and first blockout of Level 1">
-          <img src="sornimages/SornWallPhoto1.png" alt="Sector 1 blockout" class="lightbox-trigger" data-caption="Sector 1 blockout — focus was introducing verticality via jump pads">
-          <img src="sornimages/SornWallPhoto2.png" alt="Sector 2 blockout" class="lightbox-trigger" data-caption="Sector 2 blockout — focus was increasing difficulty">
-          <img src="sornimages/SornWallPhoto3.png" alt="Sector 3 blockout" class="lightbox-trigger" data-caption="Sector 3 blockout — combining skills and layouts from previous sectors">
+    <div style="border-top: 1px solid var(--border); padding: 3rem 0;">
+      <div class="beat-subsection-label">Map Progression</div>
+      <p style="font-size:1.05rem; line-height:1.8; color:var(--text); max-width:800px; margin-bottom:2rem;">The level went through multiple map iterations as design goals evolved. These top-down maps show how the layout thinking changed from first draft to finalized build.</p>
+      <div class="image-grid cols-2" style="margin-bottom:2rem;">
+        <div class="image-item">
+          <img src="sornimages/MipUIMapofDesertEnvironment.png" alt="Desert map v1" class="lightbox-trigger">
+          <p class="image-caption"><strong style="color:var(--gold);">V1</strong> — First map of the Desert environment</p>
         </div>
-        <div class="carousel-controls">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
+        <div class="image-item">
+          <img src="sornimages/FinalizedPOI1MapDesertSORNPNG.png" alt="Desert map final" class="lightbox-trigger">
+          <p class="image-caption"><strong style="color:var(--cyan);">Final</strong> — Finalized Desert map after iteration</p>
         </div>
-        <div class="carousel-caption"><p>Proof of concept — Level 1</p></div>
       </div>
-      <div class="problem-text">
-        <h2>Initial Blockout</h2>
-        <p>The initial blockout was designed to support the core mechanics of S.O.R.N, giving players spaces to engage with combat, traversal, and exploration.</p>
-        <ul>
-          <li><strong>Supported Player Mechanics:</strong> Created blockouts and encounter areas that allowed players to engage with core mech abilities and understand combat pacing</li>
-          <li><strong>Visual and Tactical Clarity:</strong> Arranged key environmental features to communicate paths, cover, and combat flow clearly</li>
-          <li><strong>Contextualized Playspaces:</strong> Designed level areas that reflected maps, concept art, and research references</li>
-        </ul>
+      <div class="image-grid cols-2">
+        <div class="image-item">
+          <img src="sornimages/FinalizedWallMapPhoto.png" alt="Wall map v1" class="lightbox-trigger">
+          <p class="image-caption"><strong style="color:var(--gold);">V1</strong> — First map of The Wall facility</p>
+        </div>
+        <div class="image-item">
+          <img src="sornimages/Semester2Level1MapPNG.png" alt="Wall map final" class="lightbox-trigger">
+          <p class="image-caption"><strong style="color:var(--cyan);">Final</strong> — Finalized Wall map after iteration</p>
+        </div>
       </div>
     </div>
-  </section>
 
-  <h2 class="section-divider">Design <span>Challenges</span></h2>
-
-  <section class="problem-section" style="border-top:none; padding-top:0;">
-    <div class="problem-container">
-      <div class="problem-text">
-        <h2><span style="color:var(--white);">Problem 1: Unclear Desert Exploration</span></h2>
-        <ul>
-          <li><strong>Goal:</strong> Create a desert landscape that is vast and intriguing, but still guides the player toward the main objective</li>
-          <li><strong>Problem:</strong> After the tutorial, players faced three unexplained paths with unclear purposes for each POI</li>
-          <li><strong>Solution:</strong> Increased landscape size, spread out POIs further but kept them visible, and adjusted player start to naturally guide toward the main path</li>
-        </ul>
-      </div>
-      <div class="problem-carousel">
-        <div class="carousel-images">
-          <img src="sornimages/GeneralDesertIterationPhoto2.png" alt="No clear critical path" class="active lightbox-trigger" data-caption="Players felt overwhelmed with no clear critical path">
-          <img src="sornimages/GeneralDesertIterationImage1.png" alt="POIs too close together" class="lightbox-trigger" data-caption="POIs were too close, forcing side content on the player early">
-          <img src="sornimages/PlayerstartPOI1.png" alt="Moved player start" class="lightbox-trigger" data-caption="Moved player start and tutorial to guide along the critical path">
-          <img src="sornimages/DistanceBetweenPOI1and2.png" alt="Expanded landscape" class="lightbox-trigger" data-caption="Expanded landscape and spaced out POIs to discourage early side exploration">
+    <div style="border-top: 1px solid var(--border); padding: 3rem 0 0;">
+      <div class="beat-subsection-label">Research &amp; References</div>
+      <div class="beat-two-col">
+        <div class="beat-text">
+          <p>The process began with research and reference gathering to define the visual and gameplay language of the level before any blockout work started.</p>
+          <ul>
+            <li><strong>Studied</strong> mech-focused games like Armored Core VI to analyze combat pacing, encounter design, and level flow</li>
+            <li><strong>Collected</strong> visual references — concept art, gameplay screenshots, and real-world military/industrial imagery</li>
+            <li><strong>Organized</strong> everything on a Miro board to map out layouts, level goals, and design solutions visually before touching the engine</li>
+          </ul>
         </div>
-        <div class="carousel-controls">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
+        <div style="display:flex; flex-direction:column; gap:1.5rem; align-self:start;">
+          <div class="image-item">
+            <img src="sornimages/SornTeamArtboardFrame2.jpg" alt="Miro board" class="lightbox-trigger" style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; cursor:pointer;">
+            <p class="image-caption">Miro board — references, layout sketches, and design goals organized before blockout</p>
+          </div>
+          <div class="image-item">
+            <img src="sornimages/AC6Inspo.png" alt="Armored Core VI reference" class="lightbox-trigger" style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; cursor:pointer;">
+            <p class="image-caption">Armored Core VI — primary gameplay reference for combat pacing and mech traversal</p>
+          </div>
         </div>
-        <div class="carousel-caption"><p>Players felt overwhelmed with no clear critical path</p></div>
       </div>
     </div>
+
   </section>
 
-  <section class="problem-section">
-    <div class="problem-container reverse">
-      <div class="problem-carousel">
-        <div class="carousel-images">
-          <img src="sornimages/SornWallPhoto4.png" alt="Platforming balance issues" class="active lightbox-trigger" data-caption="Spacing between walls, floors, and platforms was difficult to balance with jump pads">
-          <img src="sornimages/SornWallPhoto6.png" alt="Overly long ascent" class="lightbox-trigger" data-caption="The ascent to the next room was overly long and unenjoyable">
-          <img src="sornimages/SornWallPhoto8.png" alt="Progress loss on fall" class="lightbox-trigger" data-caption="This illustrates the progress lost if the player falls, showing the scale of the ascent">
-          <img src="sornimages/Sector1FR7.png" alt="Redesigned sectors" class="lightbox-trigger" data-caption="Redesigned sectors for a more linear flow — removed mandatory verticality">
-          <img src="sornimages/Sector2FR7.png" alt="Sector 2 revised" class="lightbox-trigger" data-caption="Sector 2 retains some jump pads but is now more manageable and separate from combat">
-        </div>
-        <div class="carousel-controls">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
-        </div>
-        <div class="carousel-caption"><p>Platforming balance issues</p></div>
-      </div>
-      <div class="problem-text">
-        <h2><span style="color:var(--white);">Problem 2: Platforming Disrupted Flow</span></h2>
-        <ul>
-          <li><strong>Goal:</strong> Combine platforming and combat, blending traversal with fast-paced gameplay</li>
-          <li><strong>Problem:</strong> Platforming while in combat disrupted player flow and made scaling monolith-sized levels with jump pads extremely difficult</li>
-          <li><strong>Solution:</strong> Removed platforming to support design goals and pacing, pivoting to a more linear experience</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="problem-section">
-    <div class="problem-container">
-      <div class="problem-text">
-        <h2><span style="color:var(--white);">Problem 3: Poorly Contextualized Playspaces</span></h2>
-        <ul>
-          <li><strong>Goal:</strong> Show the player traversing a desert to infiltrate a monolith-scale facility used for bullet train cargo transport</li>
-          <li><strong>Problem:</strong> POIs and sectors lacked identity, leaving their purpose and functionality unclear</li>
-          <li><strong>Solution:</strong> Redesigned POIs and facility sectors with clear intent, guided by updated reference images and a Miro board</li>
-        </ul>
-      </div>
-      <div class="problem-carousel">
-        <div class="carousel-images">
-          <img src="sornimages/PoC Beauty Shot 1.png" alt="Desert POI 1 — no context" class="active lightbox-trigger" data-caption="Desert POI 1 blockout had no context — what is this supposed to be?">
-          <img src="sornimages/POI2Photo.png" alt="Desert POI 2 initial" class="lightbox-trigger" data-caption="Initial blockout of Desert POI 2 — also unclear">
-          <img src="sornimages/DesertPOI1IterationImage.png" alt="Desert POI 1 iteration" class="lightbox-trigger" data-caption="Iteration of Desert POI 1 — still unclear">
-          <img src="sornimages/DesertPOI3IterationImage.png" alt="Desert POI 3 iteration" class="lightbox-trigger" data-caption="Desert POI 3 iteration — slightly better but no clear purpose">
-          <img src="sornimages/Iteration3desertPOI1SS2.png" alt="Redesigned Desert POI 1" class="lightbox-trigger" data-caption="Redesigned Desert POI 1 — clearly a military outpost or checkpoint">
-          <img src="sornimages/OilDigSite.png" alt="Desert POI 2 as oil site" class="lightbox-trigger" data-caption="Desert POI 2 reinvented as an oil and mining site — supports the game's narrative">
-          <img src="sornimages/Iteration3desertPOI1SS3.png" alt="Another view of Desert POI 1" class="lightbox-trigger" data-caption="Another view of Desert POI 1 — more detailed and contextualized">
-        </div>
-        <div class="carousel-controls">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
-        </div>
-        <div class="carousel-caption"><p>Desert POI 1 — no context in early blockout</p></div>
-      </div>
-    </div>
-  </section>
-
+  <!-- CONCLUSION -->
   <h2 class="section-divider">Conclusion <span>&amp; Learnings</span></h2>
   <section class="conclusion-section" style="border-top:none; padding-top:0;">
     <p class="conclusion-intro">Developing S.O.R.N's first level provided a hands-on opportunity to create large-scale 3D environments that balance exploration, combat, and player guidance. Iteration and refinement were key to ensuring pacing, flow, and engagement remained compelling throughout each encounter.</p>
@@ -931,70 +917,56 @@ footer p {
   const lightboxClose = document.getElementById('lightbox-close');
   const lightboxPrev = document.getElementById('lightbox-prev');
   const lightboxNext = document.getElementById('lightbox-next');
-
-  let allTriggers = [];
-  let currentLightboxIndex = 0;
+  let allTriggers = [], currentLightboxIndex = 0;
 
   function openLightbox(index) {
     const trigger = allTriggers[index];
     currentLightboxIndex = index;
-    lightboxImg.src = trigger.src || trigger.href || '';
+    lightboxImg.src = trigger.src || '';
     lightboxImg.alt = trigger.alt || '';
-    lightboxCaption.textContent = trigger.dataset.caption || '';
+    lightboxCaption.textContent = trigger.closest('.image-item')?.querySelector('.image-caption')?.textContent || '';
     lightbox.style.display = 'flex';
   }
 
   document.querySelectorAll('.lightbox-trigger').forEach((trigger, i) => {
     allTriggers.push(trigger);
-    trigger.addEventListener('click', e => {
-      e.preventDefault();
-      openLightbox(i);
-    });
+    trigger.addEventListener('click', e => { e.preventDefault(); openLightbox(i); });
   });
 
-  lightboxPrev.addEventListener('click', () => {
-    currentLightboxIndex = (currentLightboxIndex - 1 + allTriggers.length) % allTriggers.length;
-    openLightbox(currentLightboxIndex);
-  });
-
-  lightboxNext.addEventListener('click', () => {
-    currentLightboxIndex = (currentLightboxIndex + 1) % allTriggers.length;
-    openLightbox(currentLightboxIndex);
-  });
-
+  lightboxPrev.addEventListener('click', () => { currentLightboxIndex = (currentLightboxIndex - 1 + allTriggers.length) % allTriggers.length; openLightbox(currentLightboxIndex); });
+  lightboxNext.addEventListener('click', () => { currentLightboxIndex = (currentLightboxIndex + 1) % allTriggers.length; openLightbox(currentLightboxIndex); });
   document.addEventListener('keydown', e => {
     if (lightbox.style.display !== 'flex') return;
     if (e.key === 'ArrowRight') lightboxNext.click();
     if (e.key === 'ArrowLeft') lightboxPrev.click();
     if (e.key === 'Escape') lightbox.style.display = 'none';
   });
-
   lightboxClose.addEventListener('click', () => lightbox.style.display = 'none');
   lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.style.display = 'none'; });
 
-  document.querySelectorAll('.problem-carousel').forEach(carousel => {
-    const images = carousel.querySelectorAll('.carousel-images > img, .carousel-images > a');
-    const captionEl = carousel.querySelector('.carousel-caption p');
-    const captions = Array.from(images).map(el => el.dataset.caption || el.alt || (el.querySelector('img')?.alt) || '');
-    let current = 0;
-
-    function show(index) {
-      images.forEach(el => el.classList.remove('active'));
-      images[index].classList.add('active');
-      if (captionEl) captionEl.textContent = captions[index];
-    }
-
-    carousel.querySelector('.prev').addEventListener('click', () => {
-      current = (current - 1 + images.length) % images.length;
-      show(current);
+  // AUTOPLAY ON SCROLL
+  const ytScript = document.createElement('script');
+  ytScript.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(ytScript);
+  const players = [];
+  window.onYouTubeIframeAPIReady = function () {
+    document.querySelectorAll('.video-wrap[data-autoplay] iframe').forEach(iframe => {
+      if (!iframe.id) iframe.id = 'yt_' + Math.random().toString(36).slice(2);
+      const player = new YT.Player(iframe.id, { events: { onReady: () => {} } });
+      players.push({ el: iframe.closest('.video-wrap'), player });
     });
-    carousel.querySelector('.next').addEventListener('click', () => {
-      current = (current + 1) % images.length;
-      show(current);
-    });
-
-    show(0);
-  });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const match = players.find(p => p.el === entry.target);
+        if (!match) return;
+        try {
+          if (entry.isIntersecting) { match.player.playVideo(); }
+          else { match.player.pauseVideo(); match.player.seekTo(0); }
+        } catch(e) {}
+      });
+    }, { threshold: 0.5 });
+    players.forEach(p => observer.observe(p.el));
+  };
 </script>
 </body>
 </html>
