@@ -393,7 +393,7 @@ footer p {
     <a href="sorn.html" class="project-card animate d3">
       <div class="card-media">
         <img class="card-thumb" src="sornimages/DesertAlphaSS2.png" alt="S.O.R.N">
-        <video class="card-video" src="videos/sorn-preview.mp4" muted loop playsinline></video>
+        <video class="card-video" muted loop playsinline><source src="videos/sorn-preview.mp4" type="video/mp4"></video>
         <div class="card-overlay"></div>
       </div>
       <div class="card-body">
@@ -408,7 +408,7 @@ footer p {
     <a href="bootleggerbust.html" class="project-card animate d4">
       <div class="card-media">
         <img class="card-thumb" src="images/BossRoomPhoto1.png" alt="Bootlegger Bust">
-        <video class="card-video" src="videos/bootleggerbust-preview.mp4" muted loop playsinline></video>
+        <video class="card-video" muted loop playsinline><source src="videos/bootleggerbust-preview.mp4" type="video/mp4"></video>
         <div class="card-overlay"></div>
       </div>
       <div class="card-body">
@@ -423,7 +423,7 @@ footer p {
     <a href="carnage.html" class="project-card animate d5">
       <div class="card-media">
         <img class="card-thumb" src="carnageimages/CarnageHomeScreen.png" alt="Carnage">
-        <video class="card-video" src="videos/carnage-preview.mp4" muted loop playsinline></video>
+        <video class="card-video" muted loop playsinline><source src="videos/carnage-preview.mp4" type="video/mp4"></video>
         <div class="card-overlay"></div>
       </div>
       <div class="card-body">
@@ -452,6 +452,7 @@ footer p {
     video.muted = true;
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
+    // reload after setting muted
     video.load();
 
     card.addEventListener('mouseenter', () => {
