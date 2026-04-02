@@ -48,7 +48,7 @@ body::after {
   pointer-events: none; z-index: 0;
 }
 
-/* ── HEADER ── */
+/* HEADER */
 header {
   position: relative; z-index: 10;
   padding: 3rem 5rem 2.5rem;
@@ -106,7 +106,7 @@ nav ul li a.active {
   background: var(--gold-dim);
 }
 
-/* ── BIO ── */
+/* BIO */
 .bio {
   position: relative; z-index: 10;
   padding: 3rem 5rem;
@@ -120,7 +120,6 @@ nav ul li a.active {
   width: 100%;
 }
 
-/* override max-width for border */
 .bio-outer {
   border-bottom: 1px solid var(--border);
   position: relative; z-index: 10;
@@ -142,7 +141,7 @@ nav ul li a.active {
   max-width: 700px;
 }
 
-/* ── MAIN ── */
+/* MAIN */
 main {
   position: relative; z-index: 10;
   max-width: 1280px;
@@ -176,7 +175,7 @@ main {
   gap: 3px;
 }
 
-/* ── PROJECT CARD ── */
+/* PROJECT CARD */
 .project-card {
   display: grid;
   grid-template-columns: 420px 1fr;
@@ -208,7 +207,6 @@ main {
 
 .project-card:hover::before { opacity: 1; }
 
-/* Card media */
 .card-media {
   position: relative;
   overflow: hidden;
@@ -252,7 +250,6 @@ main {
   z-index: 3;
 }
 
-/* Card body */
 .card-body {
   padding: 2.5rem 3rem 2.5rem 2rem;
   display: flex;
@@ -316,7 +313,7 @@ main {
 .project-card:hover .card-cta { gap: 1.2rem; }
 .card-cta::after { content: '→'; font-size: 1.1rem; }
 
-/* ── FOOTER ── */
+/* FOOTER */
 footer {
   position: relative; z-index: 10;
   border-top: 1px solid var(--border);
@@ -340,7 +337,7 @@ footer p {
   letter-spacing: 4px;
 }
 
-/* ── ANIMATIONS ── */
+/* ANIMATIONS */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -351,7 +348,7 @@ footer p {
 .d3 { animation-delay: 0.28s; } .d4 { animation-delay: 0.42s; }
 .d5 { animation-delay: 0.56s; } .d6 { animation-delay: 0.70s; }
 
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media (max-width: 960px) {
   header, main, footer { padding-left: 2rem; padding-right: 2rem; }
   .bio { padding-left: 2rem; padding-right: 2rem; grid-template-columns: 1fr; }
@@ -367,7 +364,6 @@ footer p {
 
 <div class="bg-glow"></div>
 
-<!-- HEADER -->
 <header>
   <div class="animate d1">
     <h1 class="site-title">Paul Saturno</h1>
@@ -381,7 +377,6 @@ footer p {
   </nav>
 </header>
 
-<!-- BIO -->
 <div class="bio-outer animate d2">
   <div class="bio" style="max-width:1280px; margin:0 auto; padding: 3rem 5rem; display:grid; grid-template-columns: auto 1fr; gap:2.5rem; align-items:center;">
     <img class="bio-photo" src="https://paulywalnuts99.github.io/portfolio-website/images/paul-photo.jpg" alt="Paul Saturno">
@@ -391,7 +386,6 @@ footer p {
   </div>
 </div>
 
-<!-- PROJECTS -->
 <main>
   <div class="projects-label animate d3">Level Design Projects</div>
   <div class="projects-list">
@@ -453,10 +447,21 @@ footer p {
   document.querySelectorAll('.project-card').forEach(card => {
     const video = card.querySelector('.card-video');
     if (!video) return;
+
+    // Force muted programmatically — required for autoplay on GitHub Pages
+    video.muted = true;
+    video.setAttribute('muted', '');
+    video.setAttribute('playsinline', '');
+    video.load();
+
     card.addEventListener('mouseenter', () => {
       video.currentTime = 0;
-      video.play().catch(() => {});
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
     });
+
     card.addEventListener('mouseleave', () => {
       video.pause();
       video.currentTime = 0;
