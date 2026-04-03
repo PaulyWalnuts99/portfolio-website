@@ -214,34 +214,45 @@ main {
   min-height: 280px;
 }
 
+/* Thumbnail image */
 .card-thumb {
   width: 100%; height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.35s ease;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.35s ease, opacity 0.4s ease;
   filter: brightness(0.8) saturate(0.85);
   position: absolute;
   inset: 0;
   z-index: 1;
 }
 
-.card-video {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
+/* YouTube iframe hover video */
+.card-yt {
   position: absolute;
   inset: 0;
+  width: 100%; height: 100%;
   z-index: 2;
   opacity: 0;
   transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.card-yt iframe {
+  position: absolute;
+  /* oversized to hide YouTube controls/branding */
+  top: -10%; left: -10%;
+  width: 120%; height: 120%;
+  border: none;
+  pointer-events: none;
 }
 
 .project-card:hover .card-thumb {
   transform: scale(1.03);
-  filter: brightness(0.6) saturate(0.7);
+  filter: brightness(0.5) saturate(0.6);
+  opacity: 0.4;
 }
 
-.project-card:hover .card-video { opacity: 1; }
+.project-card:hover .card-yt { opacity: 1; }
 
 .card-overlay {
   position: absolute;
@@ -250,6 +261,7 @@ main {
   z-index: 3;
 }
 
+/* Card body */
 .card-body {
   padding: 2.5rem 3rem 2.5rem 2rem;
   display: flex;
@@ -390,10 +402,16 @@ footer p {
   <div class="projects-label animate d3">Level Design Projects</div>
   <div class="projects-list">
 
+    <!-- SORN -->
     <a href="sorn.html" class="project-card animate d3">
       <div class="card-media">
         <img class="card-thumb" src="sornimages/DesertAlphaSS2.png" alt="S.O.R.N">
-        <video class="card-video" muted loop playsinline><source src="https://www.youtube.com/embed/74vX9ciYD-o" type="video/mp4"></video>
+        <div class="card-yt" id="card-yt-1">
+          <iframe id="yt-sorn"
+            src="https://www.youtube.com/embed/74vX9ciYD-o?enablejsapi=1&mute=1&loop=1&playlist=74vX9ciYD-o&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&start=0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen></iframe>
+        </div>
         <div class="card-overlay"></div>
       </div>
       <div class="card-body">
@@ -405,10 +423,16 @@ footer p {
       </div>
     </a>
 
+    <!-- BOOTLEGGER BUST -->
     <a href="bootleggerbust.html" class="project-card animate d4">
       <div class="card-media">
         <img class="card-thumb" src="images/BossRoomPhoto1.png" alt="Bootlegger Bust">
-        <video class="card-video" muted loop playsinline><source src="https://www.youtube.com/embed/dBJo9-MJsc8" type="video/mp4"></video>
+        <div class="card-yt" id="card-yt-2">
+          <iframe id="yt-bootlegger"
+            src="https://www.youtube.com/embed/dBJo9-MJsc8?enablejsapi=1&mute=1&loop=1&playlist=dBJo9-MJsc8&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&start=0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen></iframe>
+        </div>
         <div class="card-overlay"></div>
       </div>
       <div class="card-body">
@@ -420,10 +444,16 @@ footer p {
       </div>
     </a>
 
+    <!-- CARNAGE -->
     <a href="carnage.html" class="project-card animate d5">
       <div class="card-media">
         <img class="card-thumb" src="carnageimages/CarnageHomeScreen.png" alt="Carnage">
-        <video class="card-video" muted loop playsinline><source src="videos/carnage-preview.mp4" type="video/mp4"></video>
+        <div class="card-yt" id="card-yt-3">
+          <iframe id="yt-carnage"
+            src="https://www.youtube.com/embed/CARNAGE_VIDEO_ID?enablejsapi=1&mute=1&loop=1&playlist=CARNAGE_VIDEO_ID&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&start=0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen></iframe>
+        </div>
         <div class="card-overlay"></div>
       </div>
       <div class="card-body">
@@ -444,30 +474,38 @@ footer p {
 </footer>
 
 <script>
-  document.querySelectorAll('.project-card').forEach(card => {
-    const video = card.querySelector('.card-video');
-    if (!video) return;
+  // Load YouTube IFrame API
+  const tag = document.createElement('script');
+  tag.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(tag);
 
-    // Force muted programmatically — required for autoplay on GitHub Pages
-    video.muted = true;
-    video.setAttribute('muted', '');
-    video.setAttribute('playsinline', '');
-    // reload after setting muted
-    video.load();
+  const cardPlayers = [];
 
-    card.addEventListener('mouseenter', () => {
-      video.currentTime = 0;
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {});
-      }
+  window.onYouTubeIframeAPIReady = function () {
+    const iframes = [
+      { id: 'yt-sorn',       card: document.querySelector('.project-card:nth-child(1)') },
+      { id: 'yt-bootlegger', card: document.querySelector('.project-card:nth-child(2)') },
+      { id: 'yt-carnage',    card: document.querySelector('.project-card:nth-child(3)') },
+    ];
+
+    iframes.forEach(({ id, card }) => {
+      const player = new YT.Player(id, {
+        events: {
+          onReady: (e) => { e.target.mute(); }
+        }
+      });
+      cardPlayers.push({ card, player });
     });
 
-    card.addEventListener('mouseleave', () => {
-      video.pause();
-      video.currentTime = 0;
+    cardPlayers.forEach(({ card, player }) => {
+      card.addEventListener('mouseenter', () => {
+        try { player.mute(); player.playVideo(); } catch(e) {}
+      });
+      card.addEventListener('mouseleave', () => {
+        try { player.pauseVideo(); player.seekTo(0); } catch(e) {}
+      });
     });
-  });
+  };
 </script>
 
 </body>

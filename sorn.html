@@ -952,7 +952,7 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
   window.onYouTubeIframeAPIReady = function () {
     document.querySelectorAll('.video-wrap[data-autoplay] iframe').forEach(iframe => {
       if (!iframe.id) iframe.id = 'yt_' + Math.random().toString(36).slice(2);
-      const player = new YT.Player(iframe.id, { events: { onReady: () => {} } });
+      const player = new YT.Player(iframe.id, { events: { onReady: (e) => { e.target.mute(); } } });
       players.push({ el: iframe.closest('.video-wrap'), player });
     });
     const observer = new IntersectionObserver((entries) => {
@@ -960,7 +960,7 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
         const match = players.find(p => p.el === entry.target);
         if (!match) return;
         try {
-          if (entry.isIntersecting) { match.player.playVideo(); }
+          if (entry.isIntersecting) { match.player.mute(); match.player.playVideo(); }
           else { match.player.pauseVideo(); match.player.seekTo(0); }
         } catch(e) {}
       });
