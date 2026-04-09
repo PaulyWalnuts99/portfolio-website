@@ -9,15 +9,15 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #0e0e0e;
-  --surface: #161616;
-  --border: rgba(255,255,255,0.25);
-  --accent: #d4813a;
-  --accent2: #d4813a;
-  --accent-dim: rgba(212,129,58,0.08);
+  --bg: #0e0a07;
+  --surface: #0d1119;
+  --border: rgba(245,200,66,0.25);
+  --gold: #f5c842;
+  --olive: #f5c842;
   --cyan: #a8e63d;
+  --gold-dim: rgba(245,200,66,0.08);
   --text: #ffffff;
-  --text-dim: #555048;
+  --text-dim: #ffffff;
   --white: #f0ece4;
 }
 
@@ -35,7 +35,7 @@ body {
 body::after {
   content: '';
   position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
   pointer-events: none; z-index: 100;
 }
 
@@ -43,367 +43,241 @@ body::after {
   position: fixed; top: -20%; left: 50%;
   transform: translateX(-50%);
   width: 900px; height: 500px;
-  background: radial-gradient(ellipse, rgba(212,129,58,0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(245,200,66,0.07) 0%, transparent 70%);
   pointer-events: none; z-index: 0;
 }
 
-/* ── Header ── */
 header {
   position: relative; z-index: 10;
   padding: 3rem 5rem 2.5rem;
   border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 2rem;
 }
 
 .site-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(2.2rem, 4vw, 3.5rem);
-  color: var(--white); letter-spacing: 5px; line-height: 1;
-  text-decoration: none; display: block;
+  color: var(--white); letter-spacing: 5px; line-height: 1; text-decoration: none;
 }
-
 .site-title::after {
-  content: ''; display: block;
-  width: 36px; height: 3px;
-  background: var(--accent); margin-top: 0.4rem;
+  content: ''; display: block; width: 36px; height: 3px;
+  background: var(--gold); margin-top: 0.4rem;
 }
-
 .site-subtitle {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1rem; font-weight: 600;
-  letter-spacing: 6px; text-transform: uppercase;
-  color: var(--accent); margin-top: 0.4rem;
+  font-size: 1rem; font-weight: 600; letter-spacing: 6px;
+  text-transform: uppercase; color: var(--gold); margin-top: 0.4rem;
 }
 
 nav ul { display: flex; list-style: none; gap: 0.25rem; }
-
 nav ul li a {
-  display: block; padding: 0.5rem 1.2rem;
-  text-decoration: none;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.75rem; font-weight: 700;
-  letter-spacing: 4px; text-transform: uppercase;
-  color: var(--cyan); border: 1px solid transparent;
-  transition: all 0.25s ease;
+  display: block; padding: 0.5rem 1.2rem; text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
+  font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--cyan); border: 1px solid rgba(168,230,61,0.2); transition: all 0.25s ease;
 }
+nav ul li a:hover { color: var(--white); border-color: rgba(168,230,61,0.4); background: var(--gold-dim); }
 
-nav ul li a:hover {
-  color: var(--white);
-  border-color: rgba(168,230,61,0.2);
-  background: var(--accent-dim);
-}
-
-/* ── Page hero ── */
 .page-hero {
   position: relative; z-index: 10;
-  padding: 5rem 5rem 3rem;
-  border-bottom: 1px solid var(--border);
+  padding: 5rem 5rem 3rem; border-bottom: 1px solid var(--border);
 }
-
 .breadcrumb {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1rem; font-weight: 700;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--cyan); margin-bottom: 1.5rem;
-  display: flex; align-items: center; gap: 0.75rem;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase; color: var(--cyan);
+  margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;
 }
-
-.breadcrumb a { color: var(--accent); text-decoration: none; }
-.breadcrumb a:hover { text-decoration: underline; }
-.breadcrumb span { color: var(--cyan); }
-
+.breadcrumb a { color: var(--gold); text-decoration: none; opacity: 0.7; }
+.breadcrumb a:hover { opacity: 1; }
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(4rem, 10vw, 9rem);
-  color: var(--white); letter-spacing: 4px; line-height: 0.9;
-  margin-bottom: 0.5rem;
+  font-size: clamp(5rem, 12vw, 11rem);
+  color: var(--white); letter-spacing: 4px; line-height: 0.9; margin-bottom: 0.5rem;
 }
-
 .hero-subtitle {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.2rem; font-weight: 700;
-  letter-spacing: 4px; text-transform: uppercase;
-  color: var(--cyan); margin-bottom: 3rem;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase; color: var(--cyan); margin-bottom: 3rem;
 }
 
-/* ── Info cards ── */
-.info-cards {
-  display: flex; gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border); overflow: hidden;
-}
-
-.info-card {
-  flex: 1; background: var(--surface);
-  padding: 1.5rem 2rem; text-align: center;
-}
-
-.info-card h3 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.85rem; font-weight: 700;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--cyan); margin-bottom: 0.5rem;
-}
-
-.info-card p {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem; letter-spacing: 2px;
-  color: var(--accent); margin: 0;
-}
-
-/* ── Main ── */
 main {
   position: relative; z-index: 10;
-  max-width: 1280px; margin: 0 auto;
-  padding: 0 5rem 6rem;
+  max-width: 1280px; margin: 0 auto; padding: 0 5rem 6rem;
 }
 
-/* ── Section divider ── */
 .section-divider {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  letter-spacing: 4px; color: var(--white);
-  padding: 4rem 0 2rem;
-  position: relative;
-  display: flex; align-items: center; gap: 1.5rem;
+  font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: 4px; color: var(--white);
+  padding: 4rem 0 2rem; position: relative; display: flex; align-items: center; gap: 1.5rem;
 }
-
 .section-divider::before {
-  content: ''; width: 4px;
-  position: absolute; left: -2rem; top: 0; height: 100%;
-  background: var(--accent); border-radius: 2px;
+  content: ''; width: 4px; height: 100%; background: var(--gold);
+  position: absolute; left: -2rem; top: 0; border-radius: 2px;
 }
+.section-divider span { color: var(--cyan); }
 
-.section-divider span { color: var(--accent); }
-
-/* ── Video ── */
 .video-container {
   position: relative; padding-bottom: 56.25%; height: 0;
   margin-bottom: 3rem; border: 1px solid var(--border); overflow: hidden;
 }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-.video-container iframe {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-}
-
-/* ── Problem sections ── */
-.problem-section {
-  padding: 3rem 0;
-  border-top: 1px solid var(--border);
-}
-
-.problem-container {
+/* OVERVIEW */
+.overview-grid {
   display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: start; padding-bottom: 2rem;
+}
+.overview-text h2 {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: 3px; color: var(--cyan); margin-bottom: 1rem;
+}
+.overview-text p { font-size: 1.1rem; line-height: 1.8; color: var(--text); margin-bottom: 1.5rem; }
+.overview-text ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.overview-text ul li {
+  font-size: 1.1rem; line-height: 1.7; color: var(--text);
+  padding-left: 1.2rem; border-left: 2px solid rgba(245,200,66,0.3);
+}
+.overview-text ul li strong { color: var(--gold); font-weight: 600; }
+
+.overview-maps .image-item img {
+  width: 100%; display: block;
+  height: auto !important; aspect-ratio: unset !important; object-fit: unset !important;
+  border: 1px solid var(--border); cursor: pointer;
+}
+
+/* BEAT SECTIONS */
+.beat-section { border-top: 1px solid var(--border); padding: 4rem 0; }
+.beat-header { margin-bottom: 3rem; }
+.beat-number {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 6px; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem;
+}
+.beat-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: 3px; color: var(--white); margin-bottom: 1rem;
+}
+.beat-subsection { margin-top: 3rem; }
+.beat-subsection-label {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 6px; text-transform: uppercase; color: var(--cyan);
+  margin-bottom: 1.2rem; padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(168,230,61,0.2);
+}
+
+/* Image grid */
+.image-grid { display: grid; gap: 1.5rem; }
+.image-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.image-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.image-item img {
+  width: 100%; display: block;
+  aspect-ratio: 16/9; object-fit: cover; cursor: pointer;
+}
+.image-caption {
+  margin-top: 0.6rem; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem; letter-spacing: 2px; color: var(--gold); line-height: 1.5;
+}
+
+/* Design Intent — text left, video right */
+.beat-two-col {
+  display: grid; grid-template-columns: 1fr 1.4fr;
   gap: 4rem; align-items: start;
 }
 
-.problem-container.reverse { direction: rtl; }
-.problem-container.reverse > * { direction: ltr; }
-
-.problem-text h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
-  letter-spacing: 3px; color: var(--cyan);
-  margin-bottom: 1rem;
+/* Blockout / Iteration subsections — bullets left, images right */
+.beat-sub-col {
+  display: grid; grid-template-columns: 1fr 2.3fr;
+  gap: 4rem; align-items: start;
 }
 
-.problem-text p {
-  font-size: 1.1rem; line-height: 1.8;
-  color: var(--text); margin-bottom: 1.2rem;
+/* Shared bullet list styles */
+.beat-text ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.beat-text ul li {
+  font-size: 1.05rem; line-height: 1.75; color: var(--text);
+  padding-left: 1.2rem; border-left: 2px solid rgba(245,200,66,0.2);
+}
+.beat-text ul li strong { color: var(--gold); font-weight: 600; }
+
+.beat-text ul li.beat-goal-item { border-left: 2px solid rgba(245,200,66,0.6); }
+.beat-text ul li.beat-goal-item strong { color: var(--gold); }
+
+.beat-text ul li.context-item { border-left: 2px solid rgba(240,236,228,0.35); }
+.beat-text ul li.context-item strong { color: var(--white); }
+
+.beat-text ul li.flaw-item { border-left: 2px solid rgba(245,200,66,0.5); }
+.beat-text ul li.flaw-item strong { color: var(--gold); }
+
+.beat-text ul li.solution-item { border-left: 2px solid rgba(168,230,61,0.6); }
+.beat-text ul li.solution-item strong { color: var(--cyan); }
+
+.beat-text p.summary {
+  font-size: 1.0rem; line-height: 1.8; color: rgba(255,255,255,0.7);
+  margin-top: 1.2rem; padding-left: 1.2rem;
+  border-left: 2px solid rgba(245,200,66,0.15);
+  font-style: italic;
 }
 
-.problem-text ul {
-  list-style: none; padding: 0;
-  display: flex; flex-direction: column; gap: 1rem;
-}
+.beat-text p { font-size: 1.05rem; line-height: 1.8; color: var(--text); margin-bottom: 1rem; }
 
-.problem-text ul li {
-  font-size: 1.1rem; line-height: 1.7; color: var(--text);
-  padding-left: 1.2rem;
-  border-left: 2px solid rgba(212,129,58,0.35);
-}
-
-.problem-text ul li strong { color: var(--accent); font-weight: 600; }
-
-/* ── Carousel ── */
-.problem-carousel { position: relative; }
-
-.carousel-images {
-  width: 100%; position: relative;
-  overflow: hidden; border: 1px solid var(--border);
-}
-
-.carousel-images img { width: 100%; display: none; height: 280px; object-fit: cover; transition: filter 0.3s ease; cursor: pointer; filter: brightness(0.9); }
-.carousel-images img.active { display: block; }
-.carousel-images img:hover { filter: brightness(1.05); }
-
-.carousel-controls {
-  position: absolute; top: 50%; left: 0; width: 100%;
-  display: flex; justify-content: space-between;
-  transform: translateY(-50%); pointer-events: none;
-}
-
-.carousel-controls button {
-  pointer-events: all;
-  background: rgba(14,14,14,0.85); color: var(--cyan);
-  border: 1px solid rgba(168,230,61,0.2);
-  padding: 0.6rem 1rem; cursor: pointer; font-size: 1.1rem;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.carousel-controls button:hover { background: var(--cyan); color: var(--bg); }
-
-.carousel-caption {
-  padding: 0.75rem 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border); border-top: none;
-}
-
-.carousel-caption p {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.85rem; letter-spacing: 2px;
-  color: var(--cyan);
-  text-align: center; margin: 0;
-}
-
-/* ── Level walkthrough ── */
-.level-walkthrough { padding: 0; }
-
-.level-step {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 4rem; align-items: center;
-  padding: 3rem 0; border-top: 1px solid var(--border);
-}
-
-.level-step:nth-child(even) .level-step-text { order: 2; }
-.level-step:nth-child(even) .level-step-video { order: 1; }
-
-.level-step-text ul {
-  list-style: none; padding: 0;
-  display: flex; flex-direction: column; gap: 1rem;
-}
-
-.level-step-text ul li {
-  font-size: 1.1rem; line-height: 1.7; color: var(--text);
-  padding-left: 1.2rem;
-  border-left: 2px solid rgba(212,129,58,0.4);
-}
-
-.level-step-text ul li strong { color: var(--accent); font-weight: 600; }
-
-.level-step-video h3 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem; letter-spacing: 3px;
-  color: var(--white); margin-bottom: 1rem;
-}
-
-/* Bigger responsive video */
 .video-wrap {
-  position: relative;
-  padding-bottom: 65%;
-  height: 0;
-  overflow: hidden;
-  border: 1px solid var(--border);
+  position: relative; padding-bottom: 75%; height: 0;
+  overflow: hidden; border: 1px solid var(--border); margin-bottom: 0.6rem;
+}
+.video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.video-label {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
+  letter-spacing: 2px; color: var(--gold);
 }
 
-.video-wrap iframe {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
-}
-
-/* ── Conclusion ── */
-.conclusion-intro {
-  font-size: 1.1rem; line-height: 1.8;
-  color: var(--text); max-width: 800px; margin-bottom: 2rem;
-}
-
-.conclusion-cols {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-  border-top: 1px solid var(--border); padding-top: 2rem;
-}
-
+/* CONCLUSION */
+.conclusion-section { border-top: 1px solid var(--border); padding-top: 4rem; }
+.conclusion-intro { font-size: 1.1rem; line-height: 1.8; color: var(--text); max-width: 800px; margin-bottom: 2rem; }
+.conclusion-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2rem; }
 .conclusion-col h4 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem; font-weight: 700;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--cyan); margin-bottom: 1.5rem;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase; color: var(--cyan); margin-bottom: 1.5rem;
 }
-
-.conclusion-col ul {
-  list-style: none; padding: 0;
-  display: flex; flex-direction: column; gap: 1rem;
-}
-
+.conclusion-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
 .conclusion-col ul li {
   font-size: 1.1rem; line-height: 1.7; color: var(--text);
   padding-left: 1.2rem; border-left: 2px solid var(--border);
 }
 
-/* ── Footer ── */
 footer {
-  position: relative; z-index: 10;
-  border-top: 1px solid var(--border);
-  padding: 2rem 5rem;
-  display: flex; align-items: center; justify-content: space-between;
+  position: relative; z-index: 10; border-top: 1px solid var(--border);
+  padding: 2rem 5rem; display: flex; align-items: center; justify-content: space-between;
 }
+footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); }
+.footer-mark { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 4px; }
 
-footer p {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--text-dim);
-}
-
-.footer-mark {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem; color: var(--accent); letter-spacing: 4px;
-}
-
-/* ── Lightbox ── */
+/* LIGHTBOX */
 .lightbox {
-  display: none; position: fixed; z-index: 9999;
-  inset: 0; background: rgba(0,0,0,0.92);
-  justify-content: center; align-items: center;
-  flex-direction: column; padding: 2rem;
+  display: none; position: fixed; z-index: 9999; inset: 0;
+  background: rgba(0,0,0,0.92); justify-content: center;
+  align-items: center; flex-direction: column; padding: 2rem;
 }
-
 .lightbox-img { max-width: 85%; max-height: 80vh; border: 1px solid var(--border); }
-
 .lightbox .caption {
-  margin-top: 1rem;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.85rem; letter-spacing: 2px;
-  color: var(--cyan);
+  margin-top: 1rem; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem; letter-spacing: 2px; color: var(--gold);
   text-align: center; max-width: 600px;
 }
-
 .lightbox .close {
-  position: absolute; top: 1.5rem; right: 2rem;
-  font-size: 2rem; color: var(--cyan); cursor: pointer;
-  font-family: 'Barlow Condensed', sans-serif; line-height: 1;
-  transition: color 0.2s ease;
+  position: absolute; top: 1.5rem; right: 2rem; font-size: 2rem;
+  color: var(--gold); cursor: pointer; font-family: 'Barlow Condensed', sans-serif;
+  line-height: 1; transition: color 0.2s ease;
 }
 .lightbox .close:hover { color: var(--white); }
-
-.lightbox-prev,
-.lightbox-next {
-  position: absolute; top: 50%;
-  transform: translateY(-50%);
-  background: rgba(14,14,14,0.85);
-  color: var(--cyan);
-  border: 1px solid rgba(168,230,61,0.3);
-  font-size: 1.5rem; padding: 1rem 1.2rem;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-  z-index: 10000; line-height: 1;
+.lightbox-prev, .lightbox-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(14,10,7,0.85); color: var(--gold);
+  border: 1px solid rgba(245,200,66,0.3); font-size: 1.5rem;
+  padding: 1rem 1.2rem; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease; z-index: 10000; line-height: 1;
 }
-
 .lightbox-prev { left: 1.5rem; }
 .lightbox-next { right: 1.5rem; }
+.lightbox-prev:hover, .lightbox-next:hover { background: var(--gold); color: var(--bg); }
 
-.lightbox-prev:hover,
-.lightbox-next:hover { background: var(--cyan); color: var(--bg); }
-
-/* ── Animations ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -412,14 +286,10 @@ footer p {
 .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; }
 .d3 { animation-delay: 0.28s; } .d4 { animation-delay: 0.42s; }
 
-/* ── Responsive ── */
 @media (max-width: 960px) {
   header, .page-hero, main, footer { padding-left: 2rem; padding-right: 2rem; }
-  .info-cards { flex-direction: column; }
-  .problem-container, .problem-container.reverse { grid-template-columns: 1fr; direction: ltr; }
-  .level-step { grid-template-columns: 1fr; }
-  .level-step:nth-child(even) .level-step-text,
-  .level-step:nth-child(even) .level-step-video { order: unset; }
+  .overview-grid, .beat-two-col, .beat-sub-col { grid-template-columns: 1fr; }
+  .image-grid.cols-2, .image-grid.cols-3 { grid-template-columns: 1fr; }
   .conclusion-cols { grid-template-columns: 1fr; }
   .section-divider::before { display: none; }
   .lightbox-prev { left: 0.5rem; }
@@ -428,12 +298,11 @@ footer p {
 </style>
 </head>
 <body>
-
 <div class="bg-glow"></div>
 
 <header>
   <div class="animate d1">
-    <a href="projects.html" class="site-title">Paul Saturno</a>
+    <a href="projects.html" class="site-title" style="display:block; text-decoration:none;">Paul Saturno</a>
     <p class="site-subtitle">Level Designer</p>
   </div>
   <nav class="animate d2">
@@ -450,331 +319,456 @@ footer p {
     <span>/</span>
     <span>Bootlegger Bust</span>
   </div>
-  <h1 class="hero-title">Bootlegger<br>Bust</h1>
-  <p class="hero-subtitle">FPS Level &nbsp;·&nbsp; Prohibition-Era Warehouse &nbsp;·&nbsp; Level Designer</p>
-  <div class="info-cards animate d3">
-    <div class="info-card"><h3>Engine</h3><p>Unreal Engine 5</p></div>
-    <div class="info-card"><h3>Team Size</h3><p>6 People</p></div>
-    <div class="info-card"><h3>Duration</h3><p>6 Weeks</p></div>
-    <div class="info-card"><h3>Role</h3><p>Level Designer</p></div>
-  </div>
+  <h1 class="hero-title">Bootlegger Bust</h1>
+  <p class="hero-subtitle">FPS Level &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; Level Designer &nbsp;·&nbsp; 6 Weeks</p>
 </div>
 
 <main>
 
-  <!-- Hero Video -->
-  <h2 class="section-divider">Hero <span>Video</span></h2>
+  <h2 class="section-divider">Full <span>Playthrough</span></h2>
   <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/Iyv62ncrWZ8" title="Bootlegger Bust" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/Iyv62ncrWZ8" title="Bootlegger Bust Full Playthrough" frameborder="0" allowfullscreen></iframe>
   </div>
 
-  <!-- Level Goals -->
-  <h2 class="section-divider">Level Goals <span>&amp; Overview</span></h2>
-  <section class="problem-section" style="border-top:none; padding-top:0;">
-    <div class="problem-container reverse">
-      <div class="problem-carousel">
-        <div class="carousel-images">
-          <img src="images/BossRoomPhoto1.png" alt="Final boss room" class="active lightbox-trigger" data-caption="Final boss room">
-          <img src="images/BossRoomPhoto4.png" alt="In-game view of final boss room" class="lightbox-trigger" data-caption="In-game view of final boss room">
-          <img src="images/MiniBossAreaPhoto2.png" alt="Mini boss encounter room" class="lightbox-trigger" data-caption="Mini boss encounter room set dressing">
-          <img src="images/WarehouseArea2Photo3.png" alt="Speakeasy" class="lightbox-trigger" data-caption="Speakeasy">
-        </div>
-        <div class="carousel-controls">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
-        </div>
-        <div class="carousel-caption"><p>Final boss room set dressing</p></div>
-      </div>
-      <div class="problem-text">
+  <h2 class="section-divider">Level <span>Overview</span></h2>
+  <section style="padding-bottom: 2rem;">
+    <div class="overview-grid">
+      <div class="overview-text">
         <h2>Overview</h2>
-        <p>Bootlegger Bust is a level set in a Prohibition-era warehouse, designed to support the time period through environmental layout and visual structure. The goal was to create a readable warehouse space with clearly defined areas that guide player movement and support gameplay.</p>
-        <p><strong style="color:var(--cyan); font-size:clamp(1.8rem, 3vw, 2.5rem); letter-spacing:3px; font-family:'Bebas Neue',sans-serif; text-transform:uppercase; font-weight:700;">Level Goals</strong></p>
+        <p>Bootlegger Bust is a first-person shooter level set inside a Prohibition-era warehouse doubling as a mafia hub. The level was designed to support the time period through environmental layout and visual storytelling, guiding the player through a series of escalating combat encounters across distinct, clearly defined spaces.</p>
+        <p><strong style="color:var(--cyan); font-size:clamp(1.4rem, 2.5vw, 2rem); letter-spacing:3px; font-family:'Bebas Neue',sans-serif;">Level Goals</strong></p>
         <ul>
-          <li><strong>Design</strong> a warehouse that reflected a Prohibition-era industrial setting while remaining readable for gameplay</li>
-          <li><strong>Organize</strong> distinct areas within the warehouse to help players understand space, progression, and purpose at a glance</li>
-          <li><strong>Support</strong> gameplay by ensuring room sizes and sightlines were consistent and supported player flow</li>
+          <li><strong>Design</strong> a warehouse that reflected a Prohibition-era industrial setting while remaining readable and navigable for gameplay</li>
+          <li><strong>Organize</strong> distinct areas to help players understand space, progression, and purpose at a glance</li>
+          <li><strong>Support</strong> gameplay by ensuring room sizes, sightlines, and encounter pacing supported natural player flow</li>
         </ul>
+      </div>
+      <div class="overview-maps" style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-item">
+          <img src="images/Bootlegger-Bust-Layout-Concept.png.png" alt="Level layout concept" class="lightbox-trigger">
+          <p class="image-caption">Initial level layout concept — room structure and flow mapped before blockout</p>
+        </div>
+        <div class="image-item">
+          <img src="images/Floors-1-and-2-Whitebox.png" alt="Full level blockout" class="lightbox-trigger">
+          <p class="image-caption">Full warehouse blockout — all floors and rooms laid out before set dressing</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Level Walkthrough -->
-  <h2 class="section-divider">Level <span>Walkthrough</span></h2>
-  <section class="level-walkthrough">
+  <h2 class="section-divider">Beat <span>Breakdown</span></h2>
 
-    <div class="level-step">
-      <div class="level-step-text">
-        <ul>
-          <li><strong>Goal:</strong> Introduce the level and player objective through a focused garage space that establishes tone and intent</li>
-          <li><strong>Design action 1:</strong> Use minimal, moody lighting and a compact layout to guide player attention toward objectives and on-screen widgets</li>
-          <li><strong>Design action 2:</strong> Design the garage as a tight but purposeful space that sets expectations for more complex areas later in the level</li>
-        </ul>
-      </div>
-      <div class="level-step-video">
-        <h3>Beat 1: Starting Garage</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/HsqFLAL1f0M" frameborder="0" allowfullscreen loading="lazy"></iframe>
-        </div>
-      </div>
+  <!-- BEAT 1 -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 01</p>
+      <h2 class="beat-title">Starting Garage</h2>
     </div>
-
-    <div class="level-step">
-      <div class="level-step-text">
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
         <ul>
-          <li><strong>Goal:</strong> Establish context and immersion with the city street outside the warehouse</li>
-          <li><strong>Design action 1:</strong> Introduce framing techniques to guide the player visually toward the warehouse entrance</li>
-          <li><strong>Design action 2:</strong> Use surrounding streets and props to intuitively direct player movement toward the objective</li>
+          <li class="beat-goal-item"><strong>Goal:</strong> Introduce the level and player objective through a focused garage space that establishes tone and intent</li>
+          <li><strong>Design Action 1:</strong> Used minimal, moody lighting and a compact layout to guide player attention toward objectives and on-screen UI</li>
+          <li><strong>Design Action 2:</strong> Designed the garage as a tight but purposeful space that sets expectations for the more complex areas ahead</li>
         </ul>
       </div>
-      <div class="level-step-video">
-        <h3>Beat 2: City Streets</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/Ds8sjtQ8F9Y" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="https://www.youtube.com/embed/HsqFLAL1f0M?enablejsapi=1&mute=1" title="Beat 1 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
         </div>
-      </div>
-    </div>
-
-    <div class="level-step">
-      <div class="level-step-text">
-        <ul>
-          <li><strong>Goal:</strong> Introduce the first combat area and support player engagement</li>
-          <li><strong>Design action 1:</strong> Provide multiple cover points and clear sightlines for combat encounters</li>
-          <li><strong>Design action 2:</strong> Use set dressing and props to create an authentic industrial environment without blocking navigation</li>
-        </ul>
-      </div>
-      <div class="level-step-video">
-        <h3>Beat 3: Warehouse Entrance</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/0voWmB8Wdio" frameborder="0" allowfullscreen loading="lazy"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <div class="level-step">
-      <div class="level-step-text">
-        <ul>
-          <li><strong>Goal:</strong> Expand the combat space while establishing a distinct tone and atmosphere</li>
-          <li><strong>Design action 1:</strong> Use warm yellow-orange lighting and moody tones to create a vintage, immersive feel</li>
-          <li><strong>Design action 2:</strong> Incorporate set dressing and props to convey a Prohibition-era hideout while maintaining clear readability</li>
-        </ul>
-      </div>
-      <div class="level-step-video">
-        <h3>Beat 4: The Speakeasy</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/Yvd0ZfnVENM" frameborder="0" allowfullscreen loading="lazy"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <div class="level-step">
-      <div class="level-step-text">
-        <ul>
-          <li><strong>Goal:</strong> Create a focused one-on-one encounter that contrasts the larger combat spaces</li>
-          <li><strong>Design action 1:</strong> Use red lighting and dramatic props to heighten tension and reinforce a confrontational tone</li>
-          <li><strong>Design action 2:</strong> Provide a brief slowdown connected to the back storage area to let the player reset before the final stretch</li>
-        </ul>
-      </div>
-      <div class="level-step-video">
-        <h3>Beat 5: The Office</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/WYLaKA8aZOo" frameborder="0" allowfullscreen loading="lazy"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <div class="level-step">
-      <div class="level-step-text">
-        <ul>
-          <li><strong>Goal:</strong> Introduce a tighter, darker, and more linear space to shift pacing</li>
-          <li><strong>Design action 1:</strong> Use minimal lighting and dense shelving to create tension and anticipation</li>
-          <li><strong>Design action 2:</strong> Apply breadcrumbing through lighting to intuitively guide player movement</li>
-        </ul>
-      </div>
-      <div class="level-step-video">
-        <h3>Beat 6: Storage Room</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/ldL07UvCNI4" frameborder="0" allowfullscreen loading="lazy"></iframe>
-        </div>
-      </div>
-    </div>
-
-    <div class="level-step">
-      <div class="level-step-text">
-        <ul>
-          <li><strong>Goal:</strong> Deliver the final showdown and culminate the level's escalation in difficulty and atmosphere</li>
-          <li><strong>Design action 1:</strong> Incorporate a boss health bar to make this encounter feel unique and give the player clear combat feedback</li>
-          <li><strong>Design action 2:</strong> Include a key drop mechanic to unlock the door outside the room, linking the encounter to level progression</li>
-        </ul>
-      </div>
-      <div class="level-step-video">
-        <h3>Beat 7: Final Boss</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/PfhO7UniWWw" frameborder="0" allowfullscreen loading="lazy"></iframe>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- The Process -->
-  <h2 class="section-divider">The <span>Process</span></h2>
-
-  <section class="problem-section" style="border-top:none; padding-top:0;">
-    <div class="problem-container">
-      <div class="problem-text">
-        <h2>Research &amp; References</h2>
-        <ul>
-          <li><strong>Research &amp; Ideation:</strong> Referenced Prohibition-era photos and similar game levels to understand how to convey setting, flow, and combat spaces effectively</li>
-          <li><strong>Reference Gathering:</strong> Collected images of warehouses, streets, props, lighting setups, and cinematic inspiration to inform environmental design</li>
-          <li><strong>Mapping &amp; Organization:</strong> Mapped out room layouts, points of interest, and encounter flow to plan the overall player journey</li>
-        </ul>
-      </div>
-      <div class="problem-carousel">
-        <div class="carousel-images">
-          <img src="images/Bootlegger-Bust-Layout-Concept.png.png" alt="Initial map for the level" class="active lightbox-trigger" data-caption="Initial map for the level">
-          <img src="images/Mafia-Room-Inspo-2.png.jpg" alt="Mafia room inspiration 1" class="lightbox-trigger" data-caption="Mafia room inspiration image 1">
-          <img src="images/Mafia-Room-Inspo-1.png.jpg" alt="Mafia room inspiration 2" class="lightbox-trigger" data-caption="Mafia room inspiration image 2">
-        </div>
-        <div class="carousel-controls">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
-        </div>
-        <div class="carousel-caption"><p>Initial level map concept</p></div>
+        <p class="video-label">Playthrough — Starting Garage</p>
       </div>
     </div>
   </section>
 
-  <section class="problem-section">
-    <div class="problem-container reverse">
-      <div class="problem-carousel">
-        <div class="carousel-images">
-          <img src="images/First-Floor-of-Warehouse-Whitebox.png.png" alt="First blockout of room 1" class="active lightbox-trigger" data-caption="First blockout of room 1">
-          <img src="images/Second-Floor-of-Warehouse-Whitebox.png.png" alt="First blockout of second floor" class="lightbox-trigger" data-caption="First blockout of second floor — original boss fight room">
-          <img src="images/Floors-1-and-2-Whitebox.png" alt="Initial set dressing and cover" class="lightbox-trigger" data-caption="Initial set dressing and cover placement for the entire level">
-          <img src="images/Essential-Art-Props-Whitebox.png.png" alt="Props and cover placement" class="lightbox-trigger" data-caption="Props and cover placement">
-        </div>
-        <div class="carousel-controls">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
-        </div>
-        <div class="carousel-caption"><p>First blockout of the warehouse entrance</p></div>
-      </div>
-      <div class="problem-text">
-        <h2>Initial Blockout</h2>
-        <p>The initial blockouts were designed to establish the warehouse layout and support player engagement throughout the level.</p>
+  <!-- BEAT 2 -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 02</p>
+      <h2 class="beat-title">City Streets</h2>
+    </div>
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
         <ul>
-          <li><strong>Supported Player Mechanics:</strong> Created blockouts that provided spaces for combat, cover usage, and navigation, reinforcing core gameplay flow within the warehouse</li>
-          <li><strong>Visual and Tactical Clarity:</strong> Arranged key architectural features, doors, and props to clearly communicate paths, cover, and engagement areas</li>
-          <li><strong>Contextualized Playspaces:</strong> Designed each room and corridor to feel intentional and connected to Prohibition-era reference imagery</li>
+          <li class="beat-goal-item"><strong>Goal:</strong> Establish context and immersion with the city street outside the warehouse before combat begins</li>
+          <li><strong>Design Action 1:</strong> Used framing techniques — surrounding architecture and props — to naturally draw the player's eye toward the warehouse entrance</li>
+          <li><strong>Design Action 2:</strong> Designed the street layout so that exiting the car places the warehouse entrance directly in the player's sightline, removing any navigation ambiguity</li>
         </ul>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="https://www.youtube.com/embed/Ds8sjtQ8F9Y?enablejsapi=1&mute=1" title="Beat 2 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — City Streets</p>
       </div>
     </div>
   </section>
 
-  <section class="problem-section">
-    <div class="problem-container reverse">
-      <div class="problem-carousel">
-        <div class="carousel-images">
-          <img src="images/StartingGaragePhoto4.png" alt="Final starting garage" class="active lightbox-trigger" data-caption="Final starting garage design">
-          <img src="images/CityStreetsPhoto8.png" alt="Final city streets" class="lightbox-trigger" data-caption="Final city streets design">
-          <img src="images/WarehouseArea1Photo2.png" alt="Final warehouse entrance" class="lightbox-trigger" data-caption="Final warehouse entrance design">
-          <img src="images/WarehouseArea2Photo3.png" alt="Final Speakeasy" class="lightbox-trigger" data-caption="Final Speakeasy design">
-          <img src="images/MiniBossAreaPhoto2.png" alt="Mini-boss area" class="lightbox-trigger" data-caption="Mini-boss area design">
-          <img src="images/BossRoomPhoto8.png" alt="Final boss room" class="lightbox-trigger" data-caption="Final boss room design">
-        </div>
-        <div class="carousel-controls">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
-        </div>
-        <div class="carousel-caption"><p>Final starting garage design</p></div>
-      </div>
-      <div class="problem-text">
-        <h2>Final Design</h2>
-        <p>With a tight 6-week production window, the level came together as a fully set-dressed, combat-ready Prohibition-era warehouse with clearly defined spaces, guided player flow, and a cohesive visual identity.</p>
+  <!-- BEAT 3 -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 03</p>
+      <h2 class="beat-title">Warehouse Entrance</h2>
+    </div>
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
         <ul>
-          <li><strong>Polished Set Dressing:</strong> Each room was dressed with period-accurate props and lighting to reinforce the Prohibition-era setting while maintaining clear readability for gameplay</li>
-          <li><strong>Refined Combat Spaces:</strong> Encounter areas were designed with deliberate cover placement, sightlines, and enemy positioning to support engaging and fair combat</li>
-          <li><strong>Clear Player Guidance:</strong> Visual cues like lighting, framing, and architectural direction were used throughout to naturally guide players forward without explicit signposting</li>
+          <li class="beat-goal-item"><strong>Goal:</strong> Introduce the first combat encounter in an industrial space that feels authentic and readable</li>
+          <li><strong>Design Action 1:</strong> Provided multiple cover points and clear sightlines to support combat without forcing the player into a single approach</li>
+          <li><strong>Design Action 2:</strong> Used period-accurate props and set dressing to reinforce the Prohibition-era industrial setting without obstructing navigation</li>
         </ul>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="https://www.youtube.com/embed/0voWmB8Wdio?enablejsapi=1&mute=1" title="Beat 3 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — Warehouse Entrance</p>
       </div>
     </div>
   </section>
 
-  <!-- Design Challenges -->
+  <!-- BEAT 4 -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 04</p>
+      <h2 class="beat-title">The Speakeasy</h2>
+    </div>
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
+        <ul>
+          <li class="beat-goal-item"><strong>Goal:</strong> Expand the combat space while establishing a distinct atmosphere that communicates the mafia hub identity</li>
+          <li><strong>Design Action 1:</strong> Used warm amber lighting and vintage props to create an immersive Prohibition-era hideout feel distinct from the industrial entrance</li>
+          <li><strong>Design Action 2:</strong> Incorporated set dressing as both atmosphere and spatial structure — furniture and fixtures naturally guide movement while reinforcing the setting</li>
+        </ul>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="https://www.youtube.com/embed/Yvd0ZfnVENM?enablejsapi=1&mute=1" title="Beat 4 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — The Speakeasy</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEAT 5 -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 05</p>
+      <h2 class="beat-title">The Office</h2>
+    </div>
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
+        <ul>
+          <li class="beat-goal-item"><strong>Goal:</strong> Create a focused mini-boss encounter that contrasts the larger combat spaces and heightens tension before the final stretch</li>
+          <li><strong>Design Action 1:</strong> Used red lighting and dramatic props to reinforce a confrontational tone and signal that this encounter is distinct from prior rooms</li>
+          <li><strong>Design Action 2:</strong> Connected the office to a back storage corridor — giving the player a reset moment before the final escalation</li>
+        </ul>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="https://www.youtube.com/embed/WYLaKA8aZOo?enablejsapi=1&mute=1" title="Beat 5 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — The Office</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEAT 6 -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 06</p>
+      <h2 class="beat-title">Storage Room</h2>
+    </div>
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
+        <ul>
+          <li class="beat-goal-item"><strong>Goal:</strong> Shift pacing with a tighter, darker, more linear space that creates tension and anticipation before the final encounter</li>
+          <li><strong>Design Action 1:</strong> Used minimal lighting and dense shelving to narrow the player's sightlines and build dread through constriction</li>
+          <li><strong>Design Action 2:</strong> Applied breadcrumbing through targeted light sources to guide movement without explicit signposting</li>
+        </ul>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="https://www.youtube.com/embed/ldL07UvCNI4?enablejsapi=1&mute=1" title="Beat 6 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — Storage Room</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEAT 7 -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 07</p>
+      <h2 class="beat-title">Final Boss</h2>
+    </div>
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
+        <ul>
+          <li class="beat-goal-item"><strong>Goal:</strong> Deliver the climactic final showdown in a space that feels earned — visually distinct and mechanically purposeful</li>
+          <li><strong>Design Action 1:</strong> Added a boss health bar to make this encounter feel unique and give the player clear, readable combat feedback</li>
+          <li><strong>Design Action 2:</strong> Implemented a key drop mechanic that unlocks the door out of the room — directly tying the encounter outcome to level progression</li>
+        </ul>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="https://www.youtube.com/embed/PfhO7UniWWw?enablejsapi=1&mute=1" title="Beat 7 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — Final Boss</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN CHALLENGES -->
   <h2 class="section-divider">Design <span>Challenges</span></h2>
 
-  <section class="problem-section" style="border-top:none; padding-top:0;">
-    <div class="problem-container">
-      <div class="problem-text">
-        <h2><span style="color:var(--white);">Problem 1: Unclear Critical Path</span></h2>
-        <ul>
-          <li><strong>Goal:</strong> Create a warehouse environment that guides the player naturally through exploration and combat</li>
-          <li><strong>Problem:</strong> Early layouts made it unclear where players were supposed to go, and the critical path was tedious to follow</li>
-          <li><strong>Solution:</strong> Ditched ladders and unclear doors, replacing them with a more linear and intuitive path design using clear visual cues like stairs</li>
-        </ul>
+  <!-- CHALLENGE 1: UNCLEAR CRITICAL PATH -->
+  <section class="beat-section" style="border-top:none; padding-top:0;">
+    <div class="beat-header">
+      <p class="beat-number">Challenge 01</p>
+      <h2 class="beat-title">Unclear Critical Path</h2>
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Initial Blockout &amp; Flaws</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="beat-goal-item"><strong>Design Goal:</strong> Create a warehouse layout where the critical path is always readable — players should always know where to go next without backtracking or confusion</li>
+            <li class="flaw-item"><strong>Flaw 1:</strong> Early layouts used ladders and ambiguous doors to connect rooms — players had no clear indication of where to go next and frequently got lost</li>
+            <li class="flaw-item"><strong>Flaw 2:</strong> Much of the level's runtime was spent traversing between sparsely populated rooms, making the critical path feel tedious rather than engaging</li>
+          </ul>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+          <div class="image-grid cols-2">
+            <div class="image-item">
+              <img src="images/Essential-Art-Props-WhiteboxCopy.png" alt="Unclear path blockout" class="lightbox-trigger">
+              <p class="image-caption">Blockout 1 — ambiguous entry point, no clear path forward from the warehouse entrance</p>
+            </div>
+            <div class="image-item">
+              <img src="images/Floors-1-and-2-WhiteboxCopy.PNG" alt="Tedious traversal blockout" class="lightbox-trigger">
+              <p class="image-caption">Blockout 2 — level too short with traversal-heavy gaps between combat beats</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="problem-carousel">
-        <div class="carousel-images">
-          <img src="images/Essential-Art-Props-WhiteboxCopy.png" alt="Unclear progression through the warehouse entrance" class="active lightbox-trigger" data-caption="The first room's initial layout did not make it clear where to progress">
-          <img src="images/Floors-1-and-2-WhiteboxCopy.PNG" alt="Too short of a level with tedious traversal" class="lightbox-trigger" data-caption="Level was too short and much of it was spent traversing between rooms — did not support design goals">
-          <img src="images/Final-Hangout-Area-1Copy.png" alt="New mafia speakeasy" class="lightbox-trigger" data-caption="Designed a mafia speakeasy with a clear visual cue (stairs) showing a path forward">
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Iteration &amp; Solutions</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="solution-item"><strong>Solution 1:</strong> Removed ladders and unclear doors entirely — redesigned the layout around a more linear path using stairs as the primary vertical connection, giving players an immediately readable direction forward</li>
+            <li class="solution-item"><strong>Solution 2:</strong> Replaced sparse traversal rooms with the mafia speakeasy — a fully set-dressed combat space that gave the critical path purpose and visual interest at every step</li>
+          </ul>
+          <p class="summary">Both changes addressed the same root problem — the space wasn't communicating direction. Stairs read as forward progress in a way ladders never could, and replacing dead space with a meaningful room kept the player engaged rather than confused</p>
         </div>
-        <div class="carousel-controls">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+          <div class="image-grid cols-2">
+            <div class="image-item">
+              <img src="images/Final-Hangout-Area-1Copy.png" alt="Speakeasy iteration" class="lightbox-trigger">
+              <p class="image-caption">Mafia speakeasy replaces the ambiguous traversal room — stairs immediately visible as the path forward</p>
+            </div>
+            <div class="image-item">
+              <img src="images/WarehouseArea2Photo3.png" alt="Final speakeasy" class="lightbox-trigger">
+              <p class="image-caption">Final speakeasy — a distinct, purposeful space that rewards exploration and guides progression</p>
+            </div>
+          </div>
         </div>
-        <div class="carousel-caption"><p>Unclear progression in the warehouse entrance</p></div>
       </div>
     </div>
   </section>
 
-  <section class="problem-section">
-    <div class="problem-container reverse">
-      <div class="problem-carousel">
-        <div class="carousel-images">
-          <img src="images/Floors-1-and-2-Whitebox.png" alt="Original level — only three combat beats" class="active lightbox-trigger" data-caption="The original level was just three quick combat beats with no context">
-          <img src="images/StartingGaragePhoto6.png" alt="Starting garage added" class="lightbox-trigger" data-caption="Added a starting garage with a radio and car to provide mission context">
-          <img src="images/CityStreetsPhoto7.png" alt="City streets added" class="lightbox-trigger" data-caption="Added a lively city where exiting the car naturally frames the warehouse entrance">
-          <img src="images/WarehouseArea1Photo4.png" alt="Framed mini-boss encounter" class="lightbox-trigger" data-caption="Framed mini-boss encounter added to guide the player and establish clear direction">
-          <img src="images/StorageAreaPhoto1.png" alt="Back storage room added" class="lightbox-trigger" data-caption="Added a dark back storage room after the mini-boss to shift tone and vary pacing">
-          <img src="images/BossRoomPhoto5.png" alt="Final boss room added" class="lightbox-trigger" data-caption="Added an extravagant final boss room as the level's climactic encounter">
+  <!-- CHALLENGE 2: LITTLE GAMEPLAY VARIANCE -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Challenge 02</p>
+      <h2 class="beat-title">Little Gameplay Variance</h2>
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Initial Blockout &amp; Flaws</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="beat-goal-item"><strong>Design Goal:</strong> Create a level with clearly differentiated beats — each space should feel tonally and mechanically distinct, giving the player a sense of escalation and variety across the experience</li>
+            <li class="flaw-item"><strong>Flaw 1:</strong> Every combat room in the original layout was tonally identical — same lighting, same spatial feel, same enemy density — leaving no sense of progression or change in atmosphere</li>
+            <li class="flaw-item"><strong>Flaw 2:</strong> Without varied pacing beats there was no emotional arc — the level felt flat from start to finish with no moment of relief, tension, or climax to differentiate the experience</li>
+          </ul>
         </div>
-        <div class="carousel-controls">
-          <button class="prev">&#10094;</button>
-          <button class="next">&#10095;</button>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+          <div class="image-grid cols-2">
+            <div class="image-item">
+              <img src="images/First-Floor-of-Warehouse-Whitebox.png.png" alt="Original identical combat rooms" class="lightbox-trigger">
+              <p class="image-caption">Blockout 1 — all rooms read the same with no tonal variation or spatial identity</p>
+            </div>
+            <div class="image-item">
+              <img src="images/Essential-Art-Props-Whitebox.png.png" alt="Cover-only blockout" class="lightbox-trigger">
+              <p class="image-caption">Blockout 2 — cover placement only, no atmospheric differentiation between spaces</p>
+            </div>
+          </div>
         </div>
-        <div class="carousel-caption"><p>Original level — only three combat beats</p></div>
       </div>
-      <div class="problem-text">
-        <h2><span style="color:var(--white);">Problem 2: Level Too Short With Little Gameplay Variance</span></h2>
-        <ul>
-          <li><strong>Goal:</strong> Create a level that provided 5–8 minutes of engaging gameplay with varied beats</li>
-          <li><strong>Problem:</strong> The original layout was far too short, consisting of only three brief gameplay beats</li>
-          <li><strong>Solution:</strong> Added a starting garage and city for slower contextual buildup, plus a back storage room and final boss to increase intensity and differentiate gameplay beats</li>
-        </ul>
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Iteration &amp; Solutions</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="solution-item"><strong>Solution 1:</strong> Designed each space with a distinct visual identity — warm amber in the speakeasy, red in the office, near-dark in the storage corridor — so every room communicates its own tone at a glance</li>
+            <li class="solution-item"><strong>Solution 2:</strong> Structured the level as alternating combat and low-pressure beats — garage, street, warehouse, speakeasy, office, storage, boss — creating a rhythm that keeps the player engaged and builds toward a clear climax</li>
+          </ul>
+          <p class="summary">Giving each space a distinct identity and varying the pacing between beats transformed the level from a series of identical rooms into a journey with a real arc — the player could feel the shift in tone as they progressed</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+          <div class="image-grid cols-2">
+            <div class="image-item">
+              <img src="images/WarehouseArea2Photo3.png" alt="Speakeasy warm lighting" class="lightbox-trigger">
+              <p class="image-caption">Speakeasy — warm amber lighting and vintage props establish a distinct identity from the industrial entrance</p>
+            </div>
+            <div class="image-item">
+              <img src="images/StorageAreaPhoto1.png" alt="Storage room dark contrast" class="lightbox-trigger">
+              <p class="image-caption">Storage corridor — near-dark pacing shift contrasts the speakeasy and builds tension before the final boss</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Conclusion -->
+  <!-- CHALLENGE 3: LEVEL TOO SHORT -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Challenge 03</p>
+      <h2 class="beat-title">Level Too Short</h2>
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Initial Blockout &amp; Flaws</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="beat-goal-item"><strong>Design Goal:</strong> Deliver at least 5–8 minutes of engaging gameplay — enough time to establish setting, build tension, and deliver a satisfying climax</li>
+            <li class="flaw-item"><strong>Flaw 1:</strong> The original level was only three brief combat rooms — the entire experience lasted under two minutes with no setup or payoff</li>
+            <li class="flaw-item"><strong>Flaw 2:</strong> The player was dropped directly into combat with zero contextual buildup — no sense of where they were, why they were there, or what they were working toward</li>
+          </ul>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+          <div class="image-grid cols-2">
+            <div class="image-item">
+              <img src="images/Second-Floor-of-Warehouse-Whitebox.png.png" alt="Original short layout" class="lightbox-trigger">
+              <p class="image-caption">Blockout 1 — original two-floor layout: three rooms, no context, no climax</p>
+            </div>
+            <div class="image-item">
+              <img src="images/Floors-1-and-2-Whitebox.png" alt="Full whitebox overview" class="lightbox-trigger">
+              <p class="image-caption">Blockout 2 — full whitebox overview showing how sparse the original level was</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="beat-subsection">
+      <div class="beat-subsection-label">Iteration &amp; Solutions</div>
+      <div class="beat-sub-col">
+        <div class="beat-text">
+          <ul>
+            <li class="solution-item"><strong>Solution 1:</strong> Added a starting garage and city street section at the front — slower, context-setting beats that establish the player's role and location before any combat begins</li>
+            <li class="solution-item"><strong>Solution 2:</strong> Added a back storage corridor and a fully set-dressed final boss room at the end — extending the level's back half and giving it a proper climactic endpoint that the original three-room layout completely lacked</li>
+          </ul>
+          <p class="summary">Expanding both ends of the level brought it to a proper length while also solving the buildup and payoff problem. The front half now earns the combat and the back half rewards it — the level finally had a beginning, middle, and end</p>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+          <div class="image-grid cols-2">
+            <div class="image-item">
+              <img src="images/StartingGaragePhoto6.png" alt="Starting garage added" class="lightbox-trigger">
+              <p class="image-caption">Starting garage — mission context established before the player reaches combat</p>
+            </div>
+            <div class="image-item">
+              <img src="images/CityStreetsPhoto7.png" alt="City streets added" class="lightbox-trigger">
+              <p class="image-caption">City streets — frames the warehouse entrance and builds atmosphere before the first encounter</p>
+            </div>
+          </div>
+          <div class="image-grid cols-2">
+            <div class="image-item">
+              <img src="images/MiniBossAreaPhoto2.png" alt="Mini boss area added" class="lightbox-trigger">
+              <p class="image-caption">Mini-boss encounter — added to create a mid-level climax and guide player forward</p>
+            </div>
+            <div class="image-item">
+              <img src="images/BossRoomPhoto5.png" alt="Final boss room added" class="lightbox-trigger">
+              <p class="image-caption">Final boss room — extravagant climax that earns the level's full escalation arc</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS & DOCUMENTATION -->
+  <h2 class="section-divider">Process <span>&amp; References</span></h2>
+  <section style="padding-bottom: 2rem;">
+
+    <div style="border-top: 1px solid var(--border); padding: 3rem 0 0;">
+      <div class="beat-subsection-label">Research &amp; References</div>
+      <div class="beat-two-col">
+        <div class="beat-text">
+          <p>Before blockout work began, reference gathering helped define the visual and spatial language of the level.</p>
+          <ul>
+            <li><strong>Referenced</strong> Prohibition-era photographs and similar game levels to understand how to convey setting, flow, and combat spaces effectively</li>
+            <li><strong>Collected</strong> images of warehouses, streets, props, lighting setups, and cinematic reference to inform the visual identity of each room</li>
+            <li><strong>Mapped out</strong> room layouts, points of interest, and encounter flow to plan the overall player journey before starting blockout work</li>
+          </ul>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.5rem; align-self:start;">
+          <div class="image-item">
+            <img src="images/Mafia-Room-Inspo-2.png.jpg" alt="Mafia room inspiration" class="lightbox-trigger" style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; cursor:pointer;">
+            <p class="image-caption">Mafia room reference — visual tone and prop language for the speakeasy and boss room</p>
+          </div>
+          <div class="image-item">
+            <img src="images/Bootlegger-Bust-Layout-Concept.png.png" alt="Level layout concept map" class="lightbox-trigger" style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; cursor:pointer;">
+            <p class="image-caption">Initial level layout map — room structure, flow, and points of interest planned before blockout</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CONCLUSION -->
   <h2 class="section-divider">Conclusion <span>&amp; Learnings</span></h2>
-  <section style="border-top:none; padding-top:0;">
-    <p class="conclusion-intro">Designing Bootlegger Bust provided a focused opportunity to refine level flow, player guidance, and gameplay pacing within a visually cohesive Prohibition-era setting.</p>
+  <section class="conclusion-section" style="border-top:none; padding-top:0;">
+    <p class="conclusion-intro">Designing Bootlegger Bust provided a focused opportunity to refine level flow, player guidance, and gameplay pacing within a visually cohesive Prohibition-era setting. Working within a tight 6-week window pushed rapid iteration and deliberate prioritization of what mattered most to the player experience.</p>
     <div class="conclusion-cols">
       <div class="conclusion-col">
         <h4>Knowledge Gained</h4>
         <ul>
-          <li>Learned how to structure spaces and visual cues to naturally guide players through complex layouts</li>
-          <li>Gained insight into differentiating combat and exploration beats to maintain engagement and tension</li>
-          <li>Developed skills in framing key objectives and designing spaces that clearly communicate player intent</li>
+          <li>Learned how to structure spaces and visual cues to naturally guide players through complex, multi-room layouts</li>
+          <li>Gained insight into differentiating combat and exploration beats to maintain engagement and build tension</li>
+          <li>Developed skills in framing key objectives and designing spaces that clearly communicate player intent without explicit signposting</li>
         </ul>
       </div>
       <div class="conclusion-col">
         <h4>Areas for Growth</h4>
         <ul>
-          <li>Improve early-stage layout planning to better anticipate pacing and player flow</li>
-          <li>Refine environmental storytelling without relying on explicit narrative cues</li>
-          <li>Experiment with more dynamic encounter design to create varied combat experiences</li>
+          <li>Improve early-stage layout planning to better anticipate pacing and player flow before blockout begins</li>
+          <li>Refine environmental storytelling to reduce reliance on explicit narrative cues</li>
+          <li>Experiment with more dynamic encounter design to create greater variety within combat spaces</li>
         </ul>
       </div>
     </div>
@@ -787,7 +781,6 @@ footer p {
   <span class="footer-mark">PS</span>
 </footer>
 
-<!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <span class="close" id="lightbox-close">&times;</span>
   <button class="lightbox-prev" id="lightbox-prev">&#10094;</button>
@@ -803,63 +796,56 @@ footer p {
   const lightboxClose = document.getElementById('lightbox-close');
   const lightboxPrev = document.getElementById('lightbox-prev');
   const lightboxNext = document.getElementById('lightbox-next');
-
-  let allTriggers = [];
-  let currentLightboxIndex = 0;
+  let allTriggers = [], currentLightboxIndex = 0;
 
   function openLightbox(index) {
     const trigger = allTriggers[index];
     currentLightboxIndex = index;
-    lightboxImg.src = trigger.src || trigger.href || '';
+    lightboxImg.src = trigger.src || '';
     lightboxImg.alt = trigger.alt || '';
-    lightboxCaption.textContent = trigger.dataset.caption || '';
+    lightboxCaption.textContent = trigger.closest('.image-item')?.querySelector('.image-caption')?.textContent || '';
     lightbox.style.display = 'flex';
   }
 
   document.querySelectorAll('.lightbox-trigger').forEach((trigger, i) => {
     allTriggers.push(trigger);
-    trigger.addEventListener('click', e => {
-      e.preventDefault();
-      openLightbox(i);
-    });
+    trigger.addEventListener('click', e => { e.preventDefault(); openLightbox(i); });
   });
 
-  lightboxPrev.addEventListener('click', () => {
-    currentLightboxIndex = (currentLightboxIndex - 1 + allTriggers.length) % allTriggers.length;
-    openLightbox(currentLightboxIndex);
-  });
-
-  lightboxNext.addEventListener('click', () => {
-    currentLightboxIndex = (currentLightboxIndex + 1) % allTriggers.length;
-    openLightbox(currentLightboxIndex);
-  });
-
+  lightboxPrev.addEventListener('click', () => { currentLightboxIndex = (currentLightboxIndex - 1 + allTriggers.length) % allTriggers.length; openLightbox(currentLightboxIndex); });
+  lightboxNext.addEventListener('click', () => { currentLightboxIndex = (currentLightboxIndex + 1) % allTriggers.length; openLightbox(currentLightboxIndex); });
   document.addEventListener('keydown', e => {
     if (lightbox.style.display !== 'flex') return;
     if (e.key === 'ArrowRight') lightboxNext.click();
     if (e.key === 'ArrowLeft') lightboxPrev.click();
     if (e.key === 'Escape') lightbox.style.display = 'none';
   });
-
   lightboxClose.addEventListener('click', () => lightbox.style.display = 'none');
   lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.style.display = 'none'; });
 
-  document.querySelectorAll('.problem-carousel').forEach(carousel => {
-    const images = carousel.querySelectorAll('.carousel-images img');
-    const captionEl = carousel.querySelector('.carousel-caption p');
-    const captions = Array.from(images).map(el => el.dataset.caption || el.alt || '');
-    let current = 0;
-
-    function show(index) {
-      images.forEach(el => el.classList.remove('active'));
-      images[index].classList.add('active');
-      if (captionEl) captionEl.textContent = captions[index];
-    }
-
-    carousel.querySelector('.prev').addEventListener('click', () => { current = (current - 1 + images.length) % images.length; show(current); });
-    carousel.querySelector('.next').addEventListener('click', () => { current = (current + 1) % images.length; show(current); });
-    show(0);
-  });
+  // AUTOPLAY ON SCROLL
+  const ytScript = document.createElement('script');
+  ytScript.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(ytScript);
+  const players = [];
+  window.onYouTubeIframeAPIReady = function () {
+    document.querySelectorAll('.video-wrap[data-autoplay] iframe').forEach(iframe => {
+      if (!iframe.id) iframe.id = 'yt_' + Math.random().toString(36).slice(2);
+      const player = new YT.Player(iframe.id, { events: { onReady: (e) => { e.target.mute(); } } });
+      players.push({ el: iframe.closest('.video-wrap'), player });
+    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const match = players.find(p => p.el === entry.target);
+        if (!match) return;
+        try {
+          if (entry.isIntersecting) { match.player.mute(); match.player.playVideo(); }
+          else { match.player.pauseVideo(); match.player.seekTo(0); }
+        } catch(e) {}
+      });
+    }, { threshold: 0.5 });
+    players.forEach(p => observer.observe(p.el));
+  };
 </script>
 </body>
 </html>
