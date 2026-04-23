@@ -9,16 +9,16 @@
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --bg: #080c0f;
-  --surface: #0d1318;
-  --border: rgba(0,255,200,0.07);
-  --accent: #00e5b0;
-  --accent2: #b0ff3e;
+  --bg: #07090a;
+  --surface: #0d110e;
+  --border: rgba(168,230,61,0.18);
+  --gold: #a8e63d;
   --pink: #ff3d9a;
-  --accent-dim: rgba(0,229,176,0.07);
+  --cyan: #a8e63d;
+  --gold-dim: rgba(168,230,61,0.07);
   --text: #ffffff;
-  --text-dim: #2e4a44;
-  --white: #e4f2ee;
+  --text-dim: #ffffff;
+  --white: #eef5e4;
 }
 
 html { scroll-behavior: smooth; }
@@ -43,375 +43,216 @@ body::after {
   position: fixed; top: -20%; left: 50%;
   transform: translateX(-50%);
   width: 900px; height: 500px;
-  background: radial-gradient(ellipse, rgba(0,229,176,0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(168,230,61,0.06) 0%, transparent 70%);
   pointer-events: none; z-index: 0;
 }
 
-/* ── Header ── */
 header {
   position: relative; z-index: 10;
   padding: 3rem 5rem 2.5rem;
   border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 2rem;
 }
 
 .site-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(2.2rem, 4vw, 3.5rem);
-  color: var(--white); letter-spacing: 5px; line-height: 1;
-  text-decoration: none; display: block;
+  color: var(--white); letter-spacing: 5px; line-height: 1; text-decoration: none;
 }
-
 .site-title::after {
-  content: ''; display: block;
-  width: 36px; height: 3px;
-  background: var(--accent); margin-top: 0.4rem;
+  content: ''; display: block; width: 36px; height: 3px;
+  background: var(--gold); margin-top: 0.4rem;
 }
-
 .site-subtitle {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1rem; font-weight: 600;
-  letter-spacing: 6px; text-transform: uppercase;
-  color: var(--accent); margin-top: 0.4rem;
+  font-size: 1rem; font-weight: 600; letter-spacing: 6px;
+  text-transform: uppercase; color: var(--gold); margin-top: 0.4rem;
 }
 
 nav ul { display: flex; list-style: none; gap: 0.25rem; }
-
 nav ul li a {
-  display: block; padding: 0.5rem 1.2rem;
-  text-decoration: none;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.75rem; font-weight: 700;
-  letter-spacing: 4px; text-transform: uppercase;
-  color: var(--text-dim); border: 1px solid transparent;
-  transition: all 0.25s ease;
+  display: block; padding: 0.5rem 1.2rem; text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
+  font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--pink); border: 1px solid rgba(255,61,154,0.2); transition: all 0.25s ease;
 }
+nav ul li a:hover { color: var(--white); border-color: rgba(255,61,154,0.4); background: rgba(255,61,154,0.07); }
 
-nav ul li a:hover {
-  color: var(--accent);
-  border-color: rgba(0,229,176,0.2);
-  background: var(--accent-dim);
-}
-
-/* ── Page hero ── */
 .page-hero {
   position: relative; z-index: 10;
-  padding: 5rem 5rem 3rem;
-  border-bottom: 1px solid var(--border);
+  padding: 5rem 5rem 3rem; border-bottom: 1px solid var(--border);
 }
-
 .breadcrumb {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1rem; font-weight: 700;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--text-dim); margin-bottom: 1.5rem;
-  display: flex; align-items: center; gap: 0.75rem;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;
 }
-
-.breadcrumb a { color: var(--accent); text-decoration: none; }
-.breadcrumb a:hover { text-decoration: underline; }
-
+.breadcrumb a { color: var(--pink); text-decoration: none; opacity: 0.9; }
+.breadcrumb a:hover { opacity: 1; }
 .hero-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(6rem, 14vw, 13rem);
-  color: var(--white); letter-spacing: 4px; line-height: 0.88;
-  margin-bottom: 0.5rem;
+  color: var(--white); letter-spacing: 4px; line-height: 0.88; margin-bottom: 0.5rem;
 }
-
 .hero-subtitle {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.2rem; font-weight: 700;
-  letter-spacing: 4px; text-transform: uppercase;
-  color: var(--pink); margin-bottom: 3rem;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase; color: var(--pink); margin-bottom: 3rem;
 }
 
-/* ── Info cards ── */
-.info-cards {
-  display: flex; gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border); overflow: hidden;
-}
-
-.info-card {
-  flex: 1; background: var(--surface);
-  padding: 1.5rem 2rem; text-align: center;
-}
-
-.info-card h3 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.85rem; font-weight: 700;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--pink); margin-bottom: 0.5rem;
-}
-
-.info-card p {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem; letter-spacing: 2px;
-  color: var(--accent); margin: 0;
-}
-
-/* ── Main ── */
 main {
   position: relative; z-index: 10;
-  max-width: 1280px; margin: 0 auto;
-  padding: 0 5rem 6rem;
+  max-width: 1280px; margin: 0 auto; padding: 0 5rem 6rem;
 }
 
-/* ── Section divider ── */
 .section-divider {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  letter-spacing: 4px; color: var(--white);
-  padding: 4rem 0 2rem;
-  position: relative;
-  display: flex; align-items: center;
+  font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: 4px; color: var(--white);
+  padding: 4rem 0 2rem; position: relative; display: flex; align-items: center; gap: 1.5rem;
 }
-
 .section-divider::before {
-  content: ''; width: 4px;
-  position: absolute; left: -2rem; top: 0; height: 100%;
-  background: var(--accent); border-radius: 2px;
+  content: ''; width: 4px; height: 100%; background: var(--gold);
+  position: absolute; left: -2rem; top: 0; border-radius: 2px;
 }
+.section-divider span { color: var(--gold); }
 
-.section-divider span { color: var(--accent); margin-left: 0.4rem; }
-
-/* ── Video ── */
 .video-container {
   position: relative; padding-bottom: 56.25%; height: 0;
   margin-bottom: 3rem; border: 1px solid var(--border); overflow: hidden;
 }
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-.video-container iframe {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-}
-
-/* ── Generic content section ── */
-.content-section {
-  padding: 3rem 0;
-  border-top: 1px solid var(--border);
-}
-
-.content-section h2, .content-section h3 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
-  letter-spacing: 3px; color: var(--pink);
-  margin-bottom: 1.2rem;
-}
-
-.content-section p {
-  font-size: 1.1rem; line-height: 1.8;
-  color: var(--text); margin-bottom: 1.2rem;
-  max-width: 860px;
-}
-
-.content-section ul {
-  list-style: none; padding: 0;
-  display: flex; flex-direction: column; gap: 0.8rem;
-  margin-bottom: 1.5rem; max-width: 860px;
-}
-
-.content-section ul li {
-  font-size: 1.1rem; line-height: 1.7; color: var(--text);
-  padding-left: 1.2rem;
-  border-left: 2px solid rgba(0,229,176,0.3);
-}
-
-.content-section ul li strong { color: var(--accent); font-weight: 600; }
-
-/* ── Two-col goals ── */
-.goals-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
-  margin-top: 1rem;
-}
-
-.goals-col h4 {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.85rem; font-weight: 700;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--pink); margin-bottom: 1rem;
-}
-
-.goals-col ul {
-  list-style: none; padding: 0;
-  display: flex; flex-direction: column; gap: 0.8rem;
-}
-
-.goals-col ul li {
-  font-size: 1.1rem; line-height: 1.7; color: var(--text);
-  padding-left: 1.2rem;
-  border-left: 2px solid rgba(255,61,154,0.25);
-}
-
-/* ── Gallery grid ── */
-.gallery-grid-4x3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-}
-
-.gallery-grid-4x3 a {
-  display: block; overflow: hidden;
-  border: 1px solid var(--border);
-}
-
-.gallery-grid-4x3 img {
-  width: 100%; height: 200px;
-  object-fit: cover; display: block;
-  transition: transform 0.4s ease, filter 0.3s ease;
-  filter: brightness(0.85) saturate(0.9);
-  cursor: pointer;
-}
-
-.gallery-grid-4x3 a:hover img {
-  transform: scale(1.05);
-  filter: brightness(1) saturate(1.1);
-}
-
-/* PDF embed */
-.pdf-embed-wrap {
-  border: 1px solid var(--border);
-  overflow: hidden;
-}
-
-.pdf-embed-wrap embed {
-  display: block; width: 100%; height: 450px;
-}
-
-.pdf-caption {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.75rem; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--text-dim);
-  text-align: center; padding: 0.6rem;
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-}
-
-/* ── Level steps ── */
-.level-walkthrough { padding: 0; }
-
-.level-step {
+/* OVERVIEW */
+.overview-grid {
   display: grid; grid-template-columns: 1fr 1fr;
-  gap: 4rem; align-items: center;
-  padding: 3rem 0; border-top: 1px solid var(--border);
+  gap: 4rem; align-items: start; padding-bottom: 2rem;
+}
+.overview-text h2 {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: 3px; color: var(--pink); margin-bottom: 1rem;
+}
+.overview-text p { font-size: 1.15rem; line-height: 1.8; color: var(--text); margin-bottom: 1.5rem; }
+.overview-text ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.overview-text ul li {
+  font-size: 1.1rem; line-height: 1.7; color: var(--text);
+  padding-left: 1.2rem; border-left: 2px solid rgba(168,230,61,0.35);
+}
+.overview-text ul li strong { color: var(--gold); font-weight: 600; }
+
+/* BEAT SECTIONS */
+.beat-section { border-top: 1px solid var(--border); padding: 4rem 0; }
+.beat-header { margin-bottom: 3rem; }
+.beat-number {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 6px; text-transform: uppercase; color: var(--pink); margin-bottom: 0.5rem;
+}
+.beat-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: 3px; color: var(--white); margin-bottom: 1rem;
+}
+.beat-subsection { margin-top: 3rem; }
+.beat-subsection-label {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 6px; text-transform: uppercase; color: var(--pink);
+  margin-bottom: 1.2rem; padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(255,61,154,0.2);
 }
 
-.level-step:nth-child(even) .level-step-text { order: 2; }
-.level-step:nth-child(even) .level-step-video { order: 1; }
-
-.level-step-text p {
-  font-size: 1.1rem; line-height: 1.8;
-  color: var(--text); padding-top: 0.5rem;
-}
-
-.level-step-video h3 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.5rem; letter-spacing: 3px;
-  color: var(--white); margin-bottom: 1rem;
-}
-
-/* Bigger responsive video */
-.video-wrap {
-  position: relative;
-  padding-bottom: 65%;
-  height: 0;
-  overflow: hidden;
+/* Image grid */
+.image-grid { display: grid; gap: 1.5rem; }
+.image-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.image-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.image-item img {
+  width: 100%; display: block;
+  aspect-ratio: 16/9; object-fit: cover; cursor: pointer;
   border: 1px solid var(--border);
 }
-
-.video-wrap iframe {
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%;
+.image-caption {
+  margin-top: 0.6rem; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem; letter-spacing: 2px; color: var(--white); line-height: 1.5;
 }
 
-/* ── Conclusion ── */
-.conclusion-cols {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
-  margin-top: 2rem;
+/* Two col layouts */
+.beat-two-col {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 4rem; align-items: start;
+}
+.beat-two-col.equal { grid-template-columns: 1fr 1fr; }
+
+/* Bullet styles */
+.beat-text ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.beat-text ul li {
+  font-size: 1.1rem; line-height: 1.75; color: var(--text);
+  padding-left: 1.2rem; border-left: 2px solid rgba(168,230,61,0.35);
+}
+.beat-text ul li strong { color: var(--gold); font-weight: 600; }
+.beat-text ul li.pink-item { border-left: 2px solid rgba(255,61,154,0.4); }
+.beat-text ul li.pink-item strong { color: var(--pink); }
+.beat-text p { font-size: 1.15rem; line-height: 1.8; color: var(--text); margin-bottom: 1rem; }
+.beat-text p.summary {
+  font-size: 1rem; line-height: 1.8; color: rgba(255,255,255,0.7);
+  margin-top: 1.2rem; padding-left: 1.2rem;
+  border-left: 2px solid rgba(168,230,61,0.15);
+  font-style: italic;
 }
 
+.video-wrap {
+  position: relative; padding-bottom: 75%; height: 0;
+  overflow: hidden; border: 1px solid var(--border); margin-bottom: 0.6rem;
+}
+.video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.video-label {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1rem;
+  letter-spacing: 2px; color: var(--pink);
+}
+
+/* Conclusion */
+.conclusion-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2rem; }
 .conclusion-col h4 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem; font-weight: 700;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--pink); margin-bottom: 1.2rem;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+  letter-spacing: 5px; text-transform: uppercase; color: var(--pink); margin-bottom: 1.5rem;
 }
-
-.conclusion-col ul {
-  list-style: none; padding: 0;
-  display: flex; flex-direction: column; gap: 0.8rem;
-}
-
+.conclusion-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
 .conclusion-col ul li {
   font-size: 1.1rem; line-height: 1.7; color: var(--text);
   padding-left: 1.2rem; border-left: 2px solid var(--border);
 }
 
-/* ── Footer ── */
 footer {
-  position: relative; z-index: 10;
-  border-top: 1px solid var(--border);
-  padding: 2rem 5rem;
-  display: flex; align-items: center; justify-content: space-between;
+  position: relative; z-index: 10; border-top: 1px solid var(--border);
+  padding: 2rem 5rem; display: flex; align-items: center; justify-content: space-between;
 }
+footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); }
+.footer-mark { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 4px; }
 
-footer p {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.72rem; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--text-dim);
-}
-
-.footer-mark {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem; color: var(--accent); letter-spacing: 4px;
-}
-
-/* ── Lightbox ── */
+/* LIGHTBOX */
 .lightbox {
-  display: none; position: fixed; z-index: 9999;
-  inset: 0; background: rgba(0,0,0,0.92);
-  justify-content: center; align-items: center;
-  flex-direction: column; padding: 2rem;
+  display: none; position: fixed; z-index: 9999; inset: 0;
+  background: rgba(0,0,0,0.92); justify-content: center;
+  align-items: center; flex-direction: column; padding: 2rem;
 }
-
 .lightbox-img { max-width: 85%; max-height: 80vh; border: 1px solid var(--border); }
-
 .lightbox .caption {
-  margin-top: 1rem;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.85rem; letter-spacing: 2px;
-  color: var(--text-dim); font-style: italic;
+  margin-top: 1rem; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem; letter-spacing: 2px; color: var(--gold);
   text-align: center; max-width: 600px;
 }
-
 .lightbox .close {
-  position: absolute; top: 1.5rem; right: 2rem;
-  font-size: 2rem; color: var(--accent); cursor: pointer;
-  font-family: 'Barlow Condensed', sans-serif; line-height: 1;
-  transition: color 0.2s ease;
+  position: absolute; top: 1.5rem; right: 2rem; font-size: 2rem;
+  color: var(--gold); cursor: pointer; line-height: 1; transition: color 0.2s ease;
 }
 .lightbox .close:hover { color: var(--white); }
-
-.lightbox-prev,
-.lightbox-next {
-  position: absolute; top: 50%;
-  transform: translateY(-50%);
-  background: rgba(8,12,15,0.85);
-  color: var(--accent);
-  border: 1px solid rgba(0,229,176,0.3);
-  font-size: 1.5rem; padding: 1rem 1.2rem;
-  cursor: pointer;
-  transition: background 0.2s ease, color 0.2s ease;
-  z-index: 10000; line-height: 1;
+.lightbox-prev, .lightbox-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(7,9,10,0.85); color: var(--gold);
+  border: 1px solid rgba(168,230,61,0.3); font-size: 1.5rem;
+  padding: 1rem 1.2rem; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease; z-index: 10000; line-height: 1;
 }
-
 .lightbox-prev { left: 1.5rem; }
 .lightbox-next { right: 1.5rem; }
+.lightbox-prev:hover, .lightbox-next:hover { background: var(--gold); color: var(--bg); }
 
-.lightbox-prev:hover,
-.lightbox-next:hover { background: var(--accent); color: var(--bg); }
-
-/* ── Animations ── */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
@@ -420,14 +261,11 @@ footer p {
 .d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; }
 .d3 { animation-delay: 0.28s; } .d4 { animation-delay: 0.42s; }
 
-/* ── Responsive ── */
 @media (max-width: 960px) {
   header, .page-hero, main, footer { padding-left: 2rem; padding-right: 2rem; }
-  .info-cards { flex-direction: column; }
-  .gallery-grid-4x3 { grid-template-columns: repeat(2, 1fr); }
-  .goals-grid, .level-step, .conclusion-cols { grid-template-columns: 1fr; }
-  .level-step:nth-child(even) .level-step-text,
-  .level-step:nth-child(even) .level-step-video { order: unset; }
+  .overview-grid, .beat-two-col, .beat-two-col.equal { grid-template-columns: 1fr; }
+  .image-grid.cols-2, .image-grid.cols-3 { grid-template-columns: 1fr; }
+  .conclusion-cols { grid-template-columns: 1fr; }
   .section-divider::before { display: none; }
   .lightbox-prev { left: 0.5rem; }
   .lightbox-next { right: 0.5rem; }
@@ -435,12 +273,11 @@ footer p {
 </style>
 </head>
 <body>
-
 <div class="bg-glow"></div>
 
 <header>
   <div class="animate d1">
-    <a href="projects.html" class="site-title">Paul Saturno</a>
+    <a href="projects.html" class="site-title" style="display:block; text-decoration:none;">Paul Saturno</a>
     <p class="site-subtitle">Level Designer</p>
   </div>
   <nav class="animate d2">
@@ -458,207 +295,278 @@ footer p {
     <span>Carnage</span>
   </div>
   <h1 class="hero-title">Carnage</h1>
-  <p class="hero-subtitle">Mobile Game &nbsp;·&nbsp; Burnout-Inspired Racer &nbsp;·&nbsp; Level Designer</p>
-  <div class="info-cards animate d3">
-    <div class="info-card"><h3>Engine</h3><p>Unity 6</p></div>
-    <div class="info-card"><h3>Team Size</h3><p>8 People</p></div>
-    <div class="info-card"><h3>Duration</h3><p>10 Weeks</p></div>
-    <div class="info-card"><h3>Role</h3><p>Level Designer</p></div>
-  </div>
+  <p class="hero-subtitle">Mobile Game &nbsp;·&nbsp; Unity 6 &nbsp;·&nbsp; Level Designer</p>
 </div>
 
 <main>
 
-  <!-- Hero Video -->
+  <!-- VERTICAL SLICE -->
   <h2 class="section-divider">Vertical <span>Slice</span></h2>
   <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/vbrAcgVGlQE" title="Carnage Hero Video" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/vbrAcgVGlQE" title="Carnage Vertical Slice" frameborder="0" allowfullscreen></iframe>
   </div>
 
-  <!-- Project Overview -->
-  <section class="content-section" style="border-top:none; padding-top:0;">
-    <h2>Project Overview</h2>
-    <p>Carnage is a fast-paced mobile game inspired by Burnout 3: Takedown's iconic crash mode, where players navigate dense traffic zones to chain collisions and score points. As a level designer, I:</p>
-    <ul>
-      <li>Designed and iterated city layouts to create engaging crash scenarios that balanced chaos with player control</li>
-      <li>Implemented procedural placement of obstacles, hazards, and interactive objects to ensure each run felt dynamic and unpredictable</li>
-    </ul>
-  </section>
-
-  <!-- Goals & Constraints -->
-  <section class="content-section">
-    <h2>Goals &amp; Constraints</h2>
-    <div class="goals-grid">
-      <div class="goals-col">
-        <h4>Project Goals</h4>
+  <!-- OVERVIEW -->
+  <h2 class="section-divider">Project <span>Overview</span></h2>
+  <section style="padding-bottom:2rem;">
+    <div class="beat-two-col equal" style="align-items:start; margin-bottom:3rem;">
+      <div class="beat-text">
+        <div class="beat-subsection-label">About the Game</div>
+        <p>Carnage is a fast-paced mobile game inspired by Burnout 3: Takedown's iconic crash mode. Players navigate dense traffic zones to chain collisions and score points across two fully playable city tracks — San Francisco and Las Vegas. I pitched the concept to the team and served as level designer across the full production cycle.</p>
+        <p><strong style="color:var(--pink); font-size:clamp(1.3rem, 2vw, 1.8rem); letter-spacing:3px; font-family:'Bebas Neue',sans-serif; display:block; margin-bottom:1rem; margin-top:1.5rem;">Goals</strong></p>
         <ul>
-          <li>Develop multiple city layouts with distinct visual and structural identities for unique gameplay experiences</li>
-          <li>Introduce variability through modular segments and dynamic object placement to keep each playthrough unpredictable</li>
-          <li>Balance procedural placement and object density for mobile performance while keeping levels readable and interactive</li>
+          <li><strong>Design</strong> city layouts with distinct visual and structural identities that create unique gameplay experiences</li>
+          <li><strong>Build</strong> variability through modular segments and dynamic procedural placement to keep each run unpredictable</li>
+          <li><strong>Balance</strong> object density and procedural systems for mobile performance while maintaining readability</li>
         </ul>
       </div>
-      <div class="goals-col">
-        <h4>Production Constraints</h4>
-        <ul>
-          <li>Levels had to be designed, tested, and refined within a 10-week production window, requiring efficient layout decisions</li>
-          <li>Object density and procedural segments had to maintain performance while keeping levels engaging</li>
-          <li>Randomly placed hazards had to create fun and fair gameplay while preserving level structure</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Concept & Inspiration -->
-  <section class="content-section">
-    <h2>Concept &amp; Inspiration</h2>
-    <p>The concept originated from my pitch to the team, inspired by my long-time love for Burnout 3: Takedown. While many student projects focus on platformers or small-scope ideas, I wanted something different — a high-energy driving game that brought large-scale chaos to mobile. A cel-shaded art style gave the project a distinctive modern look while maintaining performance efficiency for mobile hardware.</p>
-    <div class="gallery-grid-4x3">
-      <a href="carnageimages/Burnout3ConceptArt.jpg" class="lightbox-trigger" data-caption="Burnout 3: Takedown Reference Image">
-        <img src="carnageimages/Burnout3ConceptArt.jpg" alt="Burnout 3 inspiration">
-      </a>
-      <a href="carnageimages/PropsConceptArt.jpg" class="lightbox-trigger" data-caption="Prop Art Reference Image">
-        <img src="carnageimages/PropsConceptArt.jpg" alt="Props concept art">
-      </a>
-      <a href="carnageimages/ArtPrototype.pdf" target="_blank">
-        <div class="pdf-embed-wrap">
-          <embed src="carnageimages/ArtPrototype.pdf" type="application/pdf" width="100%" height="450px">
-          <div class="pdf-caption">Art Prototype PDF — Click to Open</div>
+      <div>
+        <div class="beat-subsection-label">Marketing Trailer</div>
+        <div class="video-wrap" style="padding-bottom:56.25%;">
+          <iframe src="https://www.youtube.com/embed/--7AaGjoGQ4" frameborder="0" allowfullscreen loading="lazy"></iframe>
         </div>
-      </a>
+        <p class="video-label">Carnage — Official marketing trailer</p>
+      </div>
     </div>
   </section>
 
-  <!-- Mechanics Testing -->
-  <h2 class="section-divider">Mechanics <span>&amp; Feature Testing</span></h2>
-  <section class="level-walkthrough">
-
-    <div class="level-step">
-      <div class="level-step-text">
-        <p>Testing the core driving mechanics of Carnage — car feel, movement, turning, and speed responsiveness. The team also tested the speed boost feature and collision interactions, which are central to the game's crash-focused gameplay. This footage helped validate the foundation and identify adjustments needed to make driving both satisfying and chaotic.</p>
+  <!-- CONCEPT & INSPIRATION -->
+  <h2 class="section-divider">Concept <span>&amp; Inspiration</span></h2>
+  <section class="beat-section" style="border-top:none; padding-top:0;">
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">The Pitch</div>
+        <p>The concept originated from my pitch to the team, inspired by my long-time love for Burnout 3: Takedown. While many student projects lean toward platformers or small-scope ideas, I wanted something different — A high-energy driving game that brought large-scale chaos to mobile.</p>
+        <p>A cel-shaded art style gave the project a distinctive modern look while maintaining performance efficiency for mobile hardware. The result was a game with a strong visual identity that stood out from typical student projects.</p>
       </div>
-      <div class="level-step-video">
-        <h3>Prototyping: Car Mechanics</h3>
+      <div>
+        <div class="beat-subsection-label">Reference &amp; Art Direction</div>
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="carnageimages/Burnout3ConceptArt.jpg" alt="Burnout 3 inspiration" class="lightbox-trigger">
+            <p class="image-caption">Burnout 3: Takedown — Primary gameplay reference</p>
+          </div>
+          <div class="image-item">
+            <img src="carnageimages/PropsConceptArt.jpg" alt="Props concept art" class="lightbox-trigger">
+            <p class="image-caption">Prop art reference — Cel-shaded visual direction</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MECHANICS TESTING -->
+  <h2 class="section-divider">Mechanics <span>&amp; Feature Testing</span></h2>
+
+  <section class="beat-section" style="border-top:none; padding-top:0;">
+    <div class="beat-header">
+      <p class="beat-number">Test 01</p>
+      <h2 class="beat-title">Car Mechanics</h2>
+    </div>
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">What We Tested</div>
+        <ul>
+          <li><strong>Car feel and movement</strong> — Evaluating turning responsiveness, speed, and overall driving satisfaction</li>
+          <li><strong>Speed boost</strong> — Testing how the boost mechanic integrated with moment-to-moment driving and crash chaining</li>
+          <li><strong>Collision interactions</strong> — Validating that collisions felt impactful and consistent across different object types</li>
+        </ul>
+        <p class="summary">This footage validated the driving foundation and identified adjustments needed to make movement both satisfying and chaotic — The core of what Carnage needed to feel like.</p>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Prototype Footage</div>
         <div class="video-wrap">
           <iframe src="https://www.youtube.com/embed/KN0qFm3jjoU" frameborder="0" allowfullscreen loading="lazy"></iframe>
         </div>
+        <p class="video-label">Prototyping — Car mechanics and collision testing</p>
       </div>
     </div>
+  </section>
 
-    <div class="level-step">
-      <div class="level-step-text">
-        <p>Testing the procedural generation system — how city segments are dynamically spawned during gameplay, and how crashable objects and powerups are randomly placed. This testing verified that each run felt fresh and unpredictable, ensuring procedural elements worked smoothly and maintained challenge throughout.</p>
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Test 02</p>
+      <h2 class="beat-title">Procedural Generation</h2>
+    </div>
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">What We Tested</div>
+        <ul>
+          <li><strong>City segment spawning</strong> — Verifying that segments generated dynamically and connected seamlessly during gameplay</li>
+          <li><strong>Object placement</strong> — Testing how crashable objects and powerups were randomly distributed across spawned segments</li>
+          <li><strong>Replayability</strong> — Confirming that each run felt distinct and that procedural elements maintained challenge throughout</li>
+        </ul>
+        <p class="summary">This testing phase confirmed the procedural system was working as intended and gave us confidence to scale it across both city tracks.</p>
       </div>
-      <div class="level-step-video">
-        <h3>Prototyping: Procedural Generation</h3>
+      <div>
+        <div class="beat-subsection-label">Prototype Footage</div>
         <div class="video-wrap">
           <iframe src="https://www.youtube.com/embed/FVdGgSURMVY" frameborder="0" allowfullscreen loading="lazy"></iframe>
         </div>
+        <p class="video-label">Prototyping — Procedural generation system testing</p>
       </div>
     </div>
+  </section>
 
-    <div class="level-step">
-      <div class="level-step-text">
-        <p>Testing the core driving mechanics of Carnage — evaluating car feel, movement, turning, and speed. Also tested the speed boost feature and collision interactions. This footage helped validate the foundation of the game and identify adjustments needed to make driving both satisfying and chaotic.</p>
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Test 03</p>
+      <h2 class="beat-title">Procedural Generation Implementation</h2>
+    </div>
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Full System in Action</div>
+        <ul>
+          <li><strong>Segment variety</strong> — Seeing how different modular city pieces combined in real time during a full gameplay session</li>
+          <li><strong>Object density tuning</strong> — Evaluating whether hazard and powerup distribution felt balanced at the implemented density</li>
+          <li><strong>Performance validation</strong> — Confirming the system maintained acceptable mobile framerates with full procedural load</li>
+        </ul>
+        <p class="summary">With the system fully implemented, this test gave us a clear picture of what needed tuning before we moved into final production.</p>
       </div>
-      <div class="level-step-video">
-        <h3>Procedural Generation Implementation</h3>
+      <div>
+        <div class="beat-subsection-label">Implementation Footage</div>
         <div class="video-wrap">
           <iframe src="https://www.youtube.com/embed/HM4LeNLPb04" frameborder="0" allowfullscreen loading="lazy"></iframe>
         </div>
+        <p class="video-label">Procedural generation — Full implementation playtest</p>
       </div>
     </div>
-
   </section>
 
-  <!-- Blockouts -->
-  <section class="content-section">
-    <h2>Blockouts &amp; Grayboxing</h2>
-    <p>In the grayboxing phase, I created the initial blockout for our first level, San Francisco. Once the base layout was established, the other level designers iterated on it — rearranging buildings, modifying layouts, and creating new prefabs. This produced over 10 unique variants of San Francisco, with virtually infinite possibilities thanks to our procedural generation system. I personally created the original blockout plus five additional variants.</p>
-    <div class="gallery-grid-4x3">
-      <a href="carnageimages/SanFranCityGrayBox1.png" class="lightbox-trigger" data-caption="Initial San Francisco Blockout Image 1"><img src="carnageimages/SanFranCityGrayBox1.png" alt="Graybox 1"></a>
-      <a href="carnageimages/SanFranCityGrayBox2.png" class="lightbox-trigger" data-caption="Initial San Francisco Blockout Image 2"><img src="carnageimages/SanFranCityGrayBox2.png" alt="Graybox 2"></a>
-      <a href="carnageimages/SanFranCityGrayBox3.jpg" class="lightbox-trigger" data-caption="Prototype Stage Blockout"><img src="carnageimages/SanFranCityGrayBox3.jpg" alt="Graybox 3"></a>
-      <a href="carnageimages/SanFranCityGrayBox4.png" class="lightbox-trigger" data-caption="Initial San Francisco Blockout Image 3"><img src="carnageimages/SanFranCityGrayBox4.png" alt="Graybox 4"></a>
-      <a href="carnageimages/SanFranCityGrayBox5.png" class="lightbox-trigger" data-caption="Initial San Francisco Blockout Image 4"><img src="carnageimages/SanFranCityGrayBox5.png" alt="Graybox 5"></a>
-      <a href="carnageimages/SanFranCityGrayBox6.png" class="lightbox-trigger" data-caption="First Look at Car In Game"><img src="carnageimages/SanFranCityGrayBox6.png" alt="Graybox 6"></a>
-    </div>
-  </section>
-
-  <!-- Iteration -->
-  <section class="content-section">
-    <h2>Iteration Phase</h2>
-    <p>During iteration, the team focused on bringing graybox levels to life with art assets and set dressing. Key systems were added — UI components, audio, fully modeled city parts, the player's car, all powerups, and procedural generation integration. This phase was crucial for testing how all systems worked together in a visually complete environment.</p>
-    <div class="gallery-grid-4x3">
-      <a href="carnageimages/SanFranIteration1.png" class="lightbox-trigger" data-caption="San Francisco Iteration Image 1"><img src="carnageimages/SanFranIteration1.png" alt="Iteration 1"></a>
-      <a href="carnageimages/SanFranIteration2.png" class="lightbox-trigger" data-caption="San Francisco Iteration Image 2"><img src="carnageimages/SanFranIteration2.png" alt="Iteration 2"></a>
-      <a href="carnageimages/SanFranCityGrayBox7.png" class="lightbox-trigger" data-caption="San Francisco Iteration Image 3"><img src="carnageimages/SanFranCityGrayBox7.png" alt="Iteration 3"></a>
-    </div>
-  </section>
-
-  <!-- Final Renderings -->
-  <section class="content-section">
-    <h2>Final Renderings</h2>
-    <p>All core systems and features are fully implemented. The game now includes two fully playable tracks — San Francisco and Las Vegas — each featuring iconic landmarks: the Transamerica Pyramid and the Sphere. Added unique collision sounds, VFX for powerup pickups, and a car shop where players can purchase custom paint jobs with Crash Dollars.</p>
-    <div class="gallery-grid-4x3">
-      <a href="carnageimages/CarnageBeautyShot1.png" class="lightbox-trigger" data-caption="San Francisco Sidewalk Final Rendering"><img src="carnageimages/CarnageBeautyShot1.png" alt="Final Rendering 1"></a>
-      <a href="carnageimages/CarnageBeautyShot2.png" class="lightbox-trigger" data-caption="Carnage Storefront Final Rendering"><img src="carnageimages/CarnageBeautyShot2.png" alt="Final Rendering 2"></a>
-      <a href="carnageimages/SanFranInGameSS.png" class="lightbox-trigger" data-caption="San Francisco In-Game Screenshot"><img src="carnageimages/SanFranInGameSS.png" alt="Final Rendering 3"></a>
-      <a href="carnageimages/TransAmericaPyramidSS.png" class="lightbox-trigger" data-caption="Transamerica Pyramid Screenshot"><img src="carnageimages/TransAmericaPyramidSS.png" alt="Final Rendering 4"></a>
-      <a href="carnageimages/EndSceneSS.png" class="lightbox-trigger" data-caption="End Scene Screenshot"><img src="carnageimages/EndSceneSS.png" alt="Final Rendering 5"></a>
-      <a href="carnageimages/CashLoadSS.png" class="lightbox-trigger" data-caption="Cash Load Screenshot"><img src="carnageimages/CashLoadSS.png" alt="Final Rendering 6"></a>
-    </div>
-  </section>
-
-  <!-- Trailers -->
-  <h2 class="section-divider">Game <span>Trailers</span></h2>
-  <section class="level-walkthrough">
-
-    <div class="level-step">
-      <div class="level-step-text">
-        <p>This marketing trailer showcases Carnage's bold visual style, destructive collisions, and high-energy gameplay. Every shot emphasizes momentum and spectacle, capturing the thrill of reckless driving and exaggerated crashes that define Carnage's over-the-top identity.</p>
+  <!-- BLOCKOUTS -->
+  <h2 class="section-divider">Blockouts <span>&amp; Grayboxing</span></h2>
+  <section class="beat-section" style="border-top:none; padding-top:0;">
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">San Francisco — Initial Layout</div>
+        <ul>
+          <li><strong>Original blockout</strong> — I created the base layout for San Francisco, establishing the road structure, building placement, and traffic zone density</li>
+          <li><strong>Modular design</strong> — Segments were built to be rearranged, allowing other level designers to create variants without starting from scratch</li>
+          <li><strong>10+ variants produced</strong> — The modular approach combined with procedural generation means virtually infinite layout combinations from one starting blockout</li>
+        </ul>
+        <div class="beat-subsection-label" style="margin-top:2rem;">Car In-Game — First Look</div>
+        <ul>
+          <li><strong>Validated scale</strong> — Seeing the car in the blockout for the first time confirmed road widths and building proportions were correct for the gameplay feel we wanted</li>
+          <li><strong>Identified issues early</strong> — Early in-engine footage revealed areas where turning radius and obstacle spacing needed adjustment before art was applied</li>
+        </ul>
       </div>
-      <div class="level-step-video">
-        <h3>Marketing Trailer</h3>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/--7AaGjoGQ4" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      <div>
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="carnageimages/SanFranCityGrayBox1.png" alt="Graybox 1" class="lightbox-trigger">
+            <p class="image-caption">San Francisco blockout — Layout 1</p>
+          </div>
+          <div class="image-item">
+            <img src="carnageimages/SanFranCityGrayBox2.png" alt="Graybox 2" class="lightbox-trigger">
+            <p class="image-caption">San Francisco blockout — Layout 2</p>
+          </div>
+          <div class="image-item">
+            <img src="carnageimages/SanFranCityGrayBox4.png" alt="Graybox 4" class="lightbox-trigger">
+            <p class="image-caption">San Francisco blockout — Layout 3</p>
+          </div>
+          <div class="image-item">
+            <img src="carnageimages/SanFranCityGrayBox6.png" alt="Graybox 6" class="lightbox-trigger">
+            <p class="image-caption">First in-engine look — validating car scale against road width</p>
+          </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="level-step">
-      <div class="level-step-text">
-        <p>This gameplay trailer highlights multiple earnable vehicles unlocked with Crash Dollars, two distinct playable tracks, and power-ups that amplify chaos. Destructive environments and exaggerated collisions reward aggressive driving in every run.</p>
+  <!-- ITERATION -->
+  <h2 class="section-divider">Iteration <span>Phase</span></h2>
+  <section class="beat-section" style="border-top:none; padding-top:0;">
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Bringing the Blockout to Life</div>
+        <ul>
+          <li><strong>Art pass applied</strong> — Graybox geometry replaced with fully modeled city parts, road surfaces, and building facades that matched our cel-shaded visual direction</li>
+          <li><strong>Systems integration</strong> — UI components, audio, the player car, all powerups, and procedural generation were integrated together for the first time during this phase</li>
+          <li><strong>Full playtest environment</strong> — With all systems running simultaneously in a visually complete environment, this phase revealed how everything held up together under real gameplay conditions</li>
+        </ul>
       </div>
-      <div class="level-step-video">
-        <h3>Gameplay Trailer</h3>
-        <div class="video-wrap">
+      <div>
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="carnageimages/SanFranIteration1.png" alt="Iteration 1" class="lightbox-trigger">
+            <p class="image-caption">San Francisco — First art pass on blockout geometry</p>
+          </div>
+          <div class="image-item">
+            <img src="carnageimages/SanFranIteration2.png" alt="Iteration 2" class="lightbox-trigger">
+            <p class="image-caption">San Francisco — Buildings and road surface refined</p>
+          </div>
+        </div>
+        <div class="image-grid cols-2" style="margin-top:1.5rem;">
+          <div class="image-item" style="grid-column: 1 / -1;">
+            <img src="carnageimages/SanFranCityGrayBox7.png" alt="Iteration 3" class="lightbox-trigger">
+            <p class="image-caption">San Francisco — Props and set dressing fully applied</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL RENDERINGS -->
+  <h2 class="section-divider">Final <span>Design</span></h2>
+  <section class="beat-section" style="border-top:none; padding-top:0;">
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Two Tracks — San Francisco &amp; Las Vegas</div>
+        <ul>
+          <li><strong>Iconic landmarks</strong> — San Francisco features the Transamerica Pyramid; Las Vegas features the Sphere — Both serving as visual anchors that give each track a distinct identity</li>
+          <li><strong>Crash Dollars economy</strong> — Players earn currency through collisions and can spend it in a car shop to unlock custom paint jobs, adding a progression layer on top of the crash gameplay</li>
+          <li><strong>Full polish pass</strong> — Unique collision sounds, VFX on powerup pickups, and a complete end scene round out the experience beyond just driving and crashing</li>
+        </ul>
+        <div class="beat-subsection-label" style="margin-top:2rem;">Gameplay Trailer</div>
+        <div class="video-wrap" style="padding-bottom:56.25%;">
           <iframe src="https://www.youtube.com/embed/HQYbVYaK618" frameborder="0" allowfullscreen loading="lazy"></iframe>
         </div>
+        <p class="video-label">Carnage — Full gameplay trailer</p>
+      </div>
+      <div>
+        <div class="image-grid cols-2">
+          <div class="image-item">
+            <img src="carnageimages/CarnageBeautyShot1.png" alt="Final Rendering 1" class="lightbox-trigger">
+            <p class="image-caption">San Francisco — Street-level environment detail</p>
+          </div>
+          <div class="image-item">
+            <img src="carnageimages/SanFranInGameSS.png" alt="Final Rendering 3" class="lightbox-trigger">
+            <p class="image-caption">San Francisco track — Cel-shaded in-game look</p>
+          </div>
+          <div class="image-item">
+            <img src="carnageimages/TransAmericaPyramidSS.png" alt="Final Rendering 4" class="lightbox-trigger">
+            <p class="image-caption">Transamerica Pyramid — San Francisco landmark anchor</p>
+          </div>
+          <div class="image-item">
+            <img src="carnageimages/CashLoadSS.png" alt="Final Rendering 6" class="lightbox-trigger">
+            <p class="image-caption">Crash Dollars — In-game currency and car shop</p>
+          </div>
+        </div>
       </div>
     </div>
-
   </section>
 
-  <!-- Conclusion -->
+
+
+  <!-- CONCLUSION -->
   <h2 class="section-divider">Conclusion <span>&amp; Learnings</span></h2>
-  <section class="content-section" style="border-top:none; padding-top:0;">
-    <p>Over the course of this ten-week project, our team made significant progress creating a playable and engaging mobile driving experience. Considering our limited experience with procedural generation and mobile optimization, we were proud of what we accomplished in such a short time.</p>
+  <section class="beat-section" style="border-top:none; padding-top:0;">
+    <p style="font-size:1.15rem; line-height:1.8; color:var(--text); max-width:800px; margin-bottom:2rem;">Over ten weeks, our team built a fully playable and engaging mobile driving experience. Given our limited experience with procedural generation and mobile optimization, I'm proud of what we shipped in such a short window — Especially the depth of the level design system we built around modularity and procedural variety.</p>
     <div class="conclusion-cols">
       <div class="conclusion-col">
         <h4>Key Learnings</h4>
         <ul>
-          <li>Creating grayboxes and blockouts early allowed rapid iteration and testing of mechanics</li>
-          <li>Collaborating effectively with multiple level designers to create variants and procedural systems</li>
-          <li>Documenting design decisions to maintain clear team communication</li>
-          <li>Managing scope and timeline in a 10-week project while balancing team obligations</li>
+          <li>Grayboxing early allowed rapid iteration and gave the team a clear shared understanding of each level's intent</li>
+          <li>Collaborating with multiple level designers to build variants and procedural systems required clear documentation and communication</li>
+          <li>Managing scope and timeline in a 10-week cycle pushed efficient design decisions at every stage</li>
         </ul>
       </div>
       <div class="conclusion-col">
         <h4>Areas for Growth</h4>
         <ul>
-          <li>Deeper early planning for procedural systems to reduce iteration time</li>
-          <li>More rigorous mobile performance testing throughout development</li>
-          <li>Earlier integration of art assets to better visualize level readability</li>
+          <li>Earlier planning for procedural systems would have reduced iteration time and allowed more polish</li>
+          <li>More rigorous mobile performance testing throughout development rather than at the end</li>
+          <li>Earlier art asset integration to better visualize level readability during the blockout phase</li>
         </ul>
       </div>
     </div>
@@ -671,7 +579,6 @@ footer p {
   <span class="footer-mark">PS</span>
 </footer>
 
-<!-- Lightbox -->
 <div class="lightbox" id="lightbox">
   <span class="close" id="lightbox-close">&times;</span>
   <button class="lightbox-prev" id="lightbox-prev">&#10094;</button>
@@ -687,44 +594,30 @@ footer p {
   const lightboxClose = document.getElementById('lightbox-close');
   const lightboxPrev = document.getElementById('lightbox-prev');
   const lightboxNext = document.getElementById('lightbox-next');
-
-  let allTriggers = [];
-  let currentLightboxIndex = 0;
+  let allTriggers = [], currentLightboxIndex = 0;
 
   function openLightbox(index) {
     const trigger = allTriggers[index];
     currentLightboxIndex = index;
-    lightboxImg.src = trigger.href || trigger.src || '';
-    lightboxImg.alt = trigger.querySelector('img')?.alt || '';
-    lightboxCaption.textContent = trigger.dataset.caption || '';
+    lightboxImg.src = trigger.src || '';
+    lightboxImg.alt = trigger.alt || '';
+    lightboxCaption.textContent = trigger.closest('.image-item')?.querySelector('.image-caption')?.textContent || '';
     lightbox.style.display = 'flex';
   }
 
   document.querySelectorAll('.lightbox-trigger').forEach((trigger, i) => {
     allTriggers.push(trigger);
-    trigger.addEventListener('click', e => {
-      e.preventDefault();
-      openLightbox(i);
-    });
+    trigger.addEventListener('click', e => { e.preventDefault(); openLightbox(i); });
   });
 
-  lightboxPrev.addEventListener('click', () => {
-    currentLightboxIndex = (currentLightboxIndex - 1 + allTriggers.length) % allTriggers.length;
-    openLightbox(currentLightboxIndex);
-  });
-
-  lightboxNext.addEventListener('click', () => {
-    currentLightboxIndex = (currentLightboxIndex + 1) % allTriggers.length;
-    openLightbox(currentLightboxIndex);
-  });
-
+  lightboxPrev.addEventListener('click', () => { currentLightboxIndex = (currentLightboxIndex - 1 + allTriggers.length) % allTriggers.length; openLightbox(currentLightboxIndex); });
+  lightboxNext.addEventListener('click', () => { currentLightboxIndex = (currentLightboxIndex + 1) % allTriggers.length; openLightbox(currentLightboxIndex); });
   document.addEventListener('keydown', e => {
     if (lightbox.style.display !== 'flex') return;
     if (e.key === 'ArrowRight') lightboxNext.click();
     if (e.key === 'ArrowLeft') lightboxPrev.click();
     if (e.key === 'Escape') lightbox.style.display = 'none';
   });
-
   lightboxClose.addEventListener('click', () => lightbox.style.display = 'none');
   lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.style.display = 'none'; });
 </script>
