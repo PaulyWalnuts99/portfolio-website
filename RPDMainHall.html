@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RE2 Remake: Main Hall — Paul Saturno</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #07090f;
+  --surface: #0d1119;
+  --border: rgba(160,200,255,0.2);
+  --gold: #e8192e;
+  --olive: #e8192e;
+  --cyan: #1a6fc4;
+  --gold-dim: rgba(255,77,77,0.08);
+  --text: #ffffff;
+  --text-dim: #ffffff;
+  --white: #dde8f0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 100;
+}
+
+.bg-glow {
+  position: fixed; top: -20%; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse, rgba(255,77,77,0.06) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+header {
+  position: relative; z-index: 10;
+  padding: 3rem 5rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 2rem;
+}
+
+.site-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  color: var(--white); letter-spacing: 5px; line-height: 1; text-decoration: none;
+}
+.site-title::after {
+  content: ''; display: block; width: 36px; height: 3px;
+  background: var(--gold); margin-top: 0.4rem;
+}
+.site-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem; font-weight: 600; letter-spacing: 6px;
+  text-transform: uppercase; color: var(--gold); margin-top: 0.4rem;
+}
+
+nav ul { display: flex; list-style: none; gap: 0.25rem; }
+nav ul li a {
+  display: block; padding: 0.5rem 1.2rem; text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
+  font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--cyan); border: 1px solid rgba(26,111,196,0.2); transition: all 0.25s ease;
+}
+nav ul li a:hover { color: var(--white); border-color: rgba(26,111,196,0.4); background: var(--gold-dim); }
+
+.page-hero {
+  position: relative; z-index: 10;
+  padding: 5rem 5rem 3rem; border-bottom: 1px solid var(--border);
+}
+.breadcrumb {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase; color: var(--cyan);
+  margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;
+}
+.breadcrumb a { color: var(--gold); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 9vw, 9rem);
+  color: var(--white); letter-spacing: 4px; line-height: 0.9; margin-bottom: 0.5rem;
+}
+.hero-subtitle {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 3rem;
+}
+
+main {
+  position: relative; z-index: 10;
+  max-width: 1280px; margin: 0 auto; padding: 0 5rem 6rem;
+}
+
+.section-divider {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: 4px; color: var(--white);
+  padding: 4rem 0 2rem; position: relative; display: flex; align-items: center; gap: 1.5rem;
+}
+.section-divider::before {
+  content: ''; width: 4px; height: 100%; background: var(--gold);
+  position: absolute; left: -2rem; top: 0; border-radius: 2px;
+}
+.section-divider span { color: var(--gold); }
+
+/* Video containers */
+.video-container {
+  position: relative; padding-bottom: 56.25%; height: 0;
+  margin-bottom: 3rem; border: 1px solid var(--border); overflow: hidden;
+}
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* Blueprint embed */
+.bp-wrap {
+  position: relative; height: 560px;
+  border: 1px solid var(--border); overflow: hidden; margin-bottom: 0.6rem;
+}
+.bp-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+/* Miro embed */
+.miro-wrap {
+  position: relative; height: 560px;
+  border: 1px solid var(--border); overflow: hidden; margin-bottom: 0.6rem;
+}
+.miro-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+/* OVERVIEW */
+.overview-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: start; padding-bottom: 2rem;
+}
+.overview-text h2 {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: 3px; color: var(--gold); margin-bottom: 1rem;
+}
+.overview-text p { font-size: 1.15rem; line-height: 1.8; color: var(--text); margin-bottom: 1.5rem; }
+.overview-text ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.overview-text ul li {
+  font-size: 1.1rem; line-height: 1.7; color: var(--text);
+  padding-left: 1.2rem; border-left: 2px solid rgba(255,77,77,0.4);
+}
+.overview-text ul li strong { color: var(--gold); font-weight: 600; }
+
+/* BEAT SECTIONS */
+.beat-section { border-top: 1px solid var(--border); padding: 4rem 0; }
+.beat-header { margin-bottom: 3rem; }
+.beat-number {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 6px; text-transform: uppercase; color: var(--cyan); margin-bottom: 0.5rem;
+}
+.beat-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: 3px; color: var(--white); margin-bottom: 1rem;
+}
+.beat-subsection { margin-top: 3rem; }
+.beat-subsection-label {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 6px; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1.2rem; padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(255,77,77,0.2);
+}
+
+/* Two col layout */
+.two-col {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 4rem; align-items: start;
+}
+.two-col.equal { grid-template-columns: 1fr 1fr; }
+.two-col.wide { grid-template-columns: 1fr 2fr; }
+
+/* Image grid */
+.image-grid { display: grid; gap: 1.5rem; }
+.image-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.image-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.image-item img {
+  width: 100%; display: block;
+  aspect-ratio: 16/9; object-fit: cover; cursor: pointer;
+  border: 1px solid var(--border);
+}
+.image-caption {
+  margin-top: 0.6rem; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem; letter-spacing: 2px; color: var(--white); line-height: 1.5;
+}
+
+/* Bullet list */
+.beat-text ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.beat-text ul li {
+  font-size: 1.05rem; line-height: 1.75; color: var(--text);
+  padding-left: 1.2rem; border-left: 2px solid rgba(26,111,196,0.3);
+}
+.beat-text ul li strong { color: var(--cyan); font-weight: 600; }
+.beat-text ul li.red-item { border-left: 2px solid rgba(255,77,77,0.5); }
+.beat-text ul li.red-item strong { color: var(--gold); }
+.beat-text p { font-size: 1.15rem; line-height: 1.8; color: var(--text); margin-bottom: 1rem; }
+
+.bp-label {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1rem;
+  letter-spacing: 2px; color: var(--white); margin-top: 0.5rem;
+}
+
+/* Asset pack tags */
+.asset-tags { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1rem; }
+.asset-tag {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem;
+  font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid rgba(26,111,196,0.3); color: var(--cyan);
+  background: rgba(26,111,196,0.05);
+}
+
+/* Summary paragraph */
+.summary-p {
+  font-size: 1.0rem; line-height: 1.8; color: rgba(255,255,255,0.7);
+  margin-top: 1.2rem; padding-left: 1.2rem;
+  border-left: 2px solid rgba(255,77,77,0.2);
+  font-style: italic;
+}
+
+/* Gallery grid */
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+}
+.gallery-grid img {
+  width: 100%; display: block; aspect-ratio: 16/9;
+  object-fit: cover; cursor: pointer; border: 1px solid var(--border);
+  transition: filter 0.2s ease;
+}
+.gallery-grid img:hover { filter: brightness(1.1); }
+
+/* Conclusion */
+.conclusion-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2rem; }
+.conclusion-col h4 {
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem;
+  letter-spacing: 5px; text-transform: uppercase; color: var(--cyan); margin-bottom: 1.5rem;
+}
+.conclusion-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.conclusion-col ul li {
+  font-size: 1.1rem; line-height: 1.7; color: var(--text);
+  padding-left: 1.2rem; border-left: 2px solid var(--border);
+}
+
+footer {
+  position: relative; z-index: 10; border-top: 1px solid var(--border);
+  padding: 2rem 5rem; display: flex; align-items: center; justify-content: space-between;
+}
+footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); }
+.footer-mark { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 4px; }
+
+/* LIGHTBOX */
+.lightbox {
+  display: none; position: fixed; z-index: 9999; inset: 0;
+  background: rgba(0,0,0,0.92); justify-content: center;
+  align-items: center; flex-direction: column; padding: 2rem;
+}
+.lightbox-img { max-width: 85%; max-height: 80vh; border: 1px solid var(--border); }
+.lightbox .caption {
+  margin-top: 1rem; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem; letter-spacing: 2px; color: var(--gold);
+  text-align: center; max-width: 600px;
+}
+.lightbox .close {
+  position: absolute; top: 1.5rem; right: 2rem; font-size: 2rem;
+  color: var(--gold); cursor: pointer; line-height: 1; transition: color 0.2s ease;
+}
+.lightbox .close:hover { color: var(--white); }
+.lightbox-prev, .lightbox-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(7,9,15,0.85); color: var(--gold);
+  border: 1px solid rgba(255,77,77,0.3); font-size: 1.5rem;
+  padding: 1rem 1.2rem; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease; z-index: 10000; line-height: 1;
+}
+.lightbox-prev { left: 1.5rem; }
+.lightbox-next { right: 1.5rem; }
+.lightbox-prev:hover, .lightbox-next:hover { background: var(--gold); color: var(--bg); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+.d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; }
+.d3 { animation-delay: 0.28s; } .d4 { animation-delay: 0.42s; }
+
+@media (max-width: 960px) {
+  header, .page-hero, main, footer { padding-left: 2rem; padding-right: 2rem; }
+  .overview-grid, .two-col, .two-col.equal, .two-col.wide { grid-template-columns: 1fr; }
+  .image-grid.cols-2, .image-grid.cols-3 { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .conclusion-cols { grid-template-columns: 1fr; }
+  .section-divider::before { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<header>
+  <div class="animate d1">
+    <a href="projects.html" class="site-title" style="display:block; text-decoration:none;">Paul Saturno</a>
+    <p class="site-subtitle">Level Designer</p>
+  </div>
+  <nav class="animate d2">
+    <ul>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="page-hero animate d2">
+  <div class="breadcrumb">
+    <a href="projects.html">Projects</a>
+    <span>/</span>
+    <span>RE2 Remake: Main Hall</span>
+  </div>
+  <h1 class="hero-title">Resident Evil 2<br>Remake: Main Hall</h1>
+  <p class="hero-subtitle">Solo Designer &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; Main Hall Recreation</p>
+</div>
+
+<main>
+
+  <!-- PLAYTHROUGH -->
+  <h2 class="section-divider">Full <span>Playthrough</span></h2>
+  <div class="video-container">
+    <iframe src="https://www.youtube.com/embed/ufpR7fIHyJE" title="RE2 Main Hall Playthrough" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <!-- OVERVIEW -->
+  <h2 class="section-divider">Project <span>Overview</span></h2>
+  <section style="padding-bottom:2rem;">
+    <div class="overview-grid">
+      <div class="overview-text">
+        <h2 style="color:var(--cyan)">Overview</h2>
+        <p>This is a recreation of the iconic Raccoon City Police Department Main Hall from Resident Evil 2 Remake, built entirely in Unreal Engine 5. The goal was not just to recreate the space visually — But to use it as a platform to push my technical skills in modeling, materials, blueprints, and gameplay systems.</p>
+        <p><strong style="color:var(--cyan); font-size:clamp(1.4rem, 2.5vw, 2rem); letter-spacing:3px; font-family:'Bebas Neue',sans-serif;">Goals</strong></p>
+        <ul>
+          <li><strong>Recreate</strong> the RPD Main Hall faithfully from reference images, footage, and interactive web tools</li>
+          <li><strong>Improve</strong> my proficiency with Unreal Engine's modeling tools and geometry scripting</li>
+          <li><strong>Demonstrate</strong> technical depth through custom blueprints, materials, enemy AI, and mission logic</li>
+        </ul>
+        <div class="asset-tags" style="margin-top:2rem;">
+          <span style="font-family:'Barlow Condensed',sans-serif; font-size:0.8rem; letter-spacing:3px; text-transform:uppercase; color:var(--text-dim); align-self:center;">Asset Packs Used</span>
+          <span class="asset-tag">ResidentHorror Template</span>
+          <span class="asset-tag">Whisper Enemy &amp; Animations Pack</span>
+          <span class="asset-tag">KE_Statues_Lite</span>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-item">
+          <img src="RE2MainHall/MainHallFinal1.png" alt="Main Hall Final" class="lightbox-trigger">
+          <p class="image-caption">Final build — RPD Main Hall recreation</p>
+        </div>
+        <div class="image-item">
+          <img src="RE2MainHall/MainHallFinal2.png" alt="Main Hall Final 2" class="lightbox-trigger">
+          <p class="image-caption">Upper balcony and staircase — Key landmarks from the original</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <h2 class="section-divider">Research <span>&amp; Reference</span></h2>
+  <section class="beat-section" style="border-top:none; padding-top:0;">
+    <div class="two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">How I Studied the Space</div>
+        <ul>
+          <li><strong>Gathered reference images</strong> — Collected high-resolution screenshots, promotional art, and fan-captured photos of the RPD Main Hall to understand the spatial layout, color palette, and prop placement</li>
+          <li><strong>Watched gameplay footage</strong> — Studied multiple playthroughs of RE2 Remake to understand how the player moves through the space and how lighting, atmosphere, and sound design inform the environment</li>
+          <li><strong>Used interactive web tools</strong> — Found a browser-based tool that lets you navigate the actual RE2 game environment in real time, allowing me to freely explore angles, scale, and details that screenshots couldn't capture</li>
+        </ul>
+        <p class="summary-p">Having the ability to freely explore the reference space interactively was a game changer. It let me study scale and proportions in a way that no static image could replicate — Which directly informed how I approached blocking out the hall.</p>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Miro Research Board</div>
+        <div class="miro-wrap">
+          <iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVGQPp0Vs=/?embedMode=view_only_without_ui&moveToViewport=-68664,-59707,94692,44114&embedId=606917376509" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+        </div>
+        <p class="bp-label">Reference images, layout notes, and spatial planning — Click to pan and zoom</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENVIRONMENT & MODELING -->
+  <h2 class="section-divider">Environment <span>&amp; Modeling</span></h2>
+  <section class="beat-section" style="border-top:none; padding-top:0;">
+    <div class="beat-text" style="margin-bottom:3rem;">
+      <p>A major focus of this project was pushing my skills with Unreal Engine 5's modeling tools. Rather than relying entirely on marketplace assets, I modeled key pieces of the environment by hand — Starting with the gym, which gave me a controlled space to develop and validate my workflow before applying it to the main hall. I paid close attention to proper real-world scaling throughout, which is something I wanted to improve from previous projects.</p>
+    </div>
+
+    <div class="two-col equal" style="margin-bottom:3rem;">
+      <div>
+        <div class="beat-subsection-label">Gym Modeling Showcase</div>
+        <div class="video-container" style="margin-bottom:0.6rem;">
+          <iframe src="https://www.youtube.com/embed/EOcZX43DAlk" title="Gym Modeling Showcase" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="bp-label">Custom modeled gym — Built to validate scale and modeling workflow</p>
+      </div>
+      <div>
+        <div class="beat-subsection-label">What I Focused On</div>
+        <ul class="beat-text" style="margin-top:0;">
+          <ul>
+            <li><strong>Real-world scaling</strong> — Every object modeled to accurate dimensions to ensure spatial believability</li>
+            <li><strong>Modeling tools proficiency</strong> — Used UE5's built-in modeling toolkit for geometry creation and editing entirely within the engine</li>
+            <li><strong>Material functions</strong> — Built two custom material functions to handle surface detail across multiple meshes efficiently</li>
+          </ul>
+        </ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- BLUEPRINT SYSTEMS: MATERIAL FUNCTIONS -->
+  <h2 class="section-divider">Blueprint Systems <span>— Material Functions</span></h2>
+  <section class="beat-section" style="border-top:none; padding-top:0;">
+    <div class="beat-text" style="margin-bottom:3rem;">
+      <p>These two material functions were arguably the most important technical contribution of this project. Working with them forced me to think differently about how surfaces read in a space — About scaling, visual cohesion, and why a well-lit, properly textured environment communicates so much more than a gray cubegrid blockout ever could. This section changed how I approach environment building at a fundamental level.</p>
+    </div>
+    <div class="image-grid cols-2">
+      <div>
+        <div class="beat-subsection-label">Object Aligned Texture</div>
+        <div class="bp-wrap">
+          <iframe src="https://blueprintue.com/render/12le_pwe/" scrolling="no" allowfullscreen></iframe>
+        </div>
+        <p class="bp-label">Removes visible tiling seams on large surfaces by aligning texture projection to object space</p>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Grid Material Function</div>
+        <div class="bp-wrap">
+          <iframe src="https://blueprintue.com/render/e4osdb_i/" scrolling="no" allowfullscreen></iframe>
+        </div>
+        <p class="bp-label">Used for blockout validation — Clean grid surface to verify scale and proportion before final texturing</p>
+      </div>
+    </div>
+    <p class="summary-p" style="margin-top:1.5rem;">Both functions are reusable across any mesh in the scene. Together they showed me the importance of readable spaces, proper scaling, and overall visual cohesion — A massive step beyond leaving everything gray in cubegrid.</p>
+  </section>
+
+  <!-- BLUEPRINT SYSTEMS: ARCHITECTURE -->
+  <h2 class="section-divider">Blueprint Systems <span>— Architecture</span></h2>
+  <section class="beat-section" style="border-top:none; padding-top:0;">
+    <div class="beat-text" style="margin-bottom:3rem;">
+      <p>The RPD Main Hall features distinctive arched windows and archways that repeat throughout the space. Creating these arch shapes purely out of primitives is practically impossible — So I had to get creative and build a blueprint that could procedurally generate the arch geometry. Once I had that working for the archways, I realized I could apply the same approach to the windows too, so I built a second generator for those as well.</p>
+    </div>
+
+    <div class="image-grid cols-2">
+      <div>
+        <div class="beat-subsection-label">Window Generator</div>
+        <div class="bp-wrap">
+          <iframe src="https://blueprintue.com/render/oqjy4ock/" scrolling="no" allowfullscreen></iframe>
+        </div>
+        <p class="bp-label">Procedural window generator — Configurable size and detail</p>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Archway Generator</div>
+        <div class="bp-wrap">
+          <iframe src="https://blueprintue.com/render/qmrjhmwq/" scrolling="no" allowfullscreen></iframe>
+        </div>
+        <p class="bp-label">Procedural archway generator — Consistent arches across the hall</p>
+      </div>
+    </div>
+    <p class="summary-p" style="margin-top:1.5rem;">Building procedural generators instead of placing static meshes meant I could iterate on the look of windows and archways globally — Changing one parameter updates every instance in the scene. This saved significant time and kept the architecture consistent throughout the build.</p>
+  </section>
+
+  <!-- BLUEPRINT SYSTEMS: ENEMY AI -->
+  <h2 class="section-divider">Blueprint Systems <span>— Enemy AI</span></h2>
+  <section class="beat-section" style="border-top:none; padding-top:0;">
+    <div class="beat-text" style="margin-bottom:3rem;">
+      <p>To make this a playable experience rather than a static environment, I built a fully functional enemy AI system. The enemy patrols the hall on a set path using a NavMesh, detects the player, transitions into a chase, and attacks when in range. Each behavior state is handled by a separate blueprint, keeping the logic clean and modular.</p>
+    </div>
+
+    <div class="image-grid cols-2">
+      <div>
+        <div class="beat-subsection-label">Enemy Damaged</div>
+        <div class="bp-wrap">
+          <iframe src="https://blueprintue.com/render/i1ujv2mj/" scrolling="no" allowfullscreen></iframe>
+        </div>
+        <p class="bp-label">Damage logic — Enemy responds to player hits and dies when health depletes</p>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Patrol, Chase &amp; Attack Logic</div>
+        <div class="bp-wrap">
+          <iframe src="https://blueprintue.com/render/r7_nv0ba/" scrolling="no" allowfullscreen></iframe>
+        </div>
+        <p class="bp-label">Patrol, chase, and attack blueprint — Enemy uses NavMesh to pursue and damage the player on detection</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLUEPRINT SYSTEMS: MISSION LOGIC -->
+  <h2 class="section-divider">Blueprint Systems <span>— Mission Logic</span></h2>
+  <section class="beat-section" style="border-top:none; padding-top:0;">
+    <div class="beat-text" style="margin-bottom:3rem;">
+      <p>The playable experience has a clear mission structure: find your two weapons and use a key to escape the building. Each pickup triggers UI changes and world events — Making the space feel reactive and purposeful rather than just decorative.</p>
+      <ul style="margin-top:1.5rem;">
+        <li><strong>Shotgun pickup</strong> — The first objective. When collected, the UI updates to "Find your Rifle"</li>
+        <li><strong>Rifle pickup</strong> — The second objective. When collected, a previously locked door at the start of the level opens — Revealing a jailed enemy the player passed by earlier. The objective updates to "Escape The Police Department"</li>
+        <li><strong>Key pickup</strong> — The final objective. Used to unlock the exit and complete the mission</li>
+      </ul>
+    </div>
+
+    <div class="image-grid cols-2">
+      <div>
+        <div class="beat-subsection-label">BP_Shotgun — First Objective</div>
+        <div class="bp-wrap">
+          <iframe src="https://blueprintue.com/render/rygeh_wt/" scrolling="no" allowfullscreen></iframe>
+        </div>
+        <p class="bp-label">Shotgun pickup — Triggers UI update to "Find your Rifle"</p>
+      </div>
+      <div>
+        <div class="beat-subsection-label">BP_AS_VAL — Rifle &amp; Door Unlock</div>
+        <div class="bp-wrap">
+          <iframe src="https://blueprintue.com/render/1oyendwh/" scrolling="no" allowfullscreen></iframe>
+        </div>
+        <p class="bp-label">Rifle pickup — Unlocks the jailed enemy's door and updates objective to "Escape The Police Department"</p>
+      </div>
+    </div>
+
+    <div style="max-width:640px; margin-top:2rem;">
+      <div class="beat-subsection-label">Garage Door Open</div>
+      <div class="bp-wrap">
+        <iframe src="https://blueprintue.com/render/o2etofel/" scrolling="no" allowfullscreen></iframe>
+      </div>
+      <p class="bp-label">Door open blueprint — Triggered when rifle is picked up, revealing the jailed enemy</p>
+    </div>
+
+    <p class="summary-p" style="margin-top:1.5rem;">Tying the door unlock to the rifle pickup was a deliberate design choice borrowed from RE2 itself — The player runs past something ominous early on, and a later action makes it relevant. It rewards attentive players and gives the space a sense of cause and effect that makes it feel like a real level rather than a showcase.</p>
+  </section>
+
+  <!-- FINAL GALLERY -->
+  <h2 class="section-divider">Final <span>Design Gallery</span></h2>
+  <section style="padding-bottom:2rem;">
+    <div class="gallery-grid">
+      <img src="RE2MainHall/MainHallFinal1.png" alt="Main Hall Final 1" class="lightbox-trigger">
+      <img src="RE2MainHall/MainHallFinal2.png" alt="Main Hall Final 2" class="lightbox-trigger">
+      <img src="RE2MainHall/MainHallFinal3.png" alt="Main Hall Final 3" class="lightbox-trigger">
+      <img src="RE2MainHall/MainHallFinal4.png" alt="Main Hall Final 4" class="lightbox-trigger">
+    </div>
+  </section>
+
+  <!-- CONCLUSION -->
+  <h2 class="section-divider">Conclusion <span>&amp; Learnings</span></h2>
+  <section style="border-top:none; padding-top:0;">
+    <p style="font-size:1.1rem; line-height:1.8; color:var(--text); max-width:800px; margin-bottom:2rem;">Recreating the RPD Main Hall pushed me further technically than any previous project. Moving beyond layout and encounter design into procedural generation, custom materials, AI systems, and mission logic gave me a much broader picture of what goes into shipping a real game space.</p>
+    <div class="conclusion-cols">
+      <div class="conclusion-col">
+        <h4>Knowledge Gained</h4>
+        <ul>
+          <li>Custom material function creation — Building reusable functions for object-aligned textures and grid materials across multiple meshes</li>
+          <li>Unreal Engine 5 modeling tools — This was my first project where I leaned heavily into UE5's built-in modeling toolkit, improving my proficiency and scaling discipline significantly</li>
+          <li>Blueprint generators — Building procedural window and archway generators taught me how to think systematically about repeating architectural elements</li>
+        </ul>
+      </div>
+      <div class="conclusion-col">
+        <h4>Areas for Growth</h4>
+        <ul>
+          <li>Blueprints and scripted events — There is still a lot more complexity I can push into my blueprint systems, particularly around scripted world events</li>
+          <li>Getting familiar with Unreal's Sequencer — Cinematic and scripted sequences would elevate the experience significantly</li>
+          <li>Making a longer, more intricate experience — The space and systems are in place, the next step is expanding the mission and adding more environmental depth</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Paul Saturno</p>
+  <span class="footer-mark">PS</span>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <span class="close" id="lightbox-close">&times;</span>
+  <button class="lightbox-prev" id="lightbox-prev">&#10094;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <button class="lightbox-next" id="lightbox-next">&#10095;</button>
+  <div class="caption" id="lightbox-caption"></div>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+  let allTriggers = [], currentLightboxIndex = 0;
+
+  function openLightbox(index) {
+    const trigger = allTriggers[index];
+    currentLightboxIndex = index;
+    lightboxImg.src = trigger.src || '';
+    lightboxImg.alt = trigger.alt || '';
+    lightboxCaption.textContent = trigger.closest('.image-item')?.querySelector('.image-caption')?.textContent || trigger.alt || '';
+    lightbox.style.display = 'flex';
+  }
+
+  document.querySelectorAll('.lightbox-trigger').forEach((trigger, i) => {
+    allTriggers.push(trigger);
+    trigger.addEventListener('click', e => { e.preventDefault(); openLightbox(i); });
+  });
+
+  lightboxPrev.addEventListener('click', () => { currentLightboxIndex = (currentLightboxIndex - 1 + allTriggers.length) % allTriggers.length; openLightbox(currentLightboxIndex); });
+  lightboxNext.addEventListener('click', () => { currentLightboxIndex = (currentLightboxIndex + 1) % allTriggers.length; openLightbox(currentLightboxIndex); });
+  document.addEventListener('keydown', e => {
+    if (lightbox.style.display !== 'flex') return;
+    if (e.key === 'ArrowRight') lightboxNext.click();
+    if (e.key === 'ArrowLeft') lightboxPrev.click();
+    if (e.key === 'Escape') lightbox.style.display = 'none';
+  });
+  lightboxClose.addEventListener('click', () => lightbox.style.display = 'none');
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.style.display = 'none'; });
+</script>
+</body>
+</html>
