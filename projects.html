@@ -172,7 +172,7 @@ main {
 .projects-list {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 16px;
 }
 
 /* PROJECT CARD */
@@ -370,11 +370,173 @@ footer p {
   .card-overlay { background: linear-gradient(180deg, transparent 50%, var(--surface) 100%); }
   .card-body { padding: 1.5rem; }
 }
+
+/* ANNOUNCEMENT BANNER */
+.announce-banner {
+  position: relative; z-index: 20;
+  background: linear-gradient(90deg, #0a0a0f 0%, #1a1228 40%, #0a0a0f 100%);
+  border-bottom: 1px solid rgba(217,172,23,0.3);
+  overflow: hidden;
+}
+
+.announce-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("images/SORN_BannerH.png") center/cover no-repeat;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.announce-inner {
+  position: relative; z-index: 1;
+  max-width: 1280px; margin: 0 auto;
+  padding: 1.6rem 5rem;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 2rem;
+}
+
+.announce-left {
+  display: flex; align-items: center; gap: 1.5rem;
+}
+
+.announce-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 12px rgba(217,172,23,0.9);
+  animation: pulse 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.announce-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.2rem; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase;
+  color: var(--white);
+}
+
+.announce-text span { color: var(--gold); }
+
+.announce-cta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--bg);
+  background: var(--gold);
+  padding: 0.7rem 1.8rem;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.announce-cta:hover {
+  background: var(--white);
+  color: var(--bg);
+}
+
+.announce-banner-big {
+  margin-bottom: 2rem;
+  border: 1px solid rgba(217,172,23,0.25);
+  border-left: 4px solid var(--gold);
+}
+
+.announce-banner-big .announce-inner {
+  padding: 2rem 5rem;
+}
+
+.announce-banner-big .announce-text {
+  font-size: 1.5rem;
+  letter-spacing: 6px;
+}
+
+.announce-banner-big .announce-cta {
+  font-size: 1.1rem;
+  padding: 0.9rem 2.2rem;
+}
+
+.announce-banner-big .announce-dot {
+  width: 14px; height: 14px;
+  box-shadow: 0 0 16px rgba(217,172,23,1);
+}
+
+/* SORN card — deep navy, orange title, cyan tag */
+.card-sorn {
+  background: #0d1829;
+  border-color: rgba(232,98,42,0.2);
+}
+.card-sorn:hover {
+  border-color: rgba(232,98,42,0.5);
+  box-shadow: 0 0 40px rgba(232,98,42,0.08);
+}
+.card-sorn::before {
+  background: linear-gradient(135deg, rgba(232,98,42,0.07) 0%, transparent 55%);
+}
+.card-sorn .card-tag { color: #00c2e0; }
+.card-sorn .card-title { color: #e8622a; }
+.card-sorn .card-cta { color: #e8622a; }
+.card-sorn .card-number { color: rgba(232,98,42,0.06); }
+
+/* RPD card — near black, bright red title */
+.card-rpd {
+  background: #110608;
+  border-color: rgba(255,59,59,0.2);
+}
+.card-rpd:hover {
+  border-color: rgba(255,59,59,0.5);
+  box-shadow: 0 0 40px rgba(255,59,59,0.08);
+}
+.card-rpd::before {
+  background: linear-gradient(135deg, rgba(255,59,59,0.07) 0%, transparent 55%);
+}
+.card-rpd .card-tag { color: #4a9eff; }
+.card-rpd .card-title { color: #ff4d4d; }
+.card-rpd .card-cta { color: #ff4d4d; }
+.card-rpd .card-number { color: rgba(255,59,59,0.05); }
+
+/* Bootlegger card — warm dark brown, amber title, lime accent */
+.card-bootlegger {
+  background: #140e07;
+  border-color: rgba(245,200,66,0.2);
+}
+.card-bootlegger:hover {
+  border-color: rgba(245,200,66,0.45);
+  box-shadow: 0 0 40px rgba(245,200,66,0.07);
+}
+.card-bootlegger::before {
+  background: linear-gradient(135deg, rgba(245,200,66,0.06) 0%, transparent 55%);
+}
+.card-bootlegger .card-tag { color: #a8e63d; }
+.card-bootlegger .card-title { color: #f5c842; }
+.card-bootlegger .card-cta { color: #f5c842; }
+.card-bootlegger .card-number { color: rgba(245,200,66,0.05); }
+
+/* Carnage card — dark surface, lime green title */
+.card-carnage {
+  background: #0a110a;
+  border-color: rgba(168,230,61,0.2);
+}
+.card-carnage:hover {
+  border-color: rgba(168,230,61,0.45);
+  box-shadow: 0 0 40px rgba(168,230,61,0.07);
+}
+.card-carnage::before {
+  background: linear-gradient(135deg, rgba(168,230,61,0.06) 0%, transparent 55%);
+}
+.card-carnage .card-tag { color: #60d060; }
+.card-carnage .card-title { color: #a8e63d; }
+.card-carnage .card-cta { color: #a8e63d; }
+.card-carnage .card-number { color: rgba(168,230,61,0.05); }
 </style>
 </head>
 <body>
 
 <div class="bg-glow"></div>
+
 
 <header>
   <div class="animate d1">
@@ -399,16 +561,26 @@ footer p {
 </div>
 
 <main>
+<div class="announce-banner announce-banner-big">
+  <div class="announce-inner">
+    <div class="announce-left">
+      <div class="announce-dot"></div>
+      <p class="announce-text"><span>S.O.R.N</span> &nbsp;·&nbsp; Releases <span>May 1st</span></p>
+    </div>
+    <a href="https://store.steampowered.com/app/4606740/SORN/" target="_blank" class="announce-cta">Wishlist on Steam →</a>
+  </div>
+</div>
+
   <div class="projects-label animate d3">Level Design Projects</div>
   <div class="projects-list">
 
     <!-- SORN -->
-    <a href="sorn.html" class="project-card animate d3">
+    <a href="sorn.html" class="project-card card-sorn animate d3">
       <div class="card-media">
         <img class="card-thumb" src="sornimages/DesertAlphaSS2.png" alt="S.O.R.N">
         <div class="card-yt" id="card-yt-1">
           <iframe id="yt-sorn"
-            src="https://www.youtube.com/embed/74vX9ciYD-o?enablejsapi=1&mute=1&loop=1&playlist=74vX9ciYD-o&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&start=0"
+            src="https://www.youtube.com/embed/Hp3CSL4aBc8?enablejsapi=1&mute=1&loop=1&playlist=Hp3CSL4aBc8&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&start=0"
             allow="autoplay; encrypted-media"
             allowfullscreen></iframe>
         </div>
@@ -416,15 +588,37 @@ footer p {
       </div>
       <div class="card-body">
         <div class="card-number">01</div>
-        <div class="card-tag">Alpha &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; Solo Level Designer</div>
+        <div class="card-tag">Beta &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; Level Designer</div>
         <h3 class="card-title">S.O.R.N</h3>
         <p class="card-desc">A fast-paced mech shooter set across a massive desert and a monolith-scale facility. Sole level designer on Mission 1 — the game's opening level.</p>
         <span class="card-cta">Explore the Level</span>
       </div>
     </a>
 
+
+    <!-- RPD MAIN HALL -->
+    <a href="RPDMainHall.html" class="project-card card-rpd animate d4">
+      <div class="card-media">
+        <img class="card-thumb" src="re2images/RPDInGameSSFinalDesign2.png" alt="RE2 Remake: Main Hall">
+        <div class="card-yt" id="card-yt-rpd">
+          <iframe id="yt-rpd"
+            src="https://www.youtube.com/embed/BcAXkF4YVFQ?enablejsapi=1&mute=1&loop=1&playlist=BcAXkF4YVFQ&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&start=0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen></iframe>
+        </div>
+        <div class="card-overlay"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-number">02</div>
+        <div class="card-tag">Recreation &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; Level Designer</div>
+        <h3 class="card-title">RE2 Remake: Main Hall</h3>
+        <p class="card-desc">A faithful recreation of the Raccoon City Police Department Main Hall from Resident Evil 2 Remake — built with custom blueprints, procedural generators, material functions, and a fully playable enemy AI and mission system.</p>
+        <span class="card-cta">Explore the Level</span>
+      </div>
+    </a>
+
     <!-- BOOTLEGGER BUST -->
-    <a href="bootleggerbust.html" class="project-card animate d4">
+    <a href="bootleggerbust.html" class="project-card card-bootlegger animate d4">
       <div class="card-media">
         <img class="card-thumb" src="images/BossRoomPhoto1.png" alt="Bootlegger Bust">
         <div class="card-yt" id="card-yt-2">
@@ -436,8 +630,8 @@ footer p {
         <div class="card-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="card-number">02</div>
-        <div class="card-tag">FPS Level &nbsp;·&nbsp; Unreal Engine 5</div>
+        <div class="card-number">03</div>
+        <div class="card-tag">FPS Level &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; Level Designer</div>
         <h3 class="card-title">Bootlegger Bust</h3>
         <p class="card-desc">An FPS level set inside a Prohibition-era warehouse doubling as a mafia hub. Designed the full layout, enemy placement, and encounter pacing.</p>
         <span class="card-cta">Explore the Level</span>
@@ -445,20 +639,20 @@ footer p {
     </a>
 
     <!-- CARNAGE -->
-    <a href="carnage.html" class="project-card animate d5">
+    <a href="carnage.html" class="project-card card-carnage animate d5">
       <div class="card-media">
         <img class="card-thumb" src="carnageimages/CarnageHomeScreen.png" alt="Carnage">
         <div class="card-yt" id="card-yt-3">
           <iframe id="yt-carnage"
-            src="https://www.youtube.com/embed/CARNAGE_VIDEO_ID?enablejsapi=1&mute=1&loop=1&playlist=CARNAGE_VIDEO_ID&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&start=0"
+            src="https://www.youtube.com/embed/oQlxsRO2PRU?enablejsapi=1&mute=1&loop=1&playlist=oQlxsRO2PRU&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&start=0"
             allow="autoplay; encrypted-media"
             allowfullscreen></iframe>
         </div>
         <div class="card-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="card-number">03</div>
-        <div class="card-tag">Mobile Game &nbsp;·&nbsp; Core Loop Design</div>
+        <div class="card-number">04</div>
+        <div class="card-tag">Mobile Game &nbsp;·&nbsp; Unity 6 &nbsp;·&nbsp; Game Design</div>
         <h3 class="card-title">Carnage</h3>
         <p class="card-desc">A high-octane, Burnout 3-inspired mobile racer. Designed the core gameplay loop and built challenging, dynamic tracks from the ground up.</p>
         <span class="card-cta">Explore the Level</span>
@@ -484,8 +678,9 @@ footer p {
   window.onYouTubeIframeAPIReady = function () {
     const iframes = [
       { id: 'yt-sorn',       card: document.querySelector('.project-card:nth-child(1)') },
-      { id: 'yt-bootlegger', card: document.querySelector('.project-card:nth-child(2)') },
-      { id: 'yt-carnage',    card: document.querySelector('.project-card:nth-child(3)') },
+      { id: 'yt-rpd',        card: document.querySelector('.project-card:nth-child(2)') },
+      { id: 'yt-bootlegger', card: document.querySelector('.project-card:nth-child(3)') },
+      { id: 'yt-carnage',    card: document.querySelector('.project-card:nth-child(4)') },
     ];
 
     iframes.forEach(({ id, card }) => {
