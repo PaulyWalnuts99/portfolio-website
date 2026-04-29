@@ -531,6 +531,23 @@ footer p {
 .card-carnage .card-title { color: #a8e63d; }
 .card-carnage .card-cta { color: #a8e63d; }
 .card-carnage .card-number { color: rgba(168,230,61,0.05); }
+
+/* Tip Me Off card — dark charcoal, yellow title, green accent */
+.card-tipmeoff {
+  background: #0e0e0e;
+  border-color: rgba(255,216,50,0.2);
+}
+.card-tipmeoff:hover {
+  border-color: rgba(255,216,50,0.45);
+  box-shadow: 0 0 40px rgba(255,216,50,0.07);
+}
+.card-tipmeoff::before {
+  background: linear-gradient(135deg, rgba(255,216,50,0.06) 0%, transparent 55%);
+}
+.card-tipmeoff .card-tag { color: #4ade80; }
+.card-tipmeoff .card-title { color: #ffd832; }
+.card-tipmeoff .card-cta { color: #ffd832; }
+.card-tipmeoff .card-number { color: rgba(255,216,50,0.05); }
 </style>
 </head>
 <body>
@@ -659,6 +676,27 @@ footer p {
       </div>
     </a>
 
+    <!-- TIP ME OFF -->
+    <a href="tipmeoff.html" class="project-card card-tipmeoff animate d6">
+      <div class="card-media">
+        <img class="card-thumb" src="TipMeOff/TipMeOffSS1.png" alt="Tip Me Off">
+        <div class="card-yt" id="card-yt-tipmeoff">
+          <iframe id="yt-tipmeoff"
+            src="https://www.youtube.com/embed/aYUs2V8m3pE?enablejsapi=1&mute=1&loop=1&playlist=aYUs2V8m3pE&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&start=0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen></iframe>
+        </div>
+        <div class="card-overlay"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-number">05</div>
+        <div class="card-tag">Interactive Fiction &nbsp;·&nbsp; HTML / Twine &nbsp;·&nbsp; Game Design</div>
+        <h3 class="card-title">Tip Me Off</h3>
+        <p class="card-desc">A choice-based server simulator where you finally get to say what you've always wanted to say. Speak your mind, call out the guests who deserve it, and get rewarded for it.</p>
+        <span class="card-cta">View Project</span>
+      </div>
+    </a>
+
   </div>
 </main>
 
@@ -681,6 +719,7 @@ footer p {
       { id: 'yt-rpd',        card: document.querySelector('.project-card:nth-child(2)') },
       { id: 'yt-bootlegger', card: document.querySelector('.project-card:nth-child(3)') },
       { id: 'yt-carnage',    card: document.querySelector('.project-card:nth-child(4)') },
+      { id: 'yt-tipmeoff',  card: document.querySelector('.project-card:nth-child(5)') },
     ];
 
     iframes.forEach(({ id, card }) => {

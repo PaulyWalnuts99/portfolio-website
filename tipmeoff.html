@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tip Me Off — Paul Saturno</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #090b0e;
+  --surface: #1a2030;
+  --border: rgba(255,255,255,0.10);
+  --gold: #d9ac17;
+  --gold-dim: rgba(217,172,23,0.08);
+  --text: #ffffff;
+  --text-dim: #8a95a8;
+  --white: #eef0f4;
+  --yellow: #ffd832;
+  --yellow-dim: rgba(255,216,50,0.08);
+  --green: #4ade80;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 100;
+}
+
+.bg-glow {
+  position: fixed;
+  top: -20%; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse, rgba(255,216,50,0.04) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+/* HEADER */
+header {
+  position: relative; z-index: 10;
+  padding: 3rem 5rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 2rem;
+}
+
+.site-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.6rem, 4.5vw, 4rem);
+  color: var(--white);
+  letter-spacing: 5px;
+  line-height: 1;
+  text-decoration: none;
+  display: block;
+}
+
+.site-title::after {
+  content: '';
+  display: block;
+  width: 40px; height: 3px;
+  background: var(--yellow);
+  margin-top: 0.5rem;
+}
+
+.site-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 7px;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-top: 0.5rem;
+}
+
+nav ul { display: flex; list-style: none; gap: 0.25rem; }
+
+nav ul li a {
+  display: block;
+  padding: 0.6rem 1.4rem;
+  text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: all 0.25s ease;
+}
+
+nav ul li a:hover {
+  color: var(--yellow);
+  border-color: rgba(255,216,50,0.35);
+  background: var(--yellow-dim);
+}
+
+/* ITCH BANNER */
+.itch-banner {
+  position: relative; z-index: 10;
+  background: linear-gradient(90deg, #0a0e08 0%, #111a0d 50%, #0a0e08 100%);
+  border-bottom: 1px solid rgba(74,222,128,0.3);
+  overflow: hidden;
+}
+
+.itch-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(74,222,128,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.itch-inner {
+  position: relative; z-index: 1;
+  max-width: 1280px; margin: 0 auto;
+  padding: 1.4rem 5rem;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 2rem;
+}
+
+.itch-left {
+  display: flex; align-items: center; gap: 1.5rem;
+}
+
+.itch-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 12px rgba(74,222,128,0.9);
+  animation: pulse 1.5s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.itch-text {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase;
+  color: var(--white);
+}
+
+.itch-text span { color: var(--green); }
+
+.itch-cta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.9rem; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: #0a0e08;
+  background: var(--green);
+  padding: 0.65rem 1.6rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.itch-cta:hover { background: #86efac; }
+
+/* HERO */
+.hero {
+  position: relative; z-index: 10;
+  max-width: 1280px; margin: 0 auto;
+  padding: 4rem 5rem 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.breadcrumb {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+}
+
+.breadcrumb a {
+  color: var(--yellow);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.breadcrumb a:hover { color: var(--green); }
+
+.hero-tag {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 1rem;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 8vw, 7rem);
+  color: var(--yellow);
+  letter-spacing: 4px;
+  line-height: 0.95;
+  margin-bottom: 1.5rem;
+}
+
+.hero-sub {
+  font-size: 1.25rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.65);
+  max-width: 680px;
+  font-style: italic;
+}
+
+/* SECTION LABEL */
+.section-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--yellow);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  line-height: 1;
+}
+
+.section-label::before {
+  content: '';
+  width: 28px; height: 2px;
+  background: var(--yellow);
+  flex-shrink: 0;
+}
+
+.section-label.green {
+  color: var(--green);
+}
+
+.section-label.green::before {
+  background: var(--green);
+}
+
+/* MAIN CONTENT */
+main {
+  position: relative; z-index: 10;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 5rem 6rem;
+}
+
+/* SECTION */
+.section {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-child { border-bottom: none; }
+
+/* TWO COL */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.two-col-wide {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.two-col-wide-flip {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* PROSE */
+.prose p {
+  font-size: 1.3rem;
+  line-height: 1.85;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+}
+
+.prose p:last-child { margin-bottom: 0; }
+
+/* PILLAR LIST */
+.pillar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pillar {
+  padding: 1.5rem 1.75rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--yellow);
+  background: rgba(255,216,50,0.03);
+  position: relative;
+}
+
+.pillar-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 4px;
+  color: var(--yellow);
+  margin-bottom: 0.4rem;
+}
+
+.pillar-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.pillar-desc {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ffffff;
+}
+
+/* MECHANIC CARDS */
+.mechanic-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.mechanic-card {
+  padding: 1.75rem;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.mechanic-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--green);
+}
+
+.mechanic-card-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 0.75rem;
+}
+
+.mechanic-card-desc {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #ffffff;
+}
+
+/* SCREENSHOT */
+.screenshot {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--border);
+}
+
+.screenshot-caption {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-top: 0.75rem;
+}
+
+/* DOC CARDS */
+.doc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.doc-card {
+  padding: 2rem;
+  border: 1px solid rgba(74,222,128,0.2);
+  background: rgba(74,222,128,0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-decoration: none;
+}
+
+.doc-card-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--green);
+  opacity: 0.7;
+}
+
+.doc-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  color: var(--white);
+  line-height: 1;
+}
+
+.doc-card-desc {
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: #ffffff;
+  flex: 1;
+}
+
+.doc-card-cta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--green);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap 0.2s ease;
+}
+
+.doc-card:hover .doc-card-cta { gap: 1rem; }
+.doc-card-cta::after { content: '→'; }
+
+/* FOOTER */
+footer {
+  position: relative; z-index: 10;
+  border-top: 1px solid var(--border);
+  padding: 2rem 5rem;
+  display: flex; align-items: center;
+  justify-content: space-between;
+}
+
+footer p {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.footer-mark {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  color: var(--yellow);
+  letter-spacing: 4px;
+}
+
+/* MECHANIC GRID FULL WIDTH */
+.mechanic-grid-full {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+
+/* PILLAR GRID FULL WIDTH */
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+/* LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+.lightbox.active { display: flex; }
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.lightbox-trigger { cursor: zoom-in; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+.d1 { animation-delay: 0.05s; }
+.d2 { animation-delay: 0.15s; }
+.d3 { animation-delay: 0.28s; }
+.d4 { animation-delay: 0.42s; }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  header, main, footer { padding-left: 2rem; padding-right: 2rem; }
+  .hero { padding-left: 2rem; padding-right: 2rem; }
+  .itch-inner { padding-left: 2rem; padding-right: 2rem; flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .two-col, .two-col-wide, .two-col-wide-flip { grid-template-columns: 1fr; gap: 2.5rem; }
+  .mechanic-grid, .mechanic-grid-full { grid-template-columns: 1fr 1fr; }
+  .pillar-grid { grid-template-columns: 1fr; }
+  .doc-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<header>
+  <div class="animate d1">
+    <a href="projects.html" class="site-title">Paul Saturno</a>
+    <p class="site-subtitle">Level Designer</p>
+  </div>
+  <nav class="animate d2">
+    <ul>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ITCH BANNER -->
+<div class="itch-banner animate d2">
+  <div class="itch-inner">
+    <div class="itch-left">
+      <div class="itch-dot"></div>
+      <p class="itch-text">Tip Me Off is <span>out now</span> on itch.io</p>
+    </div>
+    <a href="https://paulsaturno.itch.io/tip-me-off" target="_blank" class="itch-cta">Play for Free →</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero animate d3">
+  <div class="breadcrumb">
+    <a href="projects.html">Projects</a> &nbsp;/&nbsp; Tip Me Off
+  </div>
+  <div class="hero-tag">Interactive Fiction &nbsp;·&nbsp; HTML / Twine &nbsp;·&nbsp; Game Design</div>
+  <h1 class="hero-title">Tip Me Off</h1>
+  <p class="hero-sub">A choice-based server simulator where you finally get to say what you've always wanted to say. Speak your mind, call out the guests who deserve it, and get rewarded for it.</p>
+</div>
+
+<main>
+
+  <!-- OVERVIEW -->
+  <div class="section animate d4">
+    <div class="two-col-wide">
+      <div>
+        <div class="section-label">Overview</div>
+        <div class="prose">
+          <p>Tip Me Off was born out of personal experience working in the restaurant industry. Anyone who has spent time in service knows the feeling — a difficult guest, a forced smile, and the words you wish you could actually say. The game is a comedic take on that tension, giving players the freedom to respond however they want and experience the real consequences of every choice.</p>
+          <p>Built in Twine over a five-week sprint with a team of five, the game places you in the role of a server during a busy Saturday dinner shift. You navigate a series of customer interactions with branching dialogue — stay professional, push back, or go full honesty. Every decision affects your tip at the end of the table, rewarding players who know how to read the room.</p>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div>
+          <img class="screenshot lightbox-trigger" src="TipMeOff/TipMeOffSS2.png" alt="Tip Me Off gameplay — composure bar and dialogue choices" style="cursor:pointer;">
+          <p class="screenshot-caption">Composure system and branching dialogue in action</p>
+        </div>
+        <div>
+          <img class="screenshot lightbox-trigger" src="TipMeOff/TipMeOffSS3.png" alt="Tip Me Off table result screen" style="cursor:pointer;">
+          <p class="screenshot-caption">End-of-table analysis — your choices explained back to you</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MECHANICS -->
+  <div class="section animate d4">
+    <div class="section-label">Mechanics</div>
+    <div class="mechanic-grid-full">
+      <div class="mechanic-card">
+        <div class="mechanic-card-title">Branching Dialogue</div>
+        <div class="mechanic-card-desc">Every customer interaction offers multiple response options — professional, neutral, or blunt. Your choices directly shape how the interaction plays out and what you walk away with.</div>
+      </div>
+      <div class="mechanic-card">
+        <div class="mechanic-card-title">Composure Bar</div>
+        <div class="mechanic-card-desc">A composure meter tracks how your responses affect your mental state during the interaction. Staying professional keeps it high — but some guests make that very difficult.</div>
+      </div>
+      <div class="mechanic-card">
+        <div class="mechanic-card-title">Tip System</div>
+        <div class="mechanic-card-desc">Each table ends with a tip based on how you handled the interaction. Being rude to guests who deserve it is actually rewarded — but misjudging a table will cost you.</div>
+      </div>
+      <div class="mechanic-card">
+        <div class="mechanic-card-title">Randomized Table Order</div>
+        <div class="mechanic-card-desc">Scenarios are randomly generated each run so you never get the same tables in the same order. Every shift feels different, keeping the game replayable without feeling repetitive.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESIGN PILLARS & DOCS -->
+  <div class="section animate d4">
+    <div class="section-label">Design Pillars</div>
+    <div class="prose" style="margin-bottom: 2.5rem; max-width: 700px;">
+      <p>From the start, the team established four design pillars that guided every decision — from how dialogue was written to how the tip system was balanced. Expressing these pillars clearly in the final product was the primary goal of the design process.</p>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar">
+        <div class="pillar-num">Pillar 01</div>
+        <div class="pillar-title">Rudeness Must Have Consequences</div>
+        <div class="pillar-desc">Players always have the option to be rude, but actions have consequences — in the form of customer reactions and tips affected by attitude, just like real life.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">Pillar 02</div>
+        <div class="pillar-title">Believable Restaurant Scenarios</div>
+        <div class="pillar-desc">Guest complaints and requests were drawn from personal experience in the service industry to make every interaction feel grounded and authentic.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">Pillar 03</div>
+        <div class="pillar-title">Comedy Through Social Tension</div>
+        <div class="pillar-desc">Dialogue options and consequences are humorous rather than serious. Sarcasm and blunt responses drive the tone of every interaction.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">Pillar 04</div>
+        <div class="pillar-title">Customer Personality Drives Gameplay</div>
+        <div class="pillar-desc">Every customer has a distinct identity and personality that shapes how the player approaches them. Customers come from all different backgrounds to diversify the experience.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOCUMENTATION -->
+  <div class="section animate d4">
+    <div class="section-label green">Documentation</div>
+    <div class="prose" style="margin-bottom: 2rem; max-width: 700px;">
+      <p>The design documentation captures the goals, mechanics, and structure that shaped Tip Me Off from concept to final build. Both documents were produced at the start of development to align the team before writing a single line of dialogue.</p>
+    </div>
+    <div class="doc-grid">
+      <a href="TipMeOff/DesignDocRevision.pdf" target="_blank" class="doc-card">
+        <div class="doc-card-label">Document</div>
+        <div class="doc-card-title">Design Doc</div>
+        <div class="doc-card-desc">Full game design document covering mechanics, player objectives, scenarios, team roles, and sprint schedule.</div>
+        <div class="doc-card-cta">View PDF</div>
+      </a>
+      <a href="TipMeOff/DesignPillars.pdf" target="_blank" class="doc-card">
+        <div class="doc-card-label">Document</div>
+        <div class="doc-card-title">Design Pillars</div>
+        <div class="doc-card-desc">The four core pillars that guided every design and writing decision throughout the project.</div>
+        <div class="doc-card-cta">View PDF</div>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 Paul Saturno</p>
+  <span class="footer-mark">PS</span>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+
+  document.querySelectorAll('.lightbox-trigger').forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('active');
+    });
+  });
+
+  lightbox.addEventListener('click', () => lightbox.classList.remove('active'));
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') lightbox.classList.remove('active');
+  });
+</script>
+
+</body>
+</html>
