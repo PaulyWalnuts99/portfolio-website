@@ -840,11 +840,11 @@ footer p {
 
   window.onYouTubeIframeAPIReady = function () {
     const iframes = [
-      { id: 'yt-sorn',       card: document.querySelector('.project-card:nth-child(1)') },
-      { id: 'yt-rpd',        card: document.querySelector('.project-card:nth-child(2)') },
-      { id: 'yt-bootlegger', card: document.querySelector('.project-card:nth-child(3)') },
-      { id: 'yt-carnage',    card: document.querySelector('.project-card:nth-child(4)') },
-      { id: 'yt-tipmeoff',  card: document.querySelector('.project-card:nth-child(5)') },
+      { id: 'yt-sorn',       card: document.querySelector('.card-sorn') },
+      { id: 'yt-rpd',        card: document.querySelector('.card-rpd') },
+      { id: 'yt-bootlegger', card: document.querySelector('.card-bootlegger') },
+      { id: 'yt-carnage',    card: document.querySelector('.card-carnage') },
+      { id: 'yt-tipmeoff',   card: document.querySelector('.card-tipmeoff') },
     ];
 
     iframes.forEach(({ id, card }) => {
