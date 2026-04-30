@@ -441,32 +441,143 @@ footer p {
 
 .announce-banner-big {
   margin-bottom: 2rem;
-  border: 1px solid rgba(217,172,23,0.25);
-  border-left: 4px solid var(--gold);
+  border: none;
+  background: transparent;
+  overflow: visible;
 }
+
+.announce-banner-big::before { display: none; }
+.announce-banner-big::after { display: none; }
 
 .announce-banner-big .announce-inner {
-  padding: 2rem 5rem;
+  padding: 0;
+  min-height: unset;
+  justify-content: center;
 }
 
-.announce-banner-big .announce-text {
-  font-size: 1.5rem;
+.sorn-card {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 0;
+  overflow: hidden;
+  border: 2px solid rgba(0,0,0,0.2);
+  min-height: 320px;
+  display: flex;
+  align-items: stretch;
+  background: linear-gradient(160deg, #d8d8d8 0%, #f0f0f0 25%, #b8b8b8 50%, #e8e8e8 75%, #c0c0c0 100%);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+}
+
+.sorn-card::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+
+.sorn-card-bg { display: none; }
+.sorn-card-overlay { display: none; }
+
+.sorn-bookend {
+  width: 200px;
+  min-width: 200px;
+  height: 320px;
+  flex-shrink: 0;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  position: relative;
+  z-index: 2;
+}
+
+.sorn-bookend:last-child {
+  object-position: left center;
+}
+
+.sorn-card-content {
+  position: relative; z-index: 2;
+  padding: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.sorn-card-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.sorn-disc { display: none; }
+
+.sorn-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
   letter-spacing: 6px;
+  color: #1a1a1a;
+  line-height: 1;
 }
 
-.announce-banner-big .announce-cta {
-  font-size: 1.1rem;
-  padding: 0.9rem 2.2rem;
+.sorn-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  white-space: nowrap;
+  justify-content: center;
 }
 
-.announce-banner-big .announce-dot {
-  width: 14px; height: 14px;
-  box-shadow: 0 0 16px rgba(217,172,23,1);
+.sorn-card-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #1a1a1a;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  animation: pulse 1.5s ease-in-out infinite;
+  flex-shrink: 0;
 }
+
+.sorn-card-release {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  white-space: nowrap;
+}
+
+.sorn-card-release span { color: #4a4a8a; }
+
+.sorn-card-cta {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #1a1a1a;
+  padding: 0.85rem 2rem;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.sorn-card-cta:hover { background: #4a4a4a; }
+
+.sorn-icon { display: none; }
+.announce-dot { display: none; }
+.announce-text { display: none; }
+.announce-cta { display: none; }
 
 /* SORN card — deep navy, orange title, cyan tag */
 .card-sorn {
-  background: #0d1829;
+  background: #1a0d05;
   border-color: rgba(232,98,42,0.2);
 }
 .card-sorn:hover {
@@ -517,20 +628,20 @@ footer p {
 
 /* Carnage card — dark surface, lime green title */
 .card-carnage {
-  background: #0a110a;
-  border-color: rgba(168,230,61,0.2);
+  background: #130511;
+  border-color: rgba(255,20,147,0.2);
 }
 .card-carnage:hover {
-  border-color: rgba(168,230,61,0.45);
-  box-shadow: 0 0 40px rgba(168,230,61,0.07);
+  border-color: rgba(255,20,147,0.45);
+  box-shadow: 0 0 40px rgba(255,20,147,0.07);
 }
 .card-carnage::before {
-  background: linear-gradient(135deg, rgba(168,230,61,0.06) 0%, transparent 55%);
+  background: linear-gradient(135deg, rgba(255,20,147,0.06) 0%, transparent 55%);
 }
-.card-carnage .card-tag { color: #60d060; }
-.card-carnage .card-title { color: #a8e63d; }
-.card-carnage .card-cta { color: #a8e63d; }
-.card-carnage .card-number { color: rgba(168,230,61,0.05); }
+.card-carnage .card-tag { color: #a8e63d; }
+.card-carnage .card-title { color: #ff1493; }
+.card-carnage .card-cta { color: #ff1493; }
+.card-carnage .card-number { color: rgba(255,20,147,0.05); }
 
 /* Tip Me Off card — dark charcoal, yellow title, green accent */
 .card-tipmeoff {
@@ -572,7 +683,7 @@ footer p {
   <div class="bio" style="max-width:1280px; margin:0 auto; padding: 3rem 5rem; display:grid; grid-template-columns: auto 1fr; gap:2.5rem; align-items:center;">
     <img class="bio-photo" src="https://paulywalnuts99.github.io/portfolio-website/images/paul-photo.jpg" alt="Paul Saturno">
     <div class="bio-text">
-      <p>I'm Paul Saturno, a senior at the University of Central Florida studying Digital Media: Video Game Design, graduating May 2026. I also hold a Bachelor's in Business from UCF (2022). I'm passionate about designing game spaces that feel intentional — environments where every encounter, layout, and prop serves the player experience.</p>
+      <p>I am Paul Saturno, a senior at the University of Central Florida studying Digital Media: Video Game Design, graduating May 2026. I also hold a Bachelor's in Business from UCF (2022). I am passionate about crafting levels that feel intuitive to navigate, where the layout guides the player naturally and every design decision serves a purpose.</p>
     </div>
   </div>
 </div>
@@ -580,11 +691,23 @@ footer p {
 <main>
 <div class="announce-banner announce-banner-big">
   <div class="announce-inner">
-    <div class="announce-left">
-      <div class="announce-dot"></div>
-      <p class="announce-text"><span>S.O.R.N</span> &nbsp;·&nbsp; Releases <span>May 1st</span></p>
+    <div class="sorn-card">
+      <div class="sorn-card-bg"></div>
+      <div class="sorn-card-overlay"></div>
+      <img class="sorn-bookend" src="sornimages/SORN_Poster.png" alt="">
+      <div class="sorn-card-content">
+        <div class="sorn-card-left">
+          <div class="sorn-card-title">S.O.R.N</div>
+          <a href="https://store.steampowered.com/app/4606740/SORN/" target="_blank" class="sorn-card-cta">Wishlist on Steam →</a>
+        </div>
+        <div class="sorn-card-meta">
+          <div class="sorn-card-dot"></div>
+          <p class="sorn-card-release">Releases <span>May 1st</span> on Steam</p>
+          <div class="sorn-card-dot"></div>
+        </div>
+      </div>
+      <img class="sorn-bookend" src="sornimages/SORN_BannerV.png" alt="">
     </div>
-    <a href="https://store.steampowered.com/app/4606740/SORN/" target="_blank" class="announce-cta">Wishlist on Steam →</a>
   </div>
 </div>
 
@@ -654,6 +777,8 @@ footer p {
         <span class="card-cta">Explore the Level</span>
       </div>
     </a>
+
+    <div class="projects-label animate d5" style="margin-top: 2rem;">Game Design Projects</div>
 
     <!-- CARNAGE -->
     <a href="carnage.html" class="project-card card-carnage animate d5">
