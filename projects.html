@@ -857,6 +857,7 @@ footer p {
     });
 
     cardPlayers.forEach(({ card, player }) => {
+      if (!card) return;
       card.addEventListener('mouseenter', () => {
         try { player.mute(); player.playVideo(); } catch(e) {}
       });
