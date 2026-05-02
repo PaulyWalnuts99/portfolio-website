@@ -462,21 +462,37 @@ footer p {
   margin: 0 auto;
   border-radius: 0;
   overflow: hidden;
-  border: 2px solid rgba(0,0,0,0.2);
+  border: 2px solid rgba(0,0,0,0.25);
   min-height: 320px;
   display: flex;
   align-items: stretch;
-  background: linear-gradient(160deg, #d8d8d8 0%, #f0f0f0 25%, #b8b8b8 50%, #e8e8e8 75%, #c0c0c0 100%);
-  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  background: linear-gradient(160deg, #c8c8c8 0%, #f2f2f2 20%, #a8a8a8 40%, #ebebeb 60%, #b0b0b0 80%, #f0f0f0 100%);
+  box-shadow: 0 6px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.6);
 }
 
 .sorn-card::before {
   content: '';
   position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
+  background: repeating-linear-gradient(
+    55deg,
+    transparent 0px,
+    transparent 18px,
+    rgba(255,255,255,0.18) 18px,
+    rgba(255,255,255,0.18) 22px,
+    transparent 22px,
+    transparent 40px,
+    rgba(0,0,0,0.04) 40px,
+    rgba(0,0,0,0.04) 44px
+  );
+  background-size: 80px 80px;
+  animation: slideStripes 6s linear infinite;
   pointer-events: none;
   z-index: 1;
-  mix-blend-mode: multiply;
+}
+
+@keyframes slideStripes {
+  from { background-position: 0 0; }
+  to { background-position: 80px 80px; }
 }
 
 .sorn-card-bg { display: none; }
@@ -643,9 +659,26 @@ footer p {
 .card-carnage .card-cta { color: #ff1493; }
 .card-carnage .card-number { color: rgba(255,20,147,0.05); }
 
+/* Bio Lab card — purple primary, hulk green accent */
+.card-biolab {
+  background: #0d0514;
+  border-color: rgba(160,32,240,0.2);
+}
+.card-biolab:hover {
+  border-color: rgba(160,32,240,0.5);
+  box-shadow: 0 0 40px rgba(160,32,240,0.08);
+}
+.card-biolab::before {
+  background: linear-gradient(135deg, rgba(160,32,240,0.07) 0%, transparent 55%);
+}
+.card-biolab .card-tag { color: #39d353; }
+.card-biolab .card-title { color: #b44df0; }
+.card-biolab .card-cta { color: #b44df0; }
+.card-biolab .card-number { color: rgba(160,32,240,0.05); }
+
 /* Tip Me Off card — dark charcoal, yellow title, green accent */
 .card-tipmeoff {
-  background: #0e0e0e;
+  background: #051a10;
   border-color: rgba(255,216,50,0.2);
 }
 .card-tipmeoff:hover {
@@ -698,11 +731,11 @@ footer p {
       <div class="sorn-card-content">
         <div class="sorn-card-left">
           <div class="sorn-card-title">S.O.R.N</div>
-          <a href="https://store.steampowered.com/app/4606740/SORN/" target="_blank" class="sorn-card-cta">Wishlist on Steam →</a>
+          <a href="https://store.steampowered.com/app/4606740/SORN/" target="_blank" class="sorn-card-cta">Visit Steam Page →</a>
         </div>
         <div class="sorn-card-meta">
           <div class="sorn-card-dot"></div>
-          <p class="sorn-card-release">Releases <span>May 1st</span> on Steam</p>
+          <p class="sorn-card-release">S.O.R.N. is out now — Free to Play</p>
           <div class="sorn-card-dot"></div>
         </div>
       </div>
@@ -728,13 +761,34 @@ footer p {
       </div>
       <div class="card-body">
         <div class="card-number">01</div>
-        <div class="card-tag">Beta &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; Level Designer</div>
-        <h3 class="card-title">S.O.R.N</h3>
-        <p class="card-desc">A fast-paced mech shooter set across a massive desert and a monolith-scale facility. Sole level designer on Mission 1 — the game's opening level.</p>
+        <div class="card-tag">Level 1 &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; Level Designer</div>
+        <h3 class="card-title">S.O.R.N. — The Wall</h3>
+        <p class="card-desc">The Wall is a heavily fortified enemy facility at the center of S.O.R.N.'s opening mission. Players must infiltrate the complex, plant a bomb at its core, and extract before it comes down.</p>
         <span class="card-cta">Explore the Level</span>
       </div>
     </a>
 
+
+    <!-- BIO LAB -->
+    <a href="biolab.html" class="project-card card-biolab animate d4">
+      <div class="card-media">
+        <img class="card-thumb" src="biolabimages/BioLabSS1.png" alt="Bio Lab">
+        <div class="card-yt" id="card-yt-biolab">
+          <iframe id="yt-biolab"
+            src="about:blank"
+            allow="autoplay; encrypted-media"
+            allowfullscreen></iframe>
+        </div>
+        <div class="card-overlay"></div>
+      </div>
+      <div class="card-body">
+        <div class="card-number">02</div>
+        <div class="card-tag">Level 2 &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; Level Designer</div>
+        <h3 class="card-title">S.O.R.N. — The Lab</h3>
+        <p class="card-desc">Intel suggests a superweapon may be hidden inside a secret lab. Players are tasked with investigating the facility and uncovering both its location and the truth behind it.</p>
+        <span class="card-cta">Explore the Level</span>
+      </div>
+    </a>
 
     <!-- RPD MAIN HALL -->
     <a href="RPDMainHall.html" class="project-card card-rpd animate d4">
@@ -749,7 +803,7 @@ footer p {
         <div class="card-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="card-number">02</div>
+        <div class="card-number">03</div>
         <div class="card-tag">Recreation &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; Level Designer</div>
         <h3 class="card-title">RE2 Remake: Main Hall</h3>
         <p class="card-desc">A faithful recreation of the Raccoon City Police Department Main Hall from Resident Evil 2 Remake — built with custom blueprints, procedural generators, material functions, and a fully playable enemy AI and mission system.</p>
@@ -770,7 +824,7 @@ footer p {
         <div class="card-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="card-number">03</div>
+        <div class="card-number">04</div>
         <div class="card-tag">FPS Level &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; Level Designer</div>
         <h3 class="card-title">Bootlegger Bust</h3>
         <p class="card-desc">An FPS level set inside a Prohibition-era warehouse doubling as a mafia hub. Designed the full layout, enemy placement, and encounter pacing.</p>
@@ -793,7 +847,7 @@ footer p {
         <div class="card-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="card-number">04</div>
+        <div class="card-number">05</div>
         <div class="card-tag">Mobile Game &nbsp;·&nbsp; Unity 6 &nbsp;·&nbsp; Game Design</div>
         <h3 class="card-title">Carnage</h3>
         <p class="card-desc">A high-octane, Burnout 3-inspired mobile racer. Designed the core gameplay loop and built challenging, dynamic tracks from the ground up.</p>
@@ -814,7 +868,7 @@ footer p {
         <div class="card-overlay"></div>
       </div>
       <div class="card-body">
-        <div class="card-number">05</div>
+        <div class="card-number">06</div>
         <div class="card-tag">Interactive Fiction &nbsp;·&nbsp; HTML / Twine &nbsp;·&nbsp; Game Design</div>
         <h3 class="card-title">Tip Me Off</h3>
         <p class="card-desc">A choice-based server simulator where you finally get to say what you've always wanted to say. Speak your mind, call out the guests who deserve it, and get rewarded for it.</p>
@@ -841,6 +895,7 @@ footer p {
   window.onYouTubeIframeAPIReady = function () {
     const iframes = [
       { id: 'yt-sorn',       card: document.querySelector('.card-sorn') },
+      { id: 'yt-biolab',     card: document.querySelector('.card-biolab') },
       { id: 'yt-rpd',        card: document.querySelector('.card-rpd') },
       { id: 'yt-bootlegger', card: document.querySelector('.card-bootlegger') },
       { id: 'yt-carnage',    card: document.querySelector('.card-carnage') },
