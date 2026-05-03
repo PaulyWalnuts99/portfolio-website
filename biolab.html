@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S.O.R.N Bio Lab — Paul Saturno</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,600;1,300&family=Barlow+Condensed:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #07090f;
+  --surface: #0d0514;
+  --border: rgba(180,77,240,0.25);
+  --gold: #b44df0;
+  --olive: #39d353;
+  --cyan: #39d353;
+  --gold-dim: rgba(180,77,240,0.08);
+  --text: #ffffff;
+  --text-dim: #ffffff;
+  --white: #ede0f5;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 100;
+}
+
+.bg-glow {
+  position: fixed; top: -20%; left: 50%;
+  transform: translateX(-50%);
+  width: 900px; height: 500px;
+  background: radial-gradient(ellipse, rgba(180,77,240,0.07) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+header {
+  position: relative; z-index: 10;
+  padding: 3rem 5rem 2.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 2rem;
+}
+
+.site-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  color: var(--white); letter-spacing: 5px; line-height: 1; text-decoration: none;
+}
+.site-title::after {
+  content: ''; display: block; width: 36px; height: 3px;
+  background: var(--gold); margin-top: 0.4rem;
+}
+.site-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem; font-weight: 600; letter-spacing: 6px;
+  text-transform: uppercase; color: var(--gold); margin-top: 0.4rem;
+}
+
+nav ul { display: flex; list-style: none; gap: 0.25rem; }
+nav ul li a {
+  display: block; padding: 0.5rem 1.2rem; text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem;
+  font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--cyan); border: 1px solid transparent; transition: all 0.25s ease;
+}
+nav ul li a:hover { color: var(--white); border-color: rgba(57,211,83,0.2); background: var(--gold-dim); }
+
+.page-hero {
+  position: relative; z-index: 10;
+  padding: 5rem 5rem 3rem; border-bottom: 1px solid var(--border);
+}
+.breadcrumb {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase; color: var(--cyan);
+  margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem;
+}
+.breadcrumb a { color: var(--gold); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 12vw, 11rem);
+  color: var(--white); letter-spacing: 4px; line-height: 0.9; margin-bottom: 0.5rem;
+}
+.hero-subtitle {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase; color: var(--olive); margin-bottom: 3rem;
+}
+
+main {
+  position: relative; z-index: 10;
+  max-width: 1280px; margin: 0 auto; padding: 0 5rem 6rem;
+}
+
+.section-divider {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.5rem); letter-spacing: 4px; color: var(--white);
+  padding: 4rem 0 2rem; position: relative; display: flex; align-items: center; gap: 1.5rem;
+}
+.section-divider::before {
+  content: ''; width: 4px; height: 100%; background: var(--gold);
+  position: absolute; left: -2rem; top: 0; border-radius: 2px;
+}
+.section-divider span { color: var(--gold); }
+
+.video-container {
+  position: relative; padding-bottom: 56.25%; height: 0;
+  margin-bottom: 3rem; border: 1px solid var(--border); overflow: hidden;
+}
+.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+/* OVERVIEW */
+.overview-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: start; padding-bottom: 2rem;
+}
+.overview-text h2 {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: 3px; color: var(--cyan); margin-bottom: 1rem;
+}
+.overview-text p { font-size: 1.1rem; line-height: 1.8; color: var(--text); margin-bottom: 1.5rem; }
+.overview-text ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.overview-text ul li {
+  font-size: 1.1rem; line-height: 1.7; color: var(--text);
+  padding-left: 1.2rem; border-left: 2px solid rgba(180,77,240,0.3);
+}
+.overview-text ul li strong { color: var(--gold); font-weight: 600; }
+
+.overview-maps .image-item img {
+  width: 100%; display: block;
+  height: auto !important; aspect-ratio: unset !important; object-fit: unset !important;
+  border: 1px solid var(--border); cursor: pointer;
+}
+
+/* BEAT SECTIONS */
+.beat-section { border-top: 1px solid var(--border); padding: 4rem 0; }
+.beat-header { margin-bottom: 3rem; }
+.beat-number {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+}
+.beat-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: 3px; color: var(--white); margin-bottom: 1rem;
+}
+.beat-subsection { margin-top: 3rem; }
+.beat-subsection-label {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 6px; text-transform: uppercase; color: var(--cyan);
+  margin-bottom: 1.2rem; padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(57,211,83,0.15);
+}
+
+/* Image grid */
+.image-grid { display: grid; gap: 1.5rem; }
+.image-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.image-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+.image-item img {
+  width: 100%; display: block;
+  aspect-ratio: 16/9; object-fit: cover; cursor: pointer;
+}
+.image-caption {
+  margin-top: 0.6rem; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem; letter-spacing: 2px; color: var(--cyan); line-height: 1.5;
+}
+
+/* Design Intent — text left, video right */
+.beat-two-col {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 4rem; align-items: start;
+}
+
+/* Process section — text left, images right */
+.beat-sub-col {
+  display: grid; grid-template-columns: 1fr 2.3fr;
+  gap: 4rem; align-items: start;
+}
+
+/* Bullet styles */
+.beat-text ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.beat-text ul li {
+  font-size: 1.05rem; line-height: 1.75; color: var(--text);
+  padding-left: 1.2rem; border-left: 2px solid rgba(180,77,240,0.2);
+}
+.beat-text ul li strong { color: var(--gold); font-weight: 600; }
+.beat-text ul li.beat-goal-item { border-left: 2px solid rgba(57,211,83,0.5); }
+.beat-text ul li.beat-goal-item strong { color: var(--cyan); }
+.beat-text p { font-size: 1.05rem; line-height: 1.8; color: var(--text); margin-bottom: 1rem; }
+
+.video-wrap {
+  position: relative; padding-bottom: 75%; height: 0;
+  overflow: hidden; border: 1px solid var(--border); margin-bottom: 0.6rem;
+}
+.video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.video-label {
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
+  letter-spacing: 2px; color: var(--gold);
+}
+
+/* Final images under each beat */
+.beat-final-images {
+  margin-top: 2.5rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* PROCESS & DOCS */
+.conclusion-section { border-top: 1px solid var(--border); padding-top: 4rem; }
+.conclusion-intro { font-size: 1.1rem; line-height: 1.8; color: var(--text); max-width: 800px; margin-bottom: 2rem; }
+.conclusion-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2rem; }
+.conclusion-col h4 {
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; font-weight: 700;
+  letter-spacing: 5px; text-transform: uppercase; color: var(--cyan); margin-bottom: 1.5rem;
+}
+.conclusion-col ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 1rem; }
+.conclusion-col ul li {
+  font-size: 1.1rem; line-height: 1.7; color: var(--text);
+  padding-left: 1.2rem; border-left: 2px solid var(--border);
+}
+
+/* GALLERY */
+.gallery-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1rem; margin-top: 3rem;
+}
+.gallery-grid img {
+  width: 100%; height: 320px; object-fit: cover;
+  display: block; cursor: zoom-in; transition: opacity 0.2s ease;
+}
+.gallery-grid img:hover { opacity: 0.85; }
+
+footer {
+  position: relative; z-index: 10; border-top: 1px solid var(--border);
+  padding: 2rem 5rem; display: flex; align-items: center; justify-content: space-between;
+}
+footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-dim); }
+.footer-mark { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--gold); letter-spacing: 4px; }
+
+/* LIGHTBOX */
+.lightbox {
+  display: none; position: fixed; z-index: 9999; inset: 0;
+  background: rgba(0,0,0,0.92); justify-content: center;
+  align-items: center; flex-direction: column; padding: 2rem;
+}
+.lightbox-img { max-width: 85%; max-height: 80vh; border: 1px solid var(--border); }
+.lightbox .caption {
+  margin-top: 1rem; font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.85rem; letter-spacing: 2px; color: var(--gold);
+  text-align: center; max-width: 600px;
+}
+.lightbox .close {
+  position: absolute; top: 1.5rem; right: 2rem; font-size: 2rem;
+  color: var(--gold); cursor: pointer; font-family: 'Barlow Condensed', sans-serif;
+  line-height: 1; transition: color 0.2s ease;
+}
+.lightbox .close:hover { color: var(--white); }
+.lightbox-prev, .lightbox-next {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(9,11,14,0.85); color: var(--gold);
+  border: 1px solid rgba(180,77,240,0.3); font-size: 1.5rem;
+  padding: 1rem 1.2rem; cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease; z-index: 10000; line-height: 1;
+}
+.lightbox-prev { left: 1.5rem; }
+.lightbox-next { right: 1.5rem; }
+.lightbox-prev:hover, .lightbox-next:hover { background: var(--gold); color: var(--bg); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate { opacity: 0; animation: fadeUp 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+.d1 { animation-delay: 0.05s; } .d2 { animation-delay: 0.15s; }
+.d3 { animation-delay: 0.28s; } .d4 { animation-delay: 0.42s; }
+
+@media (max-width: 960px) {
+  header, .page-hero, main, footer { padding-left: 2rem; padding-right: 2rem; }
+  .overview-grid, .beat-two-col, .beat-sub-col { grid-template-columns: 1fr; }
+  .image-grid.cols-2, .image-grid.cols-3 { grid-template-columns: 1fr; }
+  .conclusion-cols { grid-template-columns: 1fr; }
+  .section-divider::before { display: none; }
+  .lightbox-prev { left: 0.5rem; }
+  .lightbox-next { right: 0.5rem; }
+}
+</style>
+</head>
+<body>
+<div class="bg-glow"></div>
+
+<header>
+  <div class="animate d1">
+    <a href="projects.html" class="site-title" style="display:block; text-decoration:none;">Paul Saturno</a>
+    <p class="site-subtitle">Level Designer</p>
+  </div>
+  <nav class="animate d2">
+    <ul>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="page-hero animate d2">
+  <div class="breadcrumb">
+    <a href="projects.html">Projects</a>
+    <span>/</span>
+    <span>S.O.R.N</span>
+  </div>
+  <h1 class="hero-title">S.O.R.N</h1>
+  <p class="hero-subtitle">Mission 2 &nbsp;·&nbsp; Unreal Engine 5 &nbsp;·&nbsp; Level Designer</p>
+</div>
+
+<main>
+
+  <h2 class="section-divider">Level 2 <span>Playthrough</span></h2>
+  <div class="video-container">
+    <iframe src="PLACEHOLDER_PLAYTHROUGH_URL" title="S.O.R.N Bio Lab Full Playthrough" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <h2 class="section-divider">Level <span>Overview</span></h2>
+  <section style="padding-bottom: 2rem;">
+    <div class="overview-grid">
+      <div class="overview-text">
+        <h2>Overview</h2>
+        <p>Following the events of Mission 1, intel suggests that a rival PMC known as Nighthawk may be hiding crucial information about a superweapon at a secret lab facility. Players are tasked with infiltrating the lab and uncovering both the weapon's location and the truth behind it. The mission culminates in a boss fight against Q-14, whose defeat reveals critical story information through two cutscenes. The lab is a smaller, more linear level than The Wall — winding hallways and tighter encounter spaces keep the pacing intense, while still giving players enough room to maneuver freely.</p>
+        <p><strong style="color:var(--cyan); font-size:clamp(1.4rem, 2.5vw, 2rem); letter-spacing:3px; font-family:'Bebas Neue',sans-serif;">Level Goals</strong></p>
+        <ul>
+          <li><strong>Support</strong> the narrative by designing spaces that feel purposeful and grounded in the world of S.O.R.N.</li>
+          <li><strong>Guide</strong> the player through a linear but varied set of encounters that escalate naturally toward the boss fight</li>
+          <li><strong>Deliver</strong> a memorable boss encounter with a mid-fight arena transformation that changes how the player engages with the space</li>
+        </ul>
+      </div>
+      <div class="overview-maps" style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_MAP_1.png" alt="Bio Lab Map 1" class="lightbox-trigger">
+          <p class="image-caption">Top-down map of Mission 2 — The Lab</p>
+        </div>
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_MAP_2.png" alt="Bio Lab Map 2" class="lightbox-trigger">
+          <p class="image-caption">Top-down map of Mission 2 — The Lab (continued)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="section-divider">Beat <span>Breakdown</span></h2>
+
+  <!-- ═══ BEAT 1: POWER UP ═══ -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 01</p>
+      <h2 class="beat-title">Power Up</h2>
+    </div>
+
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
+        <ul>
+          <li class="beat-goal-item"><strong>Goal:</strong> Establish the lab's atmosphere through darkness and narrative dialogue while easing the player into combat before delivering a satisfying environmental payoff when the power is restored</li>
+          <li><strong>Design Decision 1:</strong> PLACEHOLDER — describe your first design decision for this beat</li>
+          <li><strong>Design Decision 2:</strong> PLACEHOLDER — describe your second design decision for this beat</li>
+        </ul>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="PLACEHOLDER_BEAT1_URL?enablejsapi=1&mute=1" title="Beat 1 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — Power Up</p>
+      </div>
+    </div>
+
+    <div class="beat-final-images">
+      <div class="image-grid cols-2">
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_BEAT1_IMG1.png" alt="Beat 1 Image 1" class="lightbox-trigger">
+          <p class="image-caption">PLACEHOLDER CAPTION</p>
+        </div>
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_BEAT1_IMG2.png" alt="Beat 1 Image 2" class="lightbox-trigger">
+          <p class="image-caption">PLACEHOLDER CAPTION</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BEAT 2: BIO BOT LAB ═══ -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 02</p>
+      <h2 class="beat-title">Bio Bot Lab</h2>
+    </div>
+
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
+        <ul>
+          <li class="beat-goal-item"><strong>Goal:</strong> Drive the narrative forward as players search the lab for information about the superweapon, using the environment to reinforce the sense of investigation and tension</li>
+          <li><strong>Design Decision 1:</strong> PLACEHOLDER — describe your first design decision for this beat</li>
+          <li><strong>Design Decision 2:</strong> PLACEHOLDER — describe your second design decision for this beat</li>
+        </ul>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="PLACEHOLDER_BEAT2_URL?enablejsapi=1&mute=1" title="Beat 2 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — Bio Bot Lab</p>
+      </div>
+    </div>
+
+    <div class="beat-final-images">
+      <div class="image-grid cols-2">
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_BEAT2_IMG1.png" alt="Beat 2 Image 1" class="lightbox-trigger">
+          <p class="image-caption">PLACEHOLDER CAPTION</p>
+        </div>
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_BEAT2_IMG2.png" alt="Beat 2 Image 2" class="lightbox-trigger">
+          <p class="image-caption">PLACEHOLDER CAPTION</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BEAT 3: THE ATRIUM ═══ -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 03</p>
+      <h2 class="beat-title">The Atrium</h2>
+    </div>
+
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
+        <ul>
+          <li class="beat-goal-item"><strong>Goal:</strong> Introduce verticality into the combat flow — players clear the ground floor, take a lift to the second story, and eliminate the remaining enemies above, giving the encounter a clear two-phase structure within a single space</li>
+          <li><strong>Design Decision 1:</strong> PLACEHOLDER — describe your first design decision for this beat</li>
+          <li><strong>Design Decision 2:</strong> PLACEHOLDER — describe your second design decision for this beat</li>
+        </ul>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="PLACEHOLDER_BEAT3_URL?enablejsapi=1&mute=1" title="Beat 3 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — The Atrium</p>
+      </div>
+    </div>
+
+    <div class="beat-final-images">
+      <div class="image-grid cols-2">
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_BEAT3_IMG1.png" alt="Beat 3 Image 1" class="lightbox-trigger">
+          <p class="image-caption">PLACEHOLDER CAPTION</p>
+        </div>
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_BEAT3_IMG2.png" alt="Beat 3 Image 2" class="lightbox-trigger">
+          <p class="image-caption">PLACEHOLDER CAPTION</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ BEAT 4: Q-14 BOSS FIGHT ═══ -->
+  <section class="beat-section">
+    <div class="beat-header">
+      <p class="beat-number">Beat 04</p>
+      <h2 class="beat-title">Q-14</h2>
+    </div>
+
+    <div class="beat-two-col">
+      <div class="beat-text">
+        <div class="beat-subsection-label">Design Intent</div>
+        <ul>
+          <li class="beat-goal-item"><strong>Goal:</strong> Deliver a two-phase boss fight that transforms the arena mid-encounter — Phase 1 begins on a flat, even platform; halfway through, the central section rises, pushing the player to the outer ring and shifting the combat into a circular chase while lasers spawn randomly and the boss fires while retreating</li>
+          <li><strong>Design Decision 1:</strong> PLACEHOLDER — describe your first design decision for this beat</li>
+          <li><strong>Design Decision 2:</strong> PLACEHOLDER — describe your second design decision for this beat</li>
+        </ul>
+      </div>
+      <div>
+        <div class="beat-subsection-label">Beat Video</div>
+        <div class="video-wrap" data-autoplay>
+          <iframe src="PLACEHOLDER_BEAT4_URL?enablejsapi=1&mute=1" title="Beat 4 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-label">Playthrough — Q-14</p>
+      </div>
+    </div>
+
+    <div class="beat-final-images">
+      <div class="image-grid cols-2">
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_BEAT4_IMG1.png" alt="Beat 4 Image 1" class="lightbox-trigger">
+          <p class="image-caption">PLACEHOLDER CAPTION</p>
+        </div>
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_BEAT4_IMG2.png" alt="Beat 4 Image 2" class="lightbox-trigger">
+          <p class="image-caption">PLACEHOLDER CAPTION</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS & DOCUMENTATION -->
+  <h2 class="section-divider">Process <span>&amp; Documentation</span></h2>
+
+  <section style="padding-bottom: 2rem; border-top: 1px solid var(--border); padding-top: 4rem;">
+    <div class="beat-subsection-label">Map Progression</div>
+    <div class="beat-sub-col" style="margin-top: 1.5rem;">
+      <div class="beat-text">
+        <p>The level design process began with top-down maps outlining the layout, encounter zones, and player routing before any work was done in engine.</p>
+        <ul>
+          <li><strong>Established</strong> the linear flow of the lab through early map sketches, identifying where combat and narrative beats would occur</li>
+          <li><strong>Mapped</strong> the boss arena separately to plan the platform transformation and player movement paths for both phases</li>
+        </ul>
+      </div>
+      <div class="image-grid cols-2">
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_MAP_PROGRESSION_1.png" alt="Map iteration 1" class="lightbox-trigger">
+          <p class="image-caption">PLACEHOLDER CAPTION</p>
+        </div>
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_MAP_PROGRESSION_2.png" alt="Map iteration 2" class="lightbox-trigger">
+          <p class="image-caption">PLACEHOLDER CAPTION</p>
+        </div>
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_MAP_PROGRESSION_3.png" alt="Map iteration 3" class="lightbox-trigger">
+          <p class="image-caption">PLACEHOLDER CAPTION</p>
+        </div>
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_MAP_PROGRESSION_4.png" alt="Map iteration 4" class="lightbox-trigger">
+          <p class="image-caption">PLACEHOLDER CAPTION</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-bottom: 2rem; border-top: 1px solid var(--border); padding-top: 4rem;">
+    <div class="beat-subsection-label">Level Design Document</div>
+    <div class="beat-sub-col" style="margin-top: 1.5rem;">
+      <div class="beat-text">
+        <p>A Level Design Document was produced before production began, outlining the narrative context, beat structure, encounter goals, and design intent for each area of the lab.</p>
+        <ul>
+          <li><strong>Defined</strong> the narrative framework and the role each beat plays in advancing the story</li>
+          <li><strong>Outlined</strong> encounter goals and player experience targets for every area before touching the engine</li>
+        </ul>
+      </div>
+      <div class="image-item">
+        <img src="biolabimages/PLACEHOLDER_LDD.png" alt="Level Design Document" class="lightbox-trigger" style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; cursor:pointer;">
+        <p class="image-caption">Level Design Document — Bio Lab Mission 2</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-bottom: 2rem; border-top: 1px solid var(--border); padding-top: 4rem;">
+    <div class="beat-subsection-label">Research &amp; References</div>
+    <div class="beat-sub-col" style="margin-top: 1.5rem;">
+      <div class="beat-text">
+        <p>Visual and gameplay references were gathered before blockout to establish the look, feel, and encounter language of the lab environment.</p>
+        <ul>
+          <li><strong>Studied</strong> sci-fi lab environments from games and film to define the visual tone of the space</li>
+          <li><strong>Referenced</strong> boss fight design from comparable mech and action games to inform the Q-14 encounter structure</li>
+          <li><strong>Organized</strong> references on a Miro board alongside layout sketches and design goals</li>
+        </ul>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:1.5rem; align-self:start;">
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_MIRO.png" alt="Miro board" class="lightbox-trigger" style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; cursor:pointer;">
+          <p class="image-caption">Miro board — references, layout sketches, and design goals</p>
+        </div>
+        <div class="image-item">
+          <img src="biolabimages/PLACEHOLDER_REFERENCE.png" alt="Game reference" class="lightbox-trigger" style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; cursor:pointer;">
+          <p class="image-caption">PLACEHOLDER — primary gameplay reference</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONCLUSION -->
+  <h2 class="section-divider">Conclusion <span>&amp; Learnings</span></h2>
+  <section class="conclusion-section" style="border-top:none; padding-top:0;">
+    <p class="conclusion-intro">PLACEHOLDER — Write your conclusion here. Reflect on what this level taught you, what worked, and what you would do differently.</p>
+    <div class="conclusion-cols">
+      <div class="conclusion-col">
+        <h4>Knowledge Gained</h4>
+        <ul>
+          <li>PLACEHOLDER learning 1</li>
+          <li>PLACEHOLDER learning 2</li>
+          <li>PLACEHOLDER learning 3</li>
+        </ul>
+      </div>
+      <div class="conclusion-col">
+        <h4>Areas for Growth</h4>
+        <ul>
+          <li>PLACEHOLDER growth area 1</li>
+          <li>PLACEHOLDER growth area 2</li>
+          <li>PLACEHOLDER growth area 3</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMAGE GALLERY -->
+  <h2 class="section-divider">Image <span>Gallery</span></h2>
+  <div class="gallery-grid">
+    <img src="biolabimages/PLACEHOLDER_GALLERY_1.png" alt="" class="lightbox-trigger">
+    <img src="biolabimages/PLACEHOLDER_GALLERY_2.png" alt="" class="lightbox-trigger">
+    <img src="biolabimages/PLACEHOLDER_GALLERY_3.png" alt="" class="lightbox-trigger">
+    <img src="biolabimages/PLACEHOLDER_GALLERY_4.png" alt="" class="lightbox-trigger">
+    <img src="biolabimages/PLACEHOLDER_GALLERY_5.png" alt="" class="lightbox-trigger">
+    <img src="biolabimages/PLACEHOLDER_GALLERY_6.png" alt="" class="lightbox-trigger">
+    <img src="biolabimages/PLACEHOLDER_GALLERY_7.png" alt="" class="lightbox-trigger">
+    <img src="biolabimages/PLACEHOLDER_GALLERY_8.png" alt="" class="lightbox-trigger">
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 Paul Saturno</p>
+  <span class="footer-mark">PS</span>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <span class="close" id="lightbox-close">&times;</span>
+  <button class="lightbox-prev" id="lightbox-prev">&#10094;</button>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <button class="lightbox-next" id="lightbox-next">&#10095;</button>
+  <div class="caption" id="lightbox-caption"></div>
+</div>
+
+<script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxCaption = document.getElementById('lightbox-caption');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+  let allTriggers = [], currentLightboxIndex = 0;
+
+  function openLightbox(index) {
+    const trigger = allTriggers[index];
+    currentLightboxIndex = index;
+    lightboxImg.src = trigger.src || '';
+    lightboxImg.alt = trigger.alt || '';
+    lightboxCaption.textContent = trigger.closest('.image-item')?.querySelector('.image-caption')?.textContent || '';
+    lightbox.style.display = 'flex';
+  }
+
+  document.querySelectorAll('.lightbox-trigger').forEach((trigger, i) => {
+    allTriggers.push(trigger);
+    trigger.addEventListener('click', e => { e.preventDefault(); openLightbox(i); });
+  });
+
+  lightboxPrev.addEventListener('click', () => { currentLightboxIndex = (currentLightboxIndex - 1 + allTriggers.length) % allTriggers.length; openLightbox(currentLightboxIndex); });
+  lightboxNext.addEventListener('click', () => { currentLightboxIndex = (currentLightboxIndex + 1) % allTriggers.length; openLightbox(currentLightboxIndex); });
+  document.addEventListener('keydown', e => {
+    if (lightbox.style.display !== 'flex') return;
+    if (e.key === 'ArrowRight') lightboxNext.click();
+    if (e.key === 'ArrowLeft') lightboxPrev.click();
+    if (e.key === 'Escape') lightbox.style.display = 'none';
+  });
+  lightboxClose.addEventListener('click', () => lightbox.style.display = 'none');
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.style.display = 'none'; });
+
+  // AUTOPLAY ON SCROLL
+  const ytScript = document.createElement('script');
+  ytScript.src = 'https://www.youtube.com/iframe_api';
+  document.head.appendChild(ytScript);
+  const players = [];
+  window.onYouTubeIframeAPIReady = function () {
+    document.querySelectorAll('.video-wrap[data-autoplay] iframe').forEach(iframe => {
+      if (!iframe.id) iframe.id = 'yt_' + Math.random().toString(36).slice(2);
+      const player = new YT.Player(iframe.id, { events: { onReady: (e) => { e.target.mute(); } } });
+      players.push({ el: iframe.closest('.video-wrap'), player });
+    });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const match = players.find(p => p.el === entry.target);
+        if (!match) return;
+        try {
+          if (entry.isIntersecting) { match.player.mute(); match.player.playVideo(); }
+          else { match.player.pauseVideo(); match.player.seekTo(0); }
+        } catch(e) {}
+      });
+    }, { threshold: 0.5 });
+    players.forEach(p => observer.observe(p.el));
+  };
+</script>
+</body>
+</html>
