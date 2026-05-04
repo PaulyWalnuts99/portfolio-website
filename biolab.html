@@ -174,16 +174,16 @@ main {
 }
 .image-caption {
   margin-top: 0.6rem; font-family: 'Barlow Condensed', sans-serif;
-  font-size: 0.85rem; letter-spacing: 2px; color: var(--cyan); line-height: 1.5;
+  font-size: 1rem; letter-spacing: 2px; color: #ffffff; line-height: 1.5;
 }
 
-/* Design Intent — text left, video right */
+/* Design Intent — Text left, video right */
 .beat-two-col {
   display: grid; grid-template-columns: 1fr 1.4fr;
   gap: 4rem; align-items: start;
 }
 
-/* Process section — text left, images right */
+/* Process section — Text left, images right */
 .beat-sub-col {
   display: grid; grid-template-columns: 1fr 2.3fr;
   gap: 4rem; align-items: start;
@@ -206,16 +206,21 @@ main {
 }
 .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 .video-label {
-  font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1rem;
   letter-spacing: 2px; color: var(--gold);
 }
 
 /* Final images under each beat */
 .beat-final-images {
   margin-top: 2.5rem;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
+}
+.beat-final-images .image-grid.cols-2 {
+  gap: 3rem;
+}
+.beat-final-images .image-item img {
+  aspect-ratio: 16/9;
+  height: auto;
+  min-height: 280px;
 }
 
 /* PROCESS & DOCS */
@@ -336,7 +341,7 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
     <div class="overview-grid">
       <div class="overview-text">
         <h2>Overview</h2>
-        <p>Following the events of Mission 1, intel suggests that a rival PMC known as Nighthawk may be hiding crucial information about a superweapon at a secret lab facility. Players are tasked with infiltrating the lab and uncovering both the weapon's location and the truth behind it. The mission culminates in a boss fight against Q-14, whose defeat reveals critical story information through two cutscenes. The lab is a smaller, more linear level than The Wall — winding hallways and tighter encounter spaces keep the pacing intense, while still giving players enough room to maneuver freely.</p>
+        <p>Following the events of Mission 1, intel suggests that a rival PMC known as Nighthawk may be hiding crucial information about a superweapon at a secret lab facility. Players are tasked with infiltrating the lab and uncovering both the weapon's location and the truth behind it. The mission culminates in a boss fight against Q-14, whose defeat reveals critical story information through two cutscenes. The lab is a smaller, more linear level than The Wall — Winding hallways and tighter encounter spaces keep the pacing intense, while still giving players enough room to maneuver freely.</p>
         <p><strong style="color:var(--cyan); font-size:clamp(1.4rem, 2.5vw, 2rem); letter-spacing:3px; font-family:'Bebas Neue',sans-serif;">Level Goals</strong></p>
         <ul>
           <li><strong>Support</strong> the narrative by designing spaces that feel purposeful and grounded in the world of S.O.R.N.</li>
@@ -346,12 +351,12 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
       </div>
       <div class="overview-maps" style="display:flex; flex-direction:column; gap:1.5rem;">
         <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_MAP_1.png" alt="Bio Lab Map 1" class="lightbox-trigger">
+          <img src="BioLabImages/1st_floor_Lab_final_with_critical_path.png" alt="Bio Lab Map 1" class="lightbox-trigger">
           <p class="image-caption">Top-down map of Mission 2 — The Lab</p>
         </div>
         <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_MAP_2.png" alt="Bio Lab Map 2" class="lightbox-trigger">
-          <p class="image-caption">Top-down map of Mission 2 — The Lab (continued)</p>
+          <img src="BioLabImages/2nd_floor_lab.png" alt="Bio Lab Map 2" class="lightbox-trigger">
+          <p class="image-caption">Top-down map of Mission 2 — The Lab, second floor</p>
         </div>
       </div>
     </div>
@@ -363,16 +368,16 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
   <section class="beat-section">
     <div class="beat-header">
       <p class="beat-number">Beat 01</p>
-      <h2 class="beat-title">Power Up</h2>
+      <h2 class="beat-title">Power On The Lab</h2>
     </div>
 
     <div class="beat-two-col">
       <div class="beat-text">
         <div class="beat-subsection-label">Design Intent</div>
         <ul>
-          <li class="beat-goal-item"><strong>Goal:</strong> Establish the lab's atmosphere through darkness and narrative dialogue while easing the player into combat before delivering a satisfying environmental payoff when the power is restored</li>
-          <li><strong>Design Decision 1:</strong> PLACEHOLDER — describe your first design decision for this beat</li>
-          <li><strong>Design Decision 2:</strong> PLACEHOLDER — describe your second design decision for this beat</li>
+          <li class="beat-goal-item"><strong>Goal:</strong> Establish the lab's atmosphere through darkness and narrative dialogue, easing the player into combat before a satisfying environmental payoff when the power comes on</li>
+          <li><strong>Design Decision 1:</strong> The level opens dark and quiet with minimal enemies, allowing the narrative and music to set the tone before combat escalates. A light spline embedded in the floor guides the player along the critical path — First to a terminal that reveals the location of the information we are looking for, then to a generator that powers the lab back on. The spline removes navigation ambiguity without breaking the atmosphere, keeping the player moving naturally through a dark space</li>
+          <li><strong>Design Decision 2:</strong> Interacting with the generator triggers the lab lights turning on, creating a clear and rewarding moment of environmental change. This power-on sequence doubles as a pacing beat — The darkness slows the player down and lets the dialogue and music breathe, while the lights coming on signals a shift in tone and marks the transition into the more combat-heavy sections ahead</li>
         </ul>
       </div>
       <div>
@@ -380,19 +385,19 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
         <div class="video-wrap" data-autoplay>
           <iframe src="https://www.youtube.com/embed/i0J7Dg_6V-I?enablejsapi=1&mute=1" title="Beat 1 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
         </div>
-        <p class="video-label">Playthrough — Power Up</p>
+        <p class="video-label">Playthrough — Power Up The Lab</p>
       </div>
     </div>
 
     <div class="beat-final-images">
       <div class="image-grid cols-2">
         <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_BEAT1_IMG1.png" alt="Beat 1 Image 1" class="lightbox-trigger">
-          <p class="image-caption">PLACEHOLDER CAPTION</p>
+          <img src="BioLabImages/MarketingMaterialLabSS6.png" alt="Beat 1 Image 1" class="lightbox-trigger">
+          <p class="image-caption">A light spline embedded in the floor guides the player through the dark lab — Directing them to the terminal and generator without breaking the atmosphere</p>
         </div>
         <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_BEAT1_IMG2.png" alt="Beat 1 Image 2" class="lightbox-trigger">
-          <p class="image-caption">PLACEHOLDER CAPTION</p>
+          <img src="BioLabImages/TheLabRTMBeat1SS2.png" alt="Beat 1 Image 2" class="lightbox-trigger">
+          <p class="image-caption">The lab lights on after the generator is activated — A clear environmental shift that rewards the player and signals the start of a more intense phase ahead</p>
         </div>
       </div>
     </div>
@@ -409,9 +414,9 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
       <div class="beat-text">
         <div class="beat-subsection-label">Design Intent</div>
         <ul>
-          <li class="beat-goal-item"><strong>Goal:</strong> Drive the narrative forward as players search the lab for information about the superweapon, using the environment to reinforce the sense of investigation and tension</li>
-          <li><strong>Design Decision 1:</strong> PLACEHOLDER — describe your first design decision for this beat</li>
-          <li><strong>Design Decision 2:</strong> PLACEHOLDER — describe your second design decision for this beat</li>
+          <li class="beat-goal-item"><strong>Goal:</strong> Introduce the player to the Bio-bot, the most dangerous enemy in the level, in a controlled encounter that forces active maneuvering and punishes passive play</li>
+          <li><strong>Design Decision 1:</strong> The player drops down into the encounter space rather than walking in — A deliberate choice to remove the option of retreating. With 2 Bio-bots filling the area with acidic poison mist and a drone applying pressure from range, the player is forced to stay mobile and engage rather than fall back to safety. The sunken layout ensures the poison cloud has maximum coverage and cannot be easily avoided by simply backing away</li>
+          <li><strong>Design Decision 2:</strong> An elevated platform with a drone on top sits at the edge of the space. To reach the high ground, players must push through the poison and clear the Bio-bots first — rewarding aggression while giving cautious players a clear goal</li>
         </ul>
       </div>
       <div>
@@ -419,19 +424,19 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
         <div class="video-wrap" data-autoplay>
           <iframe src="https://www.youtube.com/embed/oDrUG1zvT0w?enablejsapi=1&mute=1" title="Beat 2 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
         </div>
-        <p class="video-label">Playthrough — Bio Bot Lab</p>
+        <p class="video-label">Playthrough — Bio-Bot Lab</p>
       </div>
     </div>
 
     <div class="beat-final-images">
       <div class="image-grid cols-2">
         <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_BEAT2_IMG1.png" alt="Beat 2 Image 1" class="lightbox-trigger">
-          <p class="image-caption">PLACEHOLDER CAPTION</p>
+          <img src="BioLabImages/Level2MarketingMaterialSS1.png" alt="Beat 2 Image 1" class="lightbox-trigger">
+          <p class="image-caption">The Bio-bot was designed to be a genuinely threatening enemy — Its acidic poison mist covers a wide area of effect, demanding that the player stay mobile or risk taking sustained damage</p>
         </div>
         <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_BEAT2_IMG2.png" alt="Beat 2 Image 2" class="lightbox-trigger">
-          <p class="image-caption">PLACEHOLDER CAPTION</p>
+          <img src="BioLabImages/MarketingMaterialLabSS10.png" alt="Beat 2 Image 2" class="lightbox-trigger">
+          <p class="image-caption">The elevated platform gives players a clear combat advantage, but reaching it requires pushing through the encounter first — Making the high ground something that has to be earned rather than taken for free</p>
         </div>
       </div>
     </div>
@@ -448,9 +453,9 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
       <div class="beat-text">
         <div class="beat-subsection-label">Design Intent</div>
         <ul>
-          <li class="beat-goal-item"><strong>Goal:</strong> Introduce verticality into the combat flow — players clear the ground floor, take a lift to the second story, and eliminate the remaining enemies above, giving the encounter a clear two-phase structure within a single space</li>
-          <li><strong>Design Decision 1:</strong> PLACEHOLDER — describe your first design decision for this beat</li>
-          <li><strong>Design Decision 2:</strong> PLACEHOLDER — describe your second design decision for this beat</li>
+          <li class="beat-goal-item"><strong>Goal:</strong> Deliver the level's most ambitious combat space — A two-story atrium designed to challenge players with verticality, sightlines, and layered enemy pressure before the boss fight</li>
+          <li><strong>Design Decision 1:</strong> The atrium's large pillars were designed to serve multiple functions simultaneously — They break up the open space into manageable combat zones, provide natural cover positions for the player, and create negative space that gives the encounter visual clarity. The result is a room that feels expansive but never overwhelming, with enough structure to support a wide range of playstyles</li>
+          <li><strong>Design Decision 2:</strong> Every enemy type in the level appears here — Bio-bots on the ground floor, drones above, and standard enemies throughout. Clearing upward via the lift rewards players who push, while the ground floor favors patience and cover. Every playstyle has a path to success</li>
         </ul>
       </div>
       <div>
@@ -465,12 +470,12 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
     <div class="beat-final-images">
       <div class="image-grid cols-2">
         <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_BEAT3_IMG1.png" alt="Beat 3 Image 1" class="lightbox-trigger">
-          <p class="image-caption">PLACEHOLDER CAPTION</p>
+          <img src="BioLabImages/RTMLabImage10.png" alt="Beat 3 Image 1" class="lightbox-trigger">
+          <p class="image-caption">The atrium is the largest and most open space in the level — Wide enough to maneuver freely, structured enough to support cover play, and vertical enough to reward players who push to the second floor</p>
         </div>
         <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_BEAT3_IMG2.png" alt="Beat 3 Image 2" class="lightbox-trigger">
-          <p class="image-caption">PLACEHOLDER CAPTION</p>
+          <img src="BioLabImages/RTMLabImage14.png" alt="Beat 3 Image 2" class="lightbox-trigger">
+          <p class="image-caption">Every enemy type appears here simultaneously — The encounter demands awareness, positioning, and adaptability, but the room is designed so that every playstyle has a path to victory</p>
         </div>
       </div>
     </div>
@@ -480,16 +485,16 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
   <section class="beat-section">
     <div class="beat-header">
       <p class="beat-number">Beat 04</p>
-      <h2 class="beat-title">Q-14</h2>
+      <h2 class="beat-title">Boss Fight — Q-14</h2>
     </div>
 
     <div class="beat-two-col">
       <div class="beat-text">
         <div class="beat-subsection-label">Design Intent</div>
         <ul>
-          <li class="beat-goal-item"><strong>Goal:</strong> Deliver a two-phase boss fight that transforms the arena mid-encounter — Phase 1 begins on a flat, even platform; halfway through, the central section rises, pushing the player to the outer ring and shifting the combat into a circular chase while lasers spawn randomly and the boss fires while retreating</li>
-          <li><strong>Design Decision 1:</strong> PLACEHOLDER — describe your first design decision for this beat</li>
-          <li><strong>Design Decision 2:</strong> PLACEHOLDER — describe your second design decision for this beat</li>
+          <li class="beat-goal-item"><strong>Goal:</strong> Design a space that serves three distinct purposes — Delivering narrative through cutscenes, hosting a fair and intense one-on-one boss encounter, and physically supporting the mid-fight phase shift where the arena transforms around the player</li>
+          <li><strong>Design Decision 1:</strong> The R&amp;D Dome is a glass-ceilinged circular arena built to serve both narrative and gameplay. The glass ceiling keeps the hub ship visible during cutscenes, grounding the story without interrupting the space. The circular shape and open sightlines give the player full awareness during the one-on-one fight with Q-14</li>
+          <li><strong>Design Decision 2:</strong> The phase shift mid-fight sees the central section of the dome floor elevate, dropping the player down to the outer ring and turning the encounter into a circular chase. The scale and shape of the dome were designed with this moment in mind — The outer ring is wide enough to maneuver freely while avoiding laser spawns, and the raised centerpiece becomes a constant visual reference point as the player pursues Q-14 around it. The space had to be large enough to feel intense without being so large that the chase loses its pressure</li>
         </ul>
       </div>
       <div>
@@ -497,57 +502,39 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
         <div class="video-wrap" data-autoplay>
           <iframe src="https://www.youtube.com/embed/ryxBY6RjGUU?enablejsapi=1&mute=1" title="Beat 4 Video" frameborder="0" allowfullscreen loading="lazy"></iframe>
         </div>
-        <p class="video-label">Playthrough — Q-14</p>
+        <p class="video-label">Playthrough — Boss Fight Against Q-14</p>
       </div>
     </div>
 
     <div class="beat-final-images">
       <div class="image-grid cols-2">
         <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_BEAT4_IMG1.png" alt="Beat 4 Image 1" class="lightbox-trigger">
-          <p class="image-caption">PLACEHOLDER CAPTION</p>
+          <img src="BioLabImages/MarketingMaterialLabSS16.png" alt="Beat 4 Image 1" class="lightbox-trigger">
+          <p class="image-caption">The glass ceiling of the R&amp;D Dome keeps the hub ship visible during cutscenes, grounding the narrative without interrupting the encounter</p>
         </div>
         <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_BEAT4_IMG2.png" alt="Beat 4 Image 2" class="lightbox-trigger">
-          <p class="image-caption">PLACEHOLDER CAPTION</p>
+          <img src="BioLabImages/MidQ14BossFightImage1.png" alt="Beat 4 Image 2" class="lightbox-trigger">
+          <p class="image-caption">The scale and circular shape of the dome make the phase shift chase feel intense but fair — The outer ring gives the player room to move while the elevated centerpiece anchors the fight and keeps Q-14 within reach</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PROCESS & DOCUMENTATION -->
-  <h2 class="section-divider">Process <span>&amp; Documentation</span></h2>
+  <!-- IMAGE GALLERY -->
+  <h2 class="section-divider">Image <span>Gallery</span></h2>
+  <div class="gallery-grid">
+    <img src="BioLabImages/RTMLabImage2.png" alt="" class="lightbox-trigger">
+    <img src="BioLabImages/RTMLabImage3.png" alt="" class="lightbox-trigger">
+    <img src="BioLabImages/RTMLabImage5.png" alt="" class="lightbox-trigger">
+    <img src="BioLabImages/RTMLabImage6.png" alt="" class="lightbox-trigger">
+    <img src="BioLabImages/RTMLabImage12.png" alt="" class="lightbox-trigger">
+    <img src="BioLabImages/RTMLabImage8.png" alt="" class="lightbox-trigger">
+    <img src="BioLabImages/RTMLabImage9.png" alt="" class="lightbox-trigger">
+    <img src="BioLabImages/MarketingMaterialLabSS15.png" alt="" class="lightbox-trigger">
+  </div>
 
-  <section style="padding-bottom: 2rem; border-top: 1px solid var(--border); padding-top: 4rem;">
-    <div class="beat-subsection-label">Map Progression</div>
-    <div class="beat-sub-col" style="margin-top: 1.5rem;">
-      <div class="beat-text">
-        <p>The level design process began with top-down maps outlining the layout, encounter zones, and player routing before any work was done in engine.</p>
-        <ul>
-          <li><strong>Established</strong> the linear flow of the lab through early map sketches, identifying where combat and narrative beats would occur</li>
-          <li><strong>Mapped</strong> the boss arena separately to plan the platform transformation and player movement paths for both phases</li>
-        </ul>
-      </div>
-      <div class="image-grid cols-2">
-        <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_MAP_PROGRESSION_1.png" alt="Map iteration 1" class="lightbox-trigger">
-          <p class="image-caption">PLACEHOLDER CAPTION</p>
-        </div>
-        <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_MAP_PROGRESSION_2.png" alt="Map iteration 2" class="lightbox-trigger">
-          <p class="image-caption">PLACEHOLDER CAPTION</p>
-        </div>
-        <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_MAP_PROGRESSION_3.png" alt="Map iteration 3" class="lightbox-trigger">
-          <p class="image-caption">PLACEHOLDER CAPTION</p>
-        </div>
-        <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_MAP_PROGRESSION_4.png" alt="Map iteration 4" class="lightbox-trigger">
-          <p class="image-caption">PLACEHOLDER CAPTION</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <h2 class="section-divider">Process <span>&amp; Documentation</span></h2>
 
   <section style="padding-bottom: 2rem; border-top: 1px solid var(--border); padding-top: 4rem;">
     <div class="beat-subsection-label">Level Design Document</div>
@@ -557,11 +544,38 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
         <ul>
           <li><strong>Defined</strong> the narrative framework and the role each beat plays in advancing the story</li>
           <li><strong>Outlined</strong> encounter goals and player experience targets for every area before touching the engine</li>
+          <li><strong>Served</strong> as the team's shared reference throughout production, keeping design decisions consistent and aligned with the level's core goals</li>
         </ul>
       </div>
-      <div class="image-item">
-        <img src="BioLabImages/PLACEHOLDER_LDD.png" alt="Level Design Document" class="lightbox-trigger" style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; cursor:pointer;">
-        <p class="image-caption">Level Design Document — Bio Lab Mission 2</p>
+      <div>
+        <a href="BioLabImages/SORNLevelDesignDocumentLevel2.pdf" target="_blank" style="display:block; text-decoration:none;">
+          <img src="BioLabImages/LDDLevel2PDFImage.png" alt="Level Design Document" style="width:100%; display:block; cursor:pointer; border: 1px solid var(--border);">
+        </a>
+        <p class="image-caption" style="margin-top:0.75rem;">Level Design Document — Bio Lab Mission 2. Click to see the full PDF</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-bottom: 2rem; border-top: 1px solid var(--border); padding-top: 4rem;">
+    <div class="beat-subsection-label">Level Maps</div>
+    <div class="beat-sub-col" style="margin-top: 1.5rem;">
+      <div class="beat-text">
+        <p>The level design process began with top-down maps outlining the layout, encounter zones, and player routing before any work was done in engine.</p>
+        <ul>
+          <li><strong>Established</strong> the linear flow of the lab through early map sketches, identifying where combat and narrative beats would occur</li>
+          <li><strong>Mapped</strong> the boss arena separately to plan the platform transformation and player movement paths for both phases</li>
+          <li><strong>Marked</strong> interactable locations directly on the map — Terminals, generators, and key story objects — To ensure narrative beats and dialogue moments were tied to deliberate, designed spaces</li>
+        </ul>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:1.5rem; align-self:start;">
+        <div class="image-item">
+          <img src="BioLabImages/2nd_floor_lab.png" alt="Map 1" class="lightbox-trigger" style="width:100%; display:block; object-fit:contain; cursor:pointer; border:1px solid var(--border);">
+          <p class="image-caption" style="margin-top:0.5rem;">Second floor layout — Encounter zones and player routing</p>
+        </div>
+        <div class="image-item">
+          <img src="BioLabImages/1st_floor_Lab_final_with_critical_path.png" alt="Map 2" class="lightbox-trigger" style="width:100%; display:block; object-fit:contain; cursor:pointer; border:1px solid var(--border);">
+          <p class="image-caption" style="margin-top:0.5rem;">First floor layout — Critical path, encounter zones, and interactable locations marked</p>
+        </div>
       </div>
     </div>
   </section>
@@ -570,22 +584,16 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
     <div class="beat-subsection-label">Research &amp; References</div>
     <div class="beat-sub-col" style="margin-top: 1.5rem;">
       <div class="beat-text">
-        <p>Visual and gameplay references were gathered before blockout to establish the look, feel, and encounter language of the lab environment.</p>
+        <p>Visual and gameplay references were gathered before production began to establish the look, feel, and encounter language of the lab environment.</p>
         <ul>
           <li><strong>Studied</strong> sci-fi lab environments from games and film to define the visual tone of the space</li>
           <li><strong>Referenced</strong> boss fight design from comparable mech and action games to inform the Q-14 encounter structure</li>
-          <li><strong>Organized</strong> references on a Miro board alongside layout sketches and design goals</li>
+          <li><strong>Organized</strong> everything on a Miro board alongside layout sketches and design goals before touching the engine</li>
         </ul>
       </div>
-      <div style="display:flex; flex-direction:column; gap:1.5rem; align-self:start;">
-        <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_MIRO.png" alt="Miro board" class="lightbox-trigger" style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; cursor:pointer;">
-          <p class="image-caption">Miro board — references, layout sketches, and design goals</p>
-        </div>
-        <div class="image-item">
-          <img src="BioLabImages/PLACEHOLDER_REFERENCE.png" alt="Game reference" class="lightbox-trigger" style="width:100%; display:block; aspect-ratio:16/9; object-fit:cover; cursor:pointer;">
-          <p class="image-caption">PLACEHOLDER — primary gameplay reference</p>
-        </div>
+      <div class="image-item">
+        <img src="BioLabImages/SornTeamArtboardLevel2ReferenceImages.jpg" alt="Miro board" class="lightbox-trigger" style="width:100%; display:block; aspect-ratio:4/3; object-fit:cover; cursor:pointer;">
+        <p class="image-caption">Miro board — References and design goals organized before production</p>
       </div>
     </div>
   </section>
@@ -593,39 +601,26 @@ footer p { font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; lett
   <!-- CONCLUSION -->
   <h2 class="section-divider">Conclusion <span>&amp; Learnings</span></h2>
   <section class="conclusion-section" style="border-top:none; padding-top:0;">
-    <p class="conclusion-intro">PLACEHOLDER — Write your conclusion here. Reflect on what this level taught you, what worked, and what you would do differently.</p>
+    <p class="conclusion-intro">Designing the Bio Lab was a different challenge than Mission 1 — Without a traditional blockout-to-final pipeline, the focus shifted entirely to supporting the narrative and crafting encounters that felt purposeful within a linear space. Each beat had a clear job to do, and the goal was to make sure the level design did that job without getting in the way of the story.</p>
     <div class="conclusion-cols">
       <div class="conclusion-col">
         <h4>Knowledge Gained</h4>
         <ul>
-          <li>PLACEHOLDER learning 1</li>
-          <li>PLACEHOLDER learning 2</li>
-          <li>PLACEHOLDER learning 3</li>
+          <li>How to properly map out a level — Identifying encounter zones, routing, and interactable locations before building anything in engine</li>
+          <li>Deeper application of level design principles such as negative space, using the atrium pillars to create combat clarity and visual breathing room</li>
+          <li>More experience with prop placement and set dressing to support both the atmosphere and the gameplay goals of each space</li>
         </ul>
       </div>
       <div class="conclusion-col">
         <h4>Areas for Growth</h4>
         <ul>
-          <li>PLACEHOLDER growth area 1</li>
-          <li>PLACEHOLDER growth area 2</li>
-          <li>PLACEHOLDER growth area 3</li>
+          <li>Initial blockouts could have been more developed — Stronger early layouts would have made iteration faster and more focused</li>
+          <li>More familiarity with scripting and scripted events would have allowed for more dynamic narrative moments throughout the level</li>
+          <li>Exploring puzzle design rather than relying solely on terminal interactions could have added another layer of engagement to the investigation beats</li>
         </ul>
       </div>
     </div>
   </section>
-
-  <!-- IMAGE GALLERY -->
-  <h2 class="section-divider">Image <span>Gallery</span></h2>
-  <div class="gallery-grid">
-    <img src="BioLabImages/PLACEHOLDER_GALLERY_1.png" alt="" class="lightbox-trigger">
-    <img src="BioLabImages/PLACEHOLDER_GALLERY_2.png" alt="" class="lightbox-trigger">
-    <img src="BioLabImages/PLACEHOLDER_GALLERY_3.png" alt="" class="lightbox-trigger">
-    <img src="BioLabImages/PLACEHOLDER_GALLERY_4.png" alt="" class="lightbox-trigger">
-    <img src="BioLabImages/PLACEHOLDER_GALLERY_5.png" alt="" class="lightbox-trigger">
-    <img src="BioLabImages/PLACEHOLDER_GALLERY_6.png" alt="" class="lightbox-trigger">
-    <img src="BioLabImages/PLACEHOLDER_GALLERY_7.png" alt="" class="lightbox-trigger">
-    <img src="BioLabImages/PLACEHOLDER_GALLERY_8.png" alt="" class="lightbox-trigger">
-  </div>
 
 </main>
 
